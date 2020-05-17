@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */; };
+		DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */; };
+		DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB624719BA20071F0A7 /* ViewController.swift */; };
+		DD2DCBBA24719BA20071F0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2DCBB824719BA20071F0A7 /* Main.storyboard */; };
+		DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBBB24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld */; };
+		DD2DCBBF24719BA30071F0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */; };
+		DD2DCBC224719BA30071F0A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2DCBC024719BA30071F0A7 /* LaunchScreen.storyboard */; };
+		DD2DCBCD24719BA30071F0A7 /* ClosetOrganizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBCC24719BA30071F0A7 /* ClosetOrganizerTests.swift */; };
+		DD2DCBD824719BA30071F0A7 /* ClosetOrganizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBD724719BA30071F0A7 /* ClosetOrganizerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD2DCBC924719BA30071F0A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD2DCBA724719BA20071F0A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD2DCBAE24719BA20071F0A7;
+			remoteInfo = ClosetOrganizer;
+		};
+		DD2DCBD424719BA30071F0A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD2DCBA724719BA20071F0A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD2DCBAE24719BA20071F0A7;
+			remoteInfo = ClosetOrganizer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD2DCBAF24719BA20071F0A7 /* ClosetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClosetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DD2DCBB624719BA20071F0A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD2DCBB924719BA20071F0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DD2DCBBC24719BA20071F0A7 /* ClosetOrganizer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClosetOrganizer.xcdatamodel; sourceTree = "<group>"; };
+		DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD2DCBC124719BA30071F0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD2DCBC324719BA30071F0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD2DCBC824719BA30071F0A7 /* ClosetOrganizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClosetOrganizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2DCBCC24719BA30071F0A7 /* ClosetOrganizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetOrganizerTests.swift; sourceTree = "<group>"; };
+		DD2DCBCE24719BA30071F0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD2DCBD324719BA30071F0A7 /* ClosetOrganizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClosetOrganizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2DCBD724719BA30071F0A7 /* ClosetOrganizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetOrganizerUITests.swift; sourceTree = "<group>"; };
+		DD2DCBD924719BA30071F0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD2DCBAC24719BA20071F0A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBC524719BA30071F0A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBD024719BA30071F0A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD2DCBA624719BA20071F0A7 = {
+			isa = PBXGroup;
+			children = (
+				DD2DCBB124719BA20071F0A7 /* ClosetOrganizer */,
+				DD2DCBCB24719BA30071F0A7 /* ClosetOrganizerTests */,
+				DD2DCBD624719BA30071F0A7 /* ClosetOrganizerUITests */,
+				DD2DCBB024719BA20071F0A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD2DCBB024719BA20071F0A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DCBAF24719BA20071F0A7 /* ClosetOrganizer.app */,
+				DD2DCBC824719BA30071F0A7 /* ClosetOrganizerTests.xctest */,
+				DD2DCBD324719BA30071F0A7 /* ClosetOrganizerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD2DCBB124719BA20071F0A7 /* ClosetOrganizer */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */,
+				DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */,
+				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
+				DD2DCBB824719BA20071F0A7 /* Main.storyboard */,
+				DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */,
+				DD2DCBC024719BA30071F0A7 /* LaunchScreen.storyboard */,
+				DD2DCBC324719BA30071F0A7 /* Info.plist */,
+				DD2DCBBB24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld */,
+			);
+			path = ClosetOrganizer;
+			sourceTree = "<group>";
+		};
+		DD2DCBCB24719BA30071F0A7 /* ClosetOrganizerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DCBCC24719BA30071F0A7 /* ClosetOrganizerTests.swift */,
+				DD2DCBCE24719BA30071F0A7 /* Info.plist */,
+			);
+			path = ClosetOrganizerTests;
+			sourceTree = "<group>";
+		};
+		DD2DCBD624719BA30071F0A7 /* ClosetOrganizerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DCBD724719BA30071F0A7 /* ClosetOrganizerUITests.swift */,
+				DD2DCBD924719BA30071F0A7 /* Info.plist */,
+			);
+			path = ClosetOrganizerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD2DCBAE24719BA20071F0A7 /* ClosetOrganizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD2DCBDC24719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizer" */;
+			buildPhases = (
+				DD2DCBAB24719BA20071F0A7 /* Sources */,
+				DD2DCBAC24719BA20071F0A7 /* Frameworks */,
+				DD2DCBAD24719BA20071F0A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClosetOrganizer;
+			productName = ClosetOrganizer;
+			productReference = DD2DCBAF24719BA20071F0A7 /* ClosetOrganizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD2DCBC724719BA30071F0A7 /* ClosetOrganizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD2DCBDF24719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizerTests" */;
+			buildPhases = (
+				DD2DCBC424719BA30071F0A7 /* Sources */,
+				DD2DCBC524719BA30071F0A7 /* Frameworks */,
+				DD2DCBC624719BA30071F0A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD2DCBCA24719BA30071F0A7 /* PBXTargetDependency */,
+			);
+			name = ClosetOrganizerTests;
+			productName = ClosetOrganizerTests;
+			productReference = DD2DCBC824719BA30071F0A7 /* ClosetOrganizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD2DCBD224719BA30071F0A7 /* ClosetOrganizerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD2DCBE224719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizerUITests" */;
+			buildPhases = (
+				DD2DCBCF24719BA30071F0A7 /* Sources */,
+				DD2DCBD024719BA30071F0A7 /* Frameworks */,
+				DD2DCBD124719BA30071F0A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD2DCBD524719BA30071F0A7 /* PBXTargetDependency */,
+			);
+			name = ClosetOrganizerUITests;
+			productName = ClosetOrganizerUITests;
+			productReference = DD2DCBD324719BA30071F0A7 /* ClosetOrganizerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD2DCBA724719BA20071F0A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Allen Wang";
+				TargetAttributes = {
+					DD2DCBAE24719BA20071F0A7 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					DD2DCBC724719BA30071F0A7 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = DD2DCBAE24719BA20071F0A7;
+					};
+					DD2DCBD224719BA30071F0A7 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = DD2DCBAE24719BA20071F0A7;
+					};
+				};
+			};
+			buildConfigurationList = DD2DCBAA24719BA20071F0A7 /* Build configuration list for PBXProject "ClosetOrganizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD2DCBA624719BA20071F0A7;
+			productRefGroup = DD2DCBB024719BA20071F0A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD2DCBAE24719BA20071F0A7 /* ClosetOrganizer */,
+				DD2DCBC724719BA30071F0A7 /* ClosetOrganizerTests */,
+				DD2DCBD224719BA30071F0A7 /* ClosetOrganizerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD2DCBAD24719BA20071F0A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2DCBC224719BA30071F0A7 /* LaunchScreen.storyboard in Resources */,
+				DD2DCBBF24719BA30071F0A7 /* Assets.xcassets in Resources */,
+				DD2DCBBA24719BA20071F0A7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBC624719BA30071F0A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBD124719BA30071F0A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD2DCBAB24719BA20071F0A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */,
+				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
+				DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */,
+				DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBC424719BA30071F0A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2DCBCD24719BA30071F0A7 /* ClosetOrganizerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD2DCBCF24719BA30071F0A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2DCBD824719BA30071F0A7 /* ClosetOrganizerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD2DCBCA24719BA30071F0A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD2DCBAE24719BA20071F0A7 /* ClosetOrganizer */;
+			targetProxy = DD2DCBC924719BA30071F0A7 /* PBXContainerItemProxy */;
+		};
+		DD2DCBD524719BA30071F0A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD2DCBAE24719BA20071F0A7 /* ClosetOrganizer */;
+			targetProxy = DD2DCBD424719BA30071F0A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD2DCBB824719BA20071F0A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD2DCBB924719BA20071F0A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DD2DCBC024719BA30071F0A7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD2DCBC124719BA30071F0A7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD2DCBDA24719BA30071F0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD2DCBDB24719BA30071F0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD2DCBDD24719BA30071F0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD2DCBDE24719BA30071F0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DD2DCBE024719BA30071F0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClosetOrganizer.app/ClosetOrganizer";
+			};
+			name = Debug;
+		};
+		DD2DCBE124719BA30071F0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ClosetOrganizer.app/ClosetOrganizer";
+			};
+			name = Release;
+		};
+		DD2DCBE324719BA30071F0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClosetOrganizer;
+			};
+			name = Debug;
+		};
+		DD2DCBE424719BA30071F0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ClosetOrganizerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = WangAllen.ClosetOrganizerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ClosetOrganizer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD2DCBAA24719BA20071F0A7 /* Build configuration list for PBXProject "ClosetOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD2DCBDA24719BA30071F0A7 /* Debug */,
+				DD2DCBDB24719BA30071F0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD2DCBDC24719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD2DCBDD24719BA30071F0A7 /* Debug */,
+				DD2DCBDE24719BA30071F0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD2DCBDF24719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD2DCBE024719BA30071F0A7 /* Debug */,
+				DD2DCBE124719BA30071F0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD2DCBE224719BA30071F0A7 /* Build configuration list for PBXNativeTarget "ClosetOrganizerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD2DCBE324719BA30071F0A7 /* Debug */,
+				DD2DCBE424719BA30071F0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DD2DCBBB24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD2DCBBC24719BA20071F0A7 /* ClosetOrganizer.xcdatamodel */,
+			);
+			currentVersion = DD2DCBBC24719BA20071F0A7 /* ClosetOrganizer.xcdatamodel */;
+			path = ClosetOrganizer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DD2DCBA724719BA20071F0A7 /* Project object */;
+}
