@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var closetTableView: UITableView!
     
+    var closetList:[ClosetItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

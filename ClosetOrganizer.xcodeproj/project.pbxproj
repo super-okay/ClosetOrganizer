@@ -17,6 +17,7 @@
 		DD2DCBCD24719BA30071F0A7 /* ClosetOrganizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBCC24719BA30071F0A7 /* ClosetOrganizerTests.swift */; };
 		DD2DCBD824719BA30071F0A7 /* ClosetOrganizerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBD724719BA30071F0A7 /* ClosetOrganizerUITests.swift */; };
 		DD2DCBE62471A2920071F0A7 /* ClosetItemCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */; };
+		DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		DD2DCBD724719BA30071F0A7 /* ClosetOrganizerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetOrganizerUITests.swift; sourceTree = "<group>"; };
 		DD2DCBD924719BA30071F0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItemCustomCell.swift; sourceTree = "<group>"; };
+		DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */,
 				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
+				DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */,
 				DD2DCBB824719BA20071F0A7 /* Main.storyboard */,
 				DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */,
 				DD2DCBC024719BA30071F0A7 /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
 				DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */,
 				DD2DCBE62471A2920071F0A7 /* ClosetItemCustomCell.swift in Sources */,
+				DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */,
 				DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
