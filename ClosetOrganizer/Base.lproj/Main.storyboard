@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ofu-dX-PmM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Closet-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,16 +85,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Closet" image="bag" catalog="system" id="mea-y8-bxb"/>
+                    <navigationItem key="navigationItem" id="QT4-PC-hak"/>
                     <connections>
                         <outlet property="closetTableView" destination="4Kv-aS-Ff6" id="aa7-qo-WBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="141"/>
+            <point key="canvasLocation" x="393" y="856"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller-->
         <scene sceneID="Zi4-bc-eyz">
             <objects>
                 <viewController id="edx-Si-bAt" customClass="SettingsViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,11 +104,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="poc-bz-heR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="3ED-8O-kp0"/>
+                    <navigationItem key="navigationItem" id="e4r-4e-qBk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-kq-Jai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="141"/>
+            <point key="canvasLocation" x="1287" y="856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="obc-D8-awc">
@@ -120,13 +120,51 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="pCg-yd-Ahi"/>
-                        <segue destination="edx-Si-bAt" kind="relationship" relationship="viewControllers" id="Hib-y5-BBE"/>
+                        <segue destination="Nkx-zk-O8f" kind="relationship" relationship="viewControllers" id="pCg-yd-Ahi"/>
+                        <segue destination="iOg-93-q4A" kind="relationship" relationship="viewControllers" id="Hib-y5-BBE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghz-rY-wd8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="839" y="-589"/>
+        </scene>
+        <!--Closet-->
+        <scene sceneID="gSx-05-eX5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nkx-zk-O8f" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Closet" image="bag" catalog="system" id="mea-y8-bxb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="71e-Fr-Uq2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="PQg-RK-D5E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXl-Nh-F3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="392.75362318840581" y="140.625"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="MLp-vA-Li0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iOg-93-q4A" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="3ED-8O-kp0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wdX-Gv-SJ9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="edx-Si-bAt" kind="relationship" relationship="rootViewController" id="edC-uf-fqw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Shh-0X-URU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286.9565217391305" y="140.625"/>
         </scene>
     </scenes>
     <resources>
