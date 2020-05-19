@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol AddItemDelegate {
+    func addNewItem(newItem: ClosetItem)
+}
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
     
@@ -18,7 +22,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        closetTableView.delegate = self
+        closetTableView.dataSource = self
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,9 +34,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell") as! ClosetItemCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
+        let currItem = closetList[indexPath.row]
+        cell.brandName.text = currItem.brand
+        cell.color.text = currItem.color
+        cell.lastWorn.text = currItem.lastWorn
+        cell.purchaseDate.text = currItem.purchaseDate
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addItemSegue" {
+            let addItemVC = segue.destination as! AddItemViewController
+            addItemVC.delegate = self
+        }
+    }
+    
+    func addNewItem(newItem: ClosetItem) {
+        closetList.append(newItem)
+        closetTableView.reloadData()
     }
 
 }

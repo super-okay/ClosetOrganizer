@@ -18,11 +18,11 @@ class ClosetItem {
     var lastWorn:String!
     var purchaseDate:String!
     
-    
-    init(image:UIImage, category:String, brand:String, color:String) {
+    init(image:UIImage, category:String, brand:String, color:String, purchaseDate:String) {
         self.image = image
         self.category = category
         self.brand = brand
         self.color = color
+        self.purchaseDate = purchaseDate
     }
 }

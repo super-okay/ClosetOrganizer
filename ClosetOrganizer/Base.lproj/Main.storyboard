@@ -171,6 +171,9 @@
                                 <state key="normal" title="Add">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addItem:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="z2M-5x-nNW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czB-WS-WCU">
                                 <rect key="frame" x="20" y="742" width="374" height="50"/>
@@ -192,7 +195,7 @@
                         <outlet property="brandField" destination="AKo-dR-XNm" id="tnd-Jf-F7F"/>
                         <outlet property="cancelButton" destination="czB-WS-WCU" id="Kse-on-hj1"/>
                         <outlet property="colorField" destination="Agn-rR-9N9" id="hXM-Xg-GJd"/>
-                        <outlet property="purhcaseDateField" destination="2ur-OS-ZWX" id="XxE-gY-SOh"/>
+                        <outlet property="purchaseDateField" destination="2ur-OS-ZWX" id="Fyp-Cx-qae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXR-cm-tuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
