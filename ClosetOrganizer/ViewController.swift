@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
         let currItem = closetList[indexPath.row]
+        cell.itemImageView.image = currItem.image
         cell.brandName.text = currItem.brand
         cell.color.text = currItem.color
         cell.lastWorn.text = currItem.lastWorn
