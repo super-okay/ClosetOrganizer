@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09B8D424738BC800338569 /* AddItemViewController.swift */; };
 		DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */; };
 		DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */; };
 		DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB624719BA20071F0A7 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD09B8D424738BC800338569 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		DD2DCBAF24719BA20071F0A7 /* ClosetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClosetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */,
 				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
+				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
 				DD5060C52471E97100C42450 /* SettingsViewController.swift */,
 				DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */,
 				DD2DCBB824719BA20071F0A7 /* Main.storyboard */,
@@ -276,6 +279,7 @@
 				DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */,
 				DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */,
 				DD2DCBE62471A2920071F0A7 /* ClosetItemCustomCell.swift in Sources */,
+				DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */,
 				DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */,
 				DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */,
 			);
