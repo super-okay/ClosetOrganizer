@@ -20,6 +20,7 @@
 		DD2DCBE62471A2920071F0A7 /* ClosetItemCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */; };
 		DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */; };
 		DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5060C52471E97100C42450 /* SettingsViewController.swift */; };
+		DDD5D1CD2475C0BE0007ED6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItemCustomCell.swift; sourceTree = "<group>"; };
 		DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItem.swift; sourceTree = "<group>"; };
 		DD5060C52471E97100C42450 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */,
 				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
+				DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
 				DD5060C52471E97100C42450 /* SettingsViewController.swift */,
 				DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */,
@@ -282,6 +285,7 @@
 				DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */,
 				DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */,
 				DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */,
+				DDD5D1CD2475C0BE0007ED6C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var categoryList:[String] = []
     
+    var selectedIndex:Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,9 +42,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.brandName.text = currItem.brand
         cell.color.text = currItem.color
         cell.lastWorn.text = currItem.lastWorn
-        cell.purchaseDate.text = currItem.purchaseDate
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.selectedIndex = indexPath.row
+        self.performSegue(withIdentifier: "detailSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,8 +57,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let addItemVC = segue.destination as! AddItemViewController
             addItemVC.delegate = self
         }
+        else
+        if segue.identifier == "detailSegue" {
+            let detailVC = segue.destination as! DetailViewController
+            let selectedItem = closetList[selectedIndex]
+            detailVC.passedImage = selectedItem.image
+            detailVC.passedBrand = selectedItem.brand
+            detailVC.passedCategory = selectedItem.category
+            detailVC.passedColor = selectedItem.color
+            detailVC.passedPurchaseDate = selectedItem.purchaseDate
+        }
     }
     
+    // delegate function for adding new item
     func addNewItem(newItem: ClosetItem) {
         closetList.append(newItem)
         closetTableView.reloadData()

@@ -14,7 +14,6 @@ class ClosetItemCustomCell: UITableViewCell {
     @IBOutlet weak var brandName: UILabel!
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var lastWorn: UILabel!
-    @IBOutlet weak var purchaseDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
