@@ -60,6 +60,12 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                                  purchaseDate: purchaseDateField.text!)
         
         delegate?.addNewItem(newItem: newItem)
+        navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func cancelItem(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     
 }

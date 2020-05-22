@@ -132,7 +132,6 @@
                                                 </label>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="120" height="36"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="4Wr-yL-4FL" id="e1k-75-rOo"/>
@@ -228,6 +227,9 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelItem:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="IHC-ie-gKr"/>
+                                </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pR7-8W-NXK">
                                 <rect key="frame" x="128" y="348" width="266" height="115"/>

@@ -49,8 +49,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCustomCell
         cell.categoryLabel.text = categoryList[indexPath.row]
         cell.categoryLabel.textAlignment = .center
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.borderWidth = 1
+        
+        if cell.isSelected {
+            cell.backgroundColor = .gray
+        } else {
+            cell.backgroundColor = .white
+        }
         
         return cell
+    }
+    
+    // action for selecting cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = .gray
+        cell?.isSelected = true
+    }
+    
+    // action for deselecting cell
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = .white
+        cell?.isSelected = false
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

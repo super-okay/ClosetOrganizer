@@ -12,4 +12,14 @@ class CategoryCustomCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryLabel: UILabel!
     
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                categoryLabel.textColor = .white
+            } else {
+                categoryLabel.textColor = .black
+            }
+        }
+    }
+    
 }
