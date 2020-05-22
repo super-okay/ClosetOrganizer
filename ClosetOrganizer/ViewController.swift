@@ -27,6 +27,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         closetTableView.delegate = self
         closetTableView.dataSource = self
+        
+        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "addItemSegue" {
             let addItemVC = segue.destination as! AddItemViewController
             addItemVC.delegate = self
+            addItemVC.passedCategories = categoryList
         }
         else
         if segue.identifier == "detailSegue" {
