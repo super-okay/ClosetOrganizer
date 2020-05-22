@@ -12,12 +12,12 @@ protocol AddItemDelegate {
     func addNewItem(newItem: ClosetItem)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddItemDelegate{
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
-    
     var closetList:[ClosetItem] = []
     
+    @IBOutlet weak var categoryTabs: UICollectionView!
     var categoryList:[String] = []
     
     var selectedIndex:Int!
@@ -25,10 +25,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categoryTabs.delegate = self
+        categoryTabs.dataSource = self
+        
         closetTableView.delegate = self
         closetTableView.dataSource = self
         
-        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return categoryList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 120, height: 36)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCustomCell
+        cell.categoryLabel.text = categoryList[indexPath.row]
+        cell.categoryLabel.textAlignment = .center
+        
+        return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
