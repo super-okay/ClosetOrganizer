@@ -63,7 +63,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
         let currItem = closetList[indexPath.row]
         cell.itemImageView.image = currItem.image
-        cell.brandName.text = currItem.brand
+        cell.brand.text = currItem.brand
+        cell.model.text = currItem.model
         cell.color.text = currItem.color
         cell.lastWorn.text = currItem.lastWorn
         
@@ -88,6 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let selectedItem = closetList[selectedIndex]
             detailVC.passedImage = selectedItem.image
             detailVC.passedBrand = selectedItem.brand
+            detailVC.passedModel = selectedItem.model
             detailVC.passedCategory = selectedItem.category
             detailVC.passedColor = selectedItem.color
             detailVC.passedPurchaseDate = selectedItem.purchaseDate

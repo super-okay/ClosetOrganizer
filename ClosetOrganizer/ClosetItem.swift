@@ -14,14 +14,16 @@ class ClosetItem {
     var image:UIImage!
     var category:String!
     var brand:String!
+    var model:String!
     var color:String!
     var lastWorn:String!
     var purchaseDate:String!
     
-    init(image:UIImage, category:String, brand:String, color:String, purchaseDate:String) {
+    init(image:UIImage, category:String, brand:String, model:String, color:String, purchaseDate:String) {
         self.image = image
         self.category = category
         self.brand = brand
+        self.model = model
         self.color = color
         self.purchaseDate = purchaseDate
     }

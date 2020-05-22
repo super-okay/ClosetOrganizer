@@ -13,6 +13,7 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var addImage: UIButton!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var brandField: UITextField!
+    @IBOutlet weak var modelField: UITextField!
     @IBOutlet weak var colorField: UITextField!
     @IBOutlet weak var purchaseDateField: UITextField!
     @IBOutlet weak var addButton: UIButton!
@@ -51,7 +52,13 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBAction func addItem(_ sender: Any) {
         let tempImage = UIImage(named: "tshirt.jpg")
-        let newItem = ClosetItem(image: tempImage!, category: self.selectedCategory, brand: brandField.text!, color: colorField.text!, purchaseDate: purchaseDateField.text!)
+        let newItem = ClosetItem(image: tempImage!,
+                                 category: self.selectedCategory,
+                                 brand: brandField.text!,
+                                 model: modelField.text!,
+                                 color: colorField.text!,
+                                 purchaseDate: purchaseDateField.text!)
+        
         delegate?.addNewItem(newItem: newItem)
     }
     

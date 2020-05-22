@@ -11,7 +11,8 @@ import UIKit
 class ClosetItemCustomCell: UITableViewCell {
 
     @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var brandName: UILabel!
+    @IBOutlet weak var brand: UILabel!
+    @IBOutlet weak var model: UILabel!
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var lastWorn: UILabel!
     

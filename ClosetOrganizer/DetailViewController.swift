@@ -12,13 +12,14 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var brand: UILabel!
-    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var model: UILabel!
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var purchaseDate: UILabel!
     @IBOutlet weak var lastWorn: UILabel!
     
     var passedImage:UIImage!
     var passedBrand:String!
+    var passedModel:String!
     var passedCategory:String!
     var passedColor:String!
     var passedPurchaseDate:String!
@@ -29,7 +30,7 @@ class DetailViewController: UIViewController {
 
         self.itemImage.image = passedImage
         self.brand.text = passedBrand
-        self.category.text = passedCategory
+        self.model.text = passedModel
         self.color.text = passedColor
         self.purchaseDate.text = passedPurchaseDate
     }
