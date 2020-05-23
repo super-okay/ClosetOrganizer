@@ -12,6 +12,7 @@ class CategoryCustomCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryLabel: UILabel!
     
+    // highlight selected cell
     override var isSelected: Bool {
         didSet {
             if self.isSelected {

@@ -16,9 +16,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var closetTableView: UITableView!
     var closetList:[ClosetItem] = []
+    var displayedList:[ClosetItem] = []
+    var closetDict:[String:[ClosetItem]] = [:]
     
     @IBOutlet weak var categoryTabs: UICollectionView!
     var categoryList:[String] = []
+    var currentCategory:String = "All"
     
     var selectedIndex:Int!
     
@@ -31,6 +34,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetTableView.delegate = self
         closetTableView.dataSource = self
         
+        closetDict["All"] = []
+        closetDict["T-shirts"] = []
+        closetDict["Jackets"] = []
+        closetDict["Coats"] = []
+        closetDict["Shorts"] = []
+        closetDict["Pants"] = []
+        closetDict["Graphic Tees"] = []
+        closetDict["Really Long Name"] = []
+        
+//        categoryList = [String] (closetDict.keys)
+        
         categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
     }
     
@@ -39,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return categoryList.count
     }
     
+    // size of collection view cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 120, height: 36)
@@ -61,15 +76,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    // action for selecting cell
+    // action for selecting category cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .gray
         cell?.isSelected = true
+        currentCategory = categoryList[indexPath.row]
+        closetTableView.reloadData()
     }
     
-    // action for deselecting cell
+    // action for deselecting category cell
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath)
@@ -79,13 +96,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return closetList.count
+        return closetDict[currentCategory]!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
-        let currItem = closetList[indexPath.row]
+        let currItem = closetDict[currentCategory]![indexPath.row]
         cell.itemImageView.image = currItem.image
         cell.brand.text = currItem.brand
         cell.model.text = currItem.model
@@ -110,7 +127,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         else
         if segue.identifier == "detailSegue" {
             let detailVC = segue.destination as! DetailViewController
-            let selectedItem = closetList[selectedIndex]
+            let selectedItem = closetDict[currentCategory]![selectedIndex]
             detailVC.passedImage = selectedItem.image
             detailVC.passedBrand = selectedItem.brand
             detailVC.passedModel = selectedItem.model
@@ -122,7 +139,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // delegate function for adding new item
     func addNewItem(newItem: ClosetItem) {
-        closetList.append(newItem)
+        
+        var allList = closetDict["All"]!
+        allList.append(newItem)
+        closetDict["All"] = allList
+        
+        var listToAddTo = closetDict[newItem.category]!
+        listToAddTo.append(newItem)
+        closetDict[newItem.category] = listToAddTo
+        
         closetTableView.reloadData()
     }
 
