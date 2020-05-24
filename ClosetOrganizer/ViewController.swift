@@ -43,8 +43,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetDict["Graphic Tees"] = []
         closetDict["Really Long Name"] = []
         
-//        categoryList = [String] (closetDict.keys)
-        
         categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
     }
     

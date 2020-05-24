@@ -12,10 +12,10 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     @IBOutlet weak var addImage: UIButton!
     @IBOutlet weak var categoryPicker: UIPickerView!
-    @IBOutlet weak var brandField: UITextField!
-    @IBOutlet weak var modelField: UITextField!
-    @IBOutlet weak var colorField: UITextField!
-    @IBOutlet weak var purchaseDateField: UITextField!
+    @IBOutlet weak var brandField: UITextFieldCustom!
+    @IBOutlet weak var modelField: UITextFieldCustom!
+    @IBOutlet weak var colorField: UITextFieldCustom!
+    @IBOutlet weak var purchaseDateField: UITextFieldCustom!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
@@ -26,6 +26,8 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.hidesBackButton = true
         
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
@@ -68,4 +70,32 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     
+}
+
+class UITextFieldCustom: UITextField {
+    
+    let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 12
+        self.layer.masksToBounds = true
+        self.frame.size.height = 46
+        self.textColor = .darkGray
+    }
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
 }
