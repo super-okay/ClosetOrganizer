@@ -53,20 +53,53 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction func addItem(_ sender: Any) {
-        let tempImage = UIImage(named: "tshirt.jpg")
-        let newItem = ClosetItem(image: tempImage!,
-                                 category: self.selectedCategory,
-                                 brand: brandField.text!,
-                                 model: modelField.text!,
-                                 color: colorField.text!,
-                                 purchaseDate: purchaseDateField.text!)
         
-        delegate?.addNewItem(newItem: newItem)
-        navigationController?.popViewController(animated: true)
+        var alert:UIAlertController!
+        
+        // valid form
+        if validForm() {
+            let tempImage = UIImage(named: "tshirt.jpg")
+            let newItem = ClosetItem(image: tempImage!,
+                                     category: self.selectedCategory,
+                                     brand: brandField.text!,
+                                     model: modelField.text!,
+                                     color: colorField.text!,
+                                     purchaseDate: purchaseDateField.text!)
+            
+            delegate?.addNewItem(newItem: newItem)
+            
+            alert = UIAlertController(title: "Success!", message: "Your item has been added", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .default,
+                                          handler: { action in
+                                            self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true)
+        }
+        // invalid form
+        else {
+            alert = UIAlertController(title: "Error", message: "Brand and Color fields must be filled", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK",
+                                          style: .default,
+                                          handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     @IBAction func cancelItem(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    // checks whether the form has been filled correctly
+    func validForm() -> Bool {
+        var valid = false
+        
+        // valid
+        if brandField.text != "" && colorField.text != "" {
+            valid = true
+        }
+        
+        return valid
     }
     
     
