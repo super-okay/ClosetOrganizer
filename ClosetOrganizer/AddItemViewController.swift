@@ -102,9 +102,10 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         return valid
     }
     
-    
 }
 
+
+// custom text field class
 class UITextFieldCustom: UITextField {
     
     let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)

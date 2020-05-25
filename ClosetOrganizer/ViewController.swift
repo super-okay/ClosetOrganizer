@@ -46,6 +46,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
     }
     
+    
+    /* --------------- Collection View Functions --------------- */
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return categoryList.count
@@ -91,28 +94,54 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell?.backgroundColor = .white
         cell?.isSelected = false
     }
+    
+    
+    /* --------------- Table View Functions --------------- */
 
+    // one row per section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        return 1
+    }
+    
+    // one section for each item - this is for cell spacing design
+    func numberOfSections(in tableView: UITableView) -> Int {
         return closetDict[currentCategory]!.count
+    }
+    
+    // applies background color to spacing between cells
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
+    }
+    
+    // spacing between cells
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
-        let currItem = closetDict[currentCategory]![indexPath.row]
+        let currItem = closetDict[currentCategory]![indexPath.section]
         cell.itemImageView.image = currItem.image
         cell.brand.text = currItem.brand
         cell.model.text = currItem.model
         cell.color.text = currItem.color
         cell.lastWorn.text = currItem.lastWorn
         
+        // border and styling
+        cell.layer.borderColor = UIColor.darkGray.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 12
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.selectedIndex = indexPath.row
+        self.selectedIndex = indexPath.section
         self.performSegue(withIdentifier: "detailSegue", sender: nil)
     }
     
