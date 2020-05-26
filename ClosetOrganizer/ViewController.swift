@@ -12,7 +12,11 @@ protocol AddItemDelegate {
     func addNewItem(newItem: ClosetItem)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate{
+protocol EditItemDelegate {
+    func editExistingItem()
+}
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
     var closetList:[ClosetItem] = []
@@ -44,6 +48,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetDict["Really Long Name"] = []
         
         categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
+        
+        // removes extra table view dividers
+        self.closetTableView.tableFooterView = UIView()
     }
     
     
@@ -65,11 +72,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCustomCell
         cell.categoryLabel.text = categoryList[indexPath.row]
         cell.categoryLabel.textAlignment = .center
-        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.layer.borderColor = UIColor.darkGray.cgColor
         cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 12
         
         if cell.isSelected {
-            cell.backgroundColor = .gray
+            cell.backgroundColor = .darkGray
         } else {
             cell.backgroundColor = .white
         }
@@ -81,7 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = .gray
+        cell?.backgroundColor = .darkGray
         cell?.isSelected = true
         currentCategory = categoryList[indexPath.row]
         closetTableView.reloadData()
@@ -154,6 +162,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         else
         if segue.identifier == "detailSegue" {
             let detailVC = segue.destination as! DetailViewController
+            detailVC.delegate = self
             let selectedItem = closetDict[currentCategory]![selectedIndex]
             detailVC.passedImage = selectedItem.image
             detailVC.passedBrand = selectedItem.brand
@@ -176,6 +185,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetDict[newItem.category] = listToAddTo
         
         closetTableView.reloadData()
+    }
+    
+    func editExistingItem() {
+        
     }
 
 }
