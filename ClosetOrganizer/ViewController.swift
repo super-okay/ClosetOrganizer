@@ -13,7 +13,7 @@ protocol AddItemDelegate {
 }
 
 protocol EditItemDelegate {
-    func editExistingItem()
+    func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem)
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
@@ -164,12 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let detailVC = segue.destination as! DetailViewController
             detailVC.delegate = self
             let selectedItem = closetDict[currentCategory]![selectedIndex]
-            detailVC.passedImage = selectedItem.image
-            detailVC.passedBrand = selectedItem.brand
-            detailVC.passedModel = selectedItem.model
-            detailVC.passedCategory = selectedItem.category
-            detailVC.passedColor = selectedItem.color
-            detailVC.passedPurchaseDate = selectedItem.purchaseDate
+            detailVC.passedItem = selectedItem
         }
     }
     
@@ -187,8 +182,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetTableView.reloadData()
     }
     
-    func editExistingItem() {
+    // delegate function, finds old item to replace with new, edited item
+    func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem) {
+        var listToChange = closetDict[oldItem.category]!
+        let editedIndex = listToChange.firstIndex(of: oldItem)
+        listToChange[editedIndex!] = newItem
+        closetDict[newItem.category] = listToChange
         
+        var fullList = closetDict["All"]!
+        let editedIndex2 = fullList.firstIndex(of: oldItem)
+        fullList[editedIndex2!] = newItem
+        closetDict["All"] = fullList
+        
+        closetTableView.reloadData()
     }
 
 }

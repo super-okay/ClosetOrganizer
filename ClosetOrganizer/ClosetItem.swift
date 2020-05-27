@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ClosetItem {
+class ClosetItem: Equatable {
     
     var image:UIImage!
     var category:String!
@@ -26,5 +26,14 @@ class ClosetItem {
         self.model = model
         self.color = color
         self.purchaseDate = purchaseDate
+    }
+    
+    static func == (lhs: ClosetItem, rhs: ClosetItem) -> Bool {
+        if lhs.brand == rhs.brand && lhs.category == rhs.category && lhs.model == rhs.model && lhs.color == rhs.color {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }

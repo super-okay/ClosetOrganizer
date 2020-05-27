@@ -18,34 +18,28 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lastWorn: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     
-    var passedImage:UIImage!
-    var passedBrand:String!
-    var passedModel:String!
-    var passedCategory:String!
-    var passedColor:String!
-    var passedPurchaseDate:String!
-    var passedLastWorn:String!
+    var passedItem:ClosetItem!
     
     var delegate:EditItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.itemImage.image = passedImage
+        self.itemImage.image = passedItem.image
         
-        self.brandField.text = passedBrand
+        self.brandField.text = passedItem.brand
         self.brandField.isUserInteractionEnabled = false
         self.brandField.borderStyle = .none
         
-        self.modelField.text = passedModel
+        self.modelField.text = passedItem.model
         self.modelField.isUserInteractionEnabled = false
         self.modelField.borderStyle = .none
         
-        self.colorField.text = passedColor
+        self.colorField.text = passedItem.color
         self.colorField.isUserInteractionEnabled = false
         self.colorField.borderStyle = .none
         
-        self.purchaseDateField.text = passedPurchaseDate
+        self.purchaseDateField.text = passedItem.purchaseDate
         self.purchaseDateField.isUserInteractionEnabled = false
         self.purchaseDateField.borderStyle = .none
         
@@ -83,6 +77,10 @@ class DetailViewController: UIViewController {
         self.purchaseDateField.borderStyle = .none
         
         self.saveButton.isHidden = true
+        
+        let editedItem = ClosetItem(image: self.itemImage.image!, category: self.passedItem.category, brand: self.brandField.text!, model: self.modelField.text!, color: self.colorField.text!, purchaseDate: self.purchaseDateField.text!)
+        
+        delegate?.editExistingItem(oldItem: self.passedItem, newItem: editedItem)
     }
     
     
