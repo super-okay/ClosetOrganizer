@@ -153,6 +153,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.performSegue(withIdentifier: "detailSegue", sender: nil)
     }
     
+    
+    /* --------------- Other Functions --------------- */
+    
+    // prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addItemSegue" {
             let addItemVC = segue.destination as! AddItemViewController

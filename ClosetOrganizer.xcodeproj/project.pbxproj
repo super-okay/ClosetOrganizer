@@ -21,6 +21,8 @@
 		DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */; };
 		DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5060C52471E97100C42450 /* SettingsViewController.swift */; };
 		DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */; };
+		DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */; };
+		DDAC018F247F22CF00AC9A98 /* SettingsCustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */; };
 		DDD5D1CD2475C0BE0007ED6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItem.swift; sourceTree = "<group>"; };
 		DD5060C52471E97100C42450 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomCell.swift; sourceTree = "<group>"; };
+		DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell.swift; sourceTree = "<group>"; };
+		DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell2.swift; sourceTree = "<group>"; };
 		DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,8 @@
 				DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
 				DD5060C52471E97100C42450 /* SettingsViewController.swift */,
+				DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */,
+				DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */,
 				DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */,
 				DD2DCBB824719BA20071F0A7 /* Main.storyboard */,
 				DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */,
@@ -280,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */,
 				DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */,
 				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
 				DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */,
@@ -289,6 +296,7 @@
 				DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */,
 				DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */,
 				DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */,
+				DDAC018F247F22CF00AC9A98 /* SettingsCustomCell2.swift in Sources */,
 				DDD5D1CD2475C0BE0007ED6C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
