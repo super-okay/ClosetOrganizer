@@ -103,11 +103,11 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jH6-8W-DgB">
-                                <rect key="frame" x="20" y="113" width="374" height="40"/>
+                                <rect key="frame" x="20" y="105" width="374" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2mO-vX-ors"/>
                                     <constraint firstAttribute="width" constant="374" id="HIT-LA-Mh4"/>
+                                    <constraint firstAttribute="height" constant="50" id="yT2-mL-6ya"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wVt-x1-lbS">
                                     <size key="itemSize" width="120" height="36"/>
@@ -117,20 +117,24 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="XCl-Td-5lr" customClass="CategoryCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="2" width="120" height="36"/>
+                                        <rect key="frame" x="0.0" y="7" width="120" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uIi-At-Jgg">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wr-yL-4FL">
-                                                    <rect key="frame" x="8" y="10" width="104" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wr-yL-4FL">
+                                                    <rect key="frame" x="20" y="8.5" width="80" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4Wr-yL-4FL" firstAttribute="centerY" secondItem="uIi-At-Jgg" secondAttribute="centerY" id="3Z0-lH-K9p"/>
+                                                <constraint firstAttribute="trailing" secondItem="4Wr-yL-4FL" secondAttribute="trailing" constant="20" id="GA5-WU-aR4"/>
+                                                <constraint firstItem="4Wr-yL-4FL" firstAttribute="leading" secondItem="uIi-At-Jgg" secondAttribute="leading" constant="20" id="LTX-6T-nQy"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="120" height="36"/>
                                         <connections>
@@ -142,10 +146,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="4Kv-aS-Ff6" firstAttribute="top" secondItem="jH6-8W-DgB" secondAttribute="bottom" constant="16" id="0Ax-Dd-C2C"/>
+                            <constraint firstItem="jH6-8W-DgB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="17" id="Vxn-Vq-Kqv"/>
                             <constraint firstItem="jH6-8W-DgB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZLD-VN-0VB"/>
                             <constraint firstItem="4Kv-aS-Ff6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bVp-he-MDV"/>
-                            <constraint firstItem="jH6-8W-DgB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="ogg-8n-FPE"/>
+                            <constraint firstItem="4Kv-aS-Ff6" firstAttribute="top" secondItem="jH6-8W-DgB" secondAttribute="bottom" constant="14" id="hdG-2U-Fj6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

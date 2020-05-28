@@ -64,7 +64,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // size of collection view cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 120, height: 36)
+        var calculatedWidth = categoryList[indexPath.row].size(withAttributes: [
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)
+        ])
+        calculatedWidth.height = 40
+        
+        return calculatedWidth
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
