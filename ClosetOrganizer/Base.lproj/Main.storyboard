@@ -117,14 +117,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="XCl-Td-5lr" customClass="CategoryCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="7" width="120" height="36"/>
+                                        <rect key="frame" x="0.0" y="5" width="120" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uIi-At-Jgg">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wr-yL-4FL">
-                                                    <rect key="frame" x="20" y="8.5" width="80" height="19.5"/>
+                                                    <rect key="frame" x="20" y="10.5" width="80" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -136,7 +136,7 @@
                                                 <constraint firstItem="4Wr-yL-4FL" firstAttribute="leading" secondItem="uIi-At-Jgg" secondAttribute="leading" constant="20" id="LTX-6T-nQy"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="120" height="36"/>
+                                        <size key="customSize" width="120" height="40"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="4Wr-yL-4FL" id="e1k-75-rOo"/>
                                         </connections>
@@ -154,6 +154,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="QT4-PC-hak">
+                        <barButtonItem key="leftBarButtonItem" title="New Category" id="Hm3-Q0-XQU">
+                            <connections>
+                                <action selector="newCategory:" destination="BYZ-38-t0r" id="tFB-BF-GXX"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HP8-m4-96A">
                             <connections>
                                 <segue destination="LJa-RY-1Hb" kind="show" identifier="addItemSegue" id="XkY-3Y-a9e"/>

@@ -177,6 +177,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    // handles bar button item action for adding new category
+    @IBAction func newCategory(_ sender: Any) {
+        var alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: {
+            (_ textField: UITextField) -> Void in
+            textField.placeholder = "Name"
+        })
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
+                (action) in
+                let newCategory = alert.textFields?[0].text as! String
+                self.closetDict[newCategory] = []
+                self.categoryList.append(newCategory)
+                self.categoryTabs.reloadData()
+            }
+        ))
+        self.present(alert, animated: true)
+    }
+    
+    
     // delegate function for adding new item
     func addNewItem(newItem: ClosetItem) {
         
