@@ -44,10 +44,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         closetDict["Coats"] = []
         closetDict["Shorts"] = []
         closetDict["Pants"] = []
-        closetDict["Graphic Tees"] = []
-        closetDict["Really Long Name"] = []
         
-        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants", "Graphic Tees", "Really Long Name"]
+        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
         
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
@@ -184,6 +182,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             (_ textField: UITextField) -> Void in
             textField.placeholder = "Name"
         })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
+                (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+        ))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
                 (action) in
                 let newCategory = alert.textFields?[0].text as! String

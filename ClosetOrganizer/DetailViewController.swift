@@ -15,7 +15,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var modelField: UITextField!
     @IBOutlet weak var colorField: UITextField!
     @IBOutlet weak var purchaseDateField: UITextField!
-    @IBOutlet weak var lastWorn: UILabel!
+    @IBOutlet weak var lastWornField: UITextField!
+    
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     var passedItem:ClosetItem!
@@ -43,10 +45,18 @@ class DetailViewController: UIViewController {
         self.purchaseDateField.isUserInteractionEnabled = false
         self.purchaseDateField.borderStyle = .none
         
+        self.lastWornField.text = passedItem.lastWorn
+        self.lastWornField.isUserInteractionEnabled = false
+        self.lastWornField.borderStyle = .none
+        
+        self.cancelButton.layer.cornerRadius = 12
+        self.cancelButton.isHidden = true
+        
         self.saveButton.layer.cornerRadius = 12
         self.saveButton.isHidden = true
     }
     
+    // allows editing of item
     @IBAction func editItem(_ sender: Any) {
         self.brandField.borderStyle = .roundedRect
         self.brandField.isUserInteractionEnabled = true
@@ -60,10 +70,15 @@ class DetailViewController: UIViewController {
         self.purchaseDateField.borderStyle = .roundedRect
         self.purchaseDateField.isUserInteractionEnabled = true
         
+        self.lastWornField.borderStyle = .roundedRect
+        self.lastWornField.isUserInteractionEnabled = true
+        
+        self.cancelButton.isHidden = false
         self.saveButton.isHidden = false
     }
     
-    @IBAction func saveEdit(_ sender: Any) {
+    // returns to default view, removes user interaction and borders
+    func defaultView() {
         self.brandField.isUserInteractionEnabled = false
         self.brandField.borderStyle = .none
         
@@ -76,7 +91,29 @@ class DetailViewController: UIViewController {
         self.purchaseDateField.isUserInteractionEnabled = false
         self.purchaseDateField.borderStyle = .none
         
+        self.lastWornField.isUserInteractionEnabled = false
+        self.lastWornField.borderStyle = .none
+        
+        self.cancelButton.isHidden = true
         self.saveButton.isHidden = true
+    }
+    
+    // cancels the current edit
+    @IBAction func cancelEdit(_ sender: Any) {
+        self.itemImage.image = passedItem.image
+        self.brandField.text = passedItem.brand
+        self.modelField.text = passedItem.model
+        self.colorField.text = passedItem.color
+        self.purchaseDateField.text = passedItem.purchaseDate
+        self.lastWornField.text = passedItem.lastWorn
+        
+        defaultView()
+    }
+    
+    // saves the current edit
+    @IBAction func saveEdit(_ sender: Any) {
+        
+        defaultView()
         
         let editedItem = ClosetItem(image: self.itemImage.image!, category: self.passedItem.category, brand: self.brandField.text!, model: self.modelField.text!, color: self.colorField.text!, purchaseDate: self.purchaseDateField.text!)
         
