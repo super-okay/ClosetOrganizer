@@ -172,6 +172,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             detailVC.delegate = self
             let selectedItem = closetDict[currentCategory]![selectedIndex]
             detailVC.passedItem = selectedItem
+            detailVC.passedCategories = self.categoryList
         }
     }
     
@@ -215,10 +216,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // delegate function, finds old item to replace with new, edited item
     func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem) {
+        
         var listToChange = closetDict[oldItem.category]!
         let editedIndex = listToChange.firstIndex(of: oldItem)
-        listToChange[editedIndex!] = newItem
-        closetDict[newItem.category] = listToChange
+        
+        // category was not edited
+        if oldItem.category == newItem.category {
+            listToChange[editedIndex!] = newItem
+            closetDict[newItem.category] = listToChange
+        }
+        // category was edited
+        else {
+            listToChange.remove(at: editedIndex!)
+            closetDict[oldItem.category] = listToChange
+            
+            var listToAddTo = closetDict[newItem.category]!
+            listToAddTo.append(newItem)
+            closetDict[newItem.category] = listToAddTo
+        }
         
         var fullList = closetDict["All"]!
         let editedIndex2 = fullList.firstIndex(of: oldItem)

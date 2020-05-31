@@ -8,8 +8,14 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+protocol selectCategoryDelegate {
+    func updateCategory(selectedCategory: String)
+}
 
+class DetailViewController: UIViewController, selectCategoryDelegate {
+
+    @IBOutlet weak var editCategoryButton: UIButton!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var brandField: UITextField!
     @IBOutlet weak var modelField: UITextField!
@@ -21,11 +27,17 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     var passedItem:ClosetItem!
+    var passedCategories:[String]!
     
     var delegate:EditItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.editCategoryButton.layer.cornerRadius = 12
+        self.editCategoryButton.isHidden = true
+        
+        self.categoryLabel.text = passedItem.category
 
         self.itemImage.image = passedItem.image
         
@@ -58,6 +70,8 @@ class DetailViewController: UIViewController {
     
     // allows editing of item
     @IBAction func editItem(_ sender: Any) {
+        self.editCategoryButton.isHidden = false
+        
         self.brandField.borderStyle = .roundedRect
         self.brandField.isUserInteractionEnabled = true
         
@@ -77,8 +91,10 @@ class DetailViewController: UIViewController {
         self.saveButton.isHidden = false
     }
     
-    // returns to default view, removes user interaction and borders
+    // helper function, returns to default view, removes user interaction and borders
     func defaultView() {
+        self.editCategoryButton.isHidden = true
+        
         self.brandField.isUserInteractionEnabled = false
         self.brandField.borderStyle = .none
         
@@ -100,6 +116,7 @@ class DetailViewController: UIViewController {
     
     // cancels the current edit
     @IBAction func cancelEdit(_ sender: Any) {
+        self.categoryLabel.text = passedItem.category
         self.itemImage.image = passedItem.image
         self.brandField.text = passedItem.brand
         self.modelField.text = passedItem.model
@@ -115,10 +132,23 @@ class DetailViewController: UIViewController {
         
         defaultView()
         
-        let editedItem = ClosetItem(image: self.itemImage.image!, category: self.passedItem.category, brand: self.brandField.text!, model: self.modelField.text!, color: self.colorField.text!, purchaseDate: self.purchaseDateField.text!)
+        let editedItem = ClosetItem(image: self.itemImage.image!, category: self.categoryLabel.text!, brand: self.brandField.text!, model: self.modelField.text!, color: self.colorField.text!, purchaseDate: self.purchaseDateField.text!)
         
         delegate?.editExistingItem(oldItem: self.passedItem, newItem: editedItem)
     }
     
+    // prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectCategorySegue" {
+            let selectCategoryVC = segue.destination as! SelectCategoryViewController
+            selectCategoryVC.delegate = self
+            selectCategoryVC.passedCategories = self.passedCategories
+        }
+    }
+    
+    // protocol function for updating category
+    func updateCategory(selectedCategory: String) {
+        self.categoryLabel.text = selectedCategory
+    }
     
 }
