@@ -355,7 +355,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vl7-h1-3mi">
                                 <rect key="frame" x="20" y="100" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Edit Category">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -370,6 +370,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu5-9W-oGy">
+                                <rect key="frame" x="41" y="464" width="333" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Change Image"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="50z-e3-pDz"/>
@@ -385,6 +391,7 @@
                         <outlet property="brandField" destination="3E7-4P-ZgZ" id="Sii-Yk-XtO"/>
                         <outlet property="cancelButton" destination="umI-zc-eek" id="bfH-Uo-Mvp"/>
                         <outlet property="categoryLabel" destination="l1y-bw-ZDc" id="vwP-I8-nxP"/>
+                        <outlet property="changeImageButton" destination="Vu5-9W-oGy" id="Afb-4o-Hfa"/>
                         <outlet property="colorField" destination="yav-5w-O3E" id="ttD-Pm-1Z6"/>
                         <outlet property="editCategoryButton" destination="Vl7-h1-3mi" id="xVM-nZ-a8R"/>
                         <outlet property="itemImage" destination="olB-h0-HB9" id="FKc-Gy-Esi"/>

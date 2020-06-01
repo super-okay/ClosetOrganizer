@@ -44,5 +44,13 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
         delegate?.updateCategory(selectedCategory: passedCategories[indexPath.row])
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // dismisses view when user touches outside table view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        if touch?.view != categoryTable {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
 }

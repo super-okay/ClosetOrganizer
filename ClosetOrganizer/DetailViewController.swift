@@ -17,6 +17,7 @@ class DetailViewController: UIViewController, selectCategoryDelegate {
     @IBOutlet weak var editCategoryButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var changeImageButton: UIButton!
     @IBOutlet weak var brandField: UITextField!
     @IBOutlet weak var modelField: UITextField!
     @IBOutlet weak var colorField: UITextField!
@@ -40,6 +41,13 @@ class DetailViewController: UIViewController, selectCategoryDelegate {
         self.categoryLabel.text = passedItem.category
 
         self.itemImage.image = passedItem.image
+        self.itemImage.layer.cornerRadius = 12
+        self.itemImage.layer.masksToBounds = true
+        
+        self.changeImageButton.layer.cornerRadius = 12
+        self.changeImageButton.layer.borderWidth = 1
+        self.changeImageButton.layer.borderColor = UIColor.darkGray.cgColor
+        self.changeImageButton.isHidden = true
         
         self.brandField.text = passedItem.brand
         self.brandField.isUserInteractionEnabled = false
@@ -72,6 +80,8 @@ class DetailViewController: UIViewController, selectCategoryDelegate {
     @IBAction func editItem(_ sender: Any) {
         self.editCategoryButton.isHidden = false
         
+        self.changeImageButton.isHidden = false
+        
         self.brandField.borderStyle = .roundedRect
         self.brandField.isUserInteractionEnabled = true
         
@@ -94,6 +104,8 @@ class DetailViewController: UIViewController, selectCategoryDelegate {
     // helper function, returns to default view, removes user interaction and borders
     func defaultView() {
         self.editCategoryButton.isHidden = true
+        
+        self.changeImageButton.isHidden = true
         
         self.brandField.isUserInteractionEnabled = false
         self.brandField.borderStyle = .none

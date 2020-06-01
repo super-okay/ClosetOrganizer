@@ -132,6 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 10
     }
     
+    // table cell content
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
@@ -146,6 +147,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.layer.borderColor = UIColor.darkGray.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 12
+        cell.itemImageView.layer.cornerRadius = 12
         
         return cell
     }
