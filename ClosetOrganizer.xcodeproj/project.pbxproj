@@ -21,7 +21,8 @@
 		DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */; };
 		DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5060C52471E97100C42450 /* SettingsViewController.swift */; };
 		DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */; };
-		DD8B9A08248357CE004159B3 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B9A07248357CE004159B3 /* SelectCategoryViewController.swift */; };
+		DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */; };
+		DD8B9A08248357CE004159B3 /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B9A07248357CE004159B3 /* EditCategoryViewController.swift */; };
 		DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */; };
 		DDAC018F247F22CF00AC9A98 /* SettingsCustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */; };
 		DDD5D1CD2475C0BE0007ED6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */; };
@@ -65,7 +66,8 @@
 		DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItem.swift; sourceTree = "<group>"; };
 		DD5060C52471E97100C42450 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomCell.swift; sourceTree = "<group>"; };
-		DD8B9A07248357CE004159B3 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		DD8B9A07248357CE004159B3 /* EditCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
 		DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell.swift; sourceTree = "<group>"; };
 		DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell2.swift; sourceTree = "<group>"; };
 		DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -124,9 +126,10 @@
 				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
 				DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
-				DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */,
-				DD8B9A07248357CE004159B3 /* SelectCategoryViewController.swift */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
+				DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */,
+				DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */,
+				DD8B9A07248357CE004159B3 /* EditCategoryViewController.swift */,
 				DD5060C52471E97100C42450 /* SettingsViewController.swift */,
 				DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */,
 				DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */,
@@ -291,8 +294,9 @@
 			files = (
 				DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */,
 				DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */,
+				DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */,
 				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
-				DD8B9A08248357CE004159B3 /* SelectCategoryViewController.swift in Sources */,
+				DD8B9A08248357CE004159B3 /* EditCategoryViewController.swift in Sources */,
 				DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */,
 				DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */,
 				DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */,

@@ -2,19 +2,19 @@
 //  SelectCategoryViewController.swift
 //  ClosetOrganizer
 //
-//  Created by Allen Wang on 6/1/20.
+//  Created by Allen Wang on 5/30/20.
 //  Copyright © 2020 Allen Wang. All rights reserved.
 //
 
 import UIKit
 
-class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var categoryTable: UITableView!
     
     var passedCategories:[String]!
     
-    var delegate:selectCategoryDelegate?
+    var delegate:editCategoryDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.selectCategory(chosenCategory: passedCategories[indexPath.row])
+        delegate?.updateCategory(selectedCategory: passedCategories[indexPath.row])
         self.dismiss(animated: true, completion: nil)
     }
     

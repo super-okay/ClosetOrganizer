@@ -8,10 +8,15 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+protocol selectCategoryDelegate {
+    func selectCategory(chosenCategory: String)
+}
+
+class AddItemViewController: UIViewController, selectCategoryDelegate {
 
     @IBOutlet weak var addImage: UIButton!
-    @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var selectCategoryButton: UIButton!
+    @IBOutlet weak var categoryField: UITextFieldCustom!
     @IBOutlet weak var brandField: UITextFieldCustom!
     @IBOutlet weak var modelField: UITextFieldCustom!
     @IBOutlet weak var colorField: UITextFieldCustom!
@@ -29,29 +34,14 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         self.navigationItem.hidesBackButton = true
         
-        categoryPicker.dataSource = self
-        categoryPicker.delegate = self
+        self.selectCategoryButton.layer.cornerRadius = 12
+        self.categoryField.isUserInteractionEnabled = false
 
         self.addButton.layer.cornerRadius = 12
         self.cancelButton.layer.cornerRadius = 12
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return passedCategories.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return passedCategories[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedCategory = passedCategories[row]
-    }
-    
+    // creating and adding new item from the form
     @IBAction func addItem(_ sender: Any) {
         
         var alert:UIAlertController!
@@ -86,6 +76,7 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
     
+    // exits the add item view
     @IBAction func cancelItem(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -100,6 +91,21 @@ class AddItemViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
         
         return valid
+    }
+    
+    // prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectCategorySegue" {
+            let selectCategoryVC = segue.destination as! SelectCategoryViewController
+            selectCategoryVC.delegate = self
+            selectCategoryVC.passedCategories = self.passedCategories
+        }
+    }
+    
+    // protocol function for selecting category
+    func selectCategory(chosenCategory: String) {
+        self.selectedCategory = chosenCategory
+        self.categoryField.text = chosenCategory
     }
     
 }

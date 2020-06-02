@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol selectCategoryDelegate {
+protocol editCategoryDelegate {
     func updateCategory(selectedCategory: String)
 }
 
-class DetailViewController: UIViewController, selectCategoryDelegate {
+class DetailViewController: UIViewController, editCategoryDelegate {
 
     @IBOutlet weak var editCategoryButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -151,10 +151,10 @@ class DetailViewController: UIViewController, selectCategoryDelegate {
     
     // prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "selectCategorySegue" {
-            let selectCategoryVC = segue.destination as! SelectCategoryViewController
-            selectCategoryVC.delegate = self
-            selectCategoryVC.passedCategories = self.passedCategories
+        if segue.identifier == "editCategorySegue" {
+            let editCategoryVC = segue.destination as! EditCategoryViewController
+            editCategoryVC.delegate = self
+            editCategoryVC.passedCategories = self.passedCategories
         }
     }
     

@@ -228,17 +228,6 @@
                                     <action selector="cancelItem:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="IHC-ie-gKr"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pR7-8W-NXK">
-                                <rect key="frame" x="128" y="348" width="266" height="115"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6e-J9-YER">
-                                <rect key="frame" x="20" y="393" width="81" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Das-DF-nNk">
                                 <rect key="frame" x="218" y="754" width="176" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -251,6 +240,23 @@
                                     <action selector="addItem:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="z2M-5x-nNW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpY-EE-zBS">
+                                <rect key="frame" x="20" y="395" width="132" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Select Category">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="IXx-bg-Vxj" kind="presentation" identifier="selectCategorySegue" modalPresentationStyle="overCurrentContext" id="7VZ-21-f0m"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jp0-1O-ANQ" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
+                                <rect key="frame" x="172" y="395" width="222" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="rEF-NA-yP2"/>
@@ -261,10 +267,11 @@
                         <outlet property="addImage" destination="fc2-4f-fjA" id="F8e-ta-gAx"/>
                         <outlet property="brandField" destination="AKo-dR-XNm" id="tnd-Jf-F7F"/>
                         <outlet property="cancelButton" destination="czB-WS-WCU" id="Kse-on-hj1"/>
-                        <outlet property="categoryPicker" destination="pR7-8W-NXK" id="oO3-o5-Z9z"/>
+                        <outlet property="categoryField" destination="Jp0-1O-ANQ" id="3qe-04-KnN"/>
                         <outlet property="colorField" destination="Agn-rR-9N9" id="hXM-Xg-GJd"/>
                         <outlet property="modelField" destination="MrA-Vr-czt" id="hqZ-TX-kUs"/>
                         <outlet property="purchaseDateField" destination="2ur-OS-ZWX" id="Fyp-Cx-qae"/>
+                        <outlet property="selectCategoryButton" destination="cpY-EE-zBS" id="Ix9-VY-rhl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXR-cm-tuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -360,7 +367,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="8vf-Wd-FEZ" kind="presentation" identifier="selectCategorySegue" modalPresentationStyle="overCurrentContext" id="yNN-ib-aOv"/>
+                                    <segue destination="8vf-Wd-FEZ" kind="presentation" identifier="editCategorySegue" modalPresentationStyle="overCurrentContext" id="yNN-ib-aOv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1y-bw-ZDc">
@@ -406,9 +413,53 @@
             <point key="canvasLocation" x="795.6521739130435" y="1585.7142857142856"/>
         </scene>
         <!--Select Category View Controller-->
+        <scene sceneID="PXp-NS-ddI">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="IXx-bg-Vxj" customClass="SelectCategoryViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="568-mo-iYr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x4B-SF-v2A">
+                                <rect key="frame" x="72" y="189" width="270" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryCell" textLabel="eJT-Sj-zmC" style="IBUITableViewCellStyleDefault" id="yuJ-zI-SNl">
+                                        <rect key="frame" x="0.0" y="28" width="270" height="47.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yuJ-zI-SNl" id="rsW-b0-GOJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="47.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eJT-Sj-zmC">
+                                                    <rect key="frame" x="16" y="0.0" width="238" height="47.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.50478916952054798" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="u6b-C8-Hon"/>
+                    </view>
+                    <connections>
+                        <outlet property="categoryTable" destination="x4B-SF-v2A" id="JLf-YW-zgy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3B1-in-CXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1.4492753623188408" y="2270.7589285714284"/>
+        </scene>
+        <!--Edit Category View Controller-->
         <scene sceneID="fpx-Lg-ZTW">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="8vf-Wd-FEZ" customClass="SelectCategoryViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="8vf-Wd-FEZ" customClass="EditCategoryViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eDh-3H-Am6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
