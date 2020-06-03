@@ -148,6 +148,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 12
         cell.itemImageView.layer.cornerRadius = 12
+        cell.itemImageView.layer.masksToBounds = true
         
         return cell
     }

@@ -208,13 +208,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fc2-4f-fjA">
-                                <rect key="frame" x="72" y="102" width="270" height="240"/>
+                                <rect key="frame" x="72" y="102" width="270" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Add Image">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addImage:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="iim-BN-eL2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czB-WS-WCU">
                                 <rect key="frame" x="20" y="754" width="176" height="46"/>
@@ -264,7 +267,7 @@
                     <navigationItem key="navigationItem" id="Avy-M6-xd5"/>
                     <connections>
                         <outlet property="addButton" destination="Das-DF-nNk" id="pD4-dW-kXX"/>
-                        <outlet property="addImage" destination="fc2-4f-fjA" id="F8e-ta-gAx"/>
+                        <outlet property="addImageButton" destination="fc2-4f-fjA" id="gwD-pY-mZV"/>
                         <outlet property="brandField" destination="AKo-dR-XNm" id="tnd-Jf-F7F"/>
                         <outlet property="cancelButton" destination="czB-WS-WCU" id="Kse-on-hj1"/>
                         <outlet property="categoryField" destination="Jp0-1O-ANQ" id="3qe-04-KnN"/>

@@ -12,9 +12,9 @@ protocol selectCategoryDelegate {
     func selectCategory(chosenCategory: String)
 }
 
-class AddItemViewController: UIViewController, selectCategoryDelegate {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, selectCategoryDelegate {
 
-    @IBOutlet weak var addImage: UIButton!
+    @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var categoryField: UITextFieldCustom!
     @IBOutlet weak var brandField: UITextFieldCustom!
@@ -29,16 +29,40 @@ class AddItemViewController: UIViewController, selectCategoryDelegate {
     var passedCategories:[String]!
     var selectedCategory:String!
     
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
         
         self.selectCategoryButton.layer.cornerRadius = 12
         self.categoryField.isUserInteractionEnabled = false
 
         self.addButton.layer.cornerRadius = 12
         self.cancelButton.layer.cornerRadius = 12
+    }
+    
+    // opens user's photo album for them to select image
+    @IBAction func addImage(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // user has selected image from album
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let imageToAdd = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.addImageButton.setBackgroundImage(imageToAdd, for: .normal)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // user cancels selecting image from album
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // creating and adding new item from the form
@@ -48,8 +72,8 @@ class AddItemViewController: UIViewController, selectCategoryDelegate {
         
         // valid form
         if validForm() {
-            let tempImage = UIImage(named: "tshirt.jpg")
-            let newItem = ClosetItem(image: tempImage!,
+//            let tempImage = UIImage(named: "tshirt.jpg")
+            let newItem = ClosetItem(image: self.addImageButton.backgroundImage(for: .normal)!,
                                      category: self.selectedCategory,
                                      brand: brandField.text!,
                                      model: modelField.text!,
