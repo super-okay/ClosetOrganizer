@@ -209,9 +209,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         allList.append(newItem)
         closetDict["All"] = allList
         
-        var listToAddTo = closetDict[newItem.category]!
-        listToAddTo.append(newItem)
-        closetDict[newItem.category] = listToAddTo
+        if newItem.category != "All" {
+            var listToAddTo = closetDict[newItem.category]!
+            listToAddTo.append(newItem)
+            closetDict[newItem.category] = listToAddTo
+        }
         
         closetTableView.reloadData()
     }
@@ -229,8 +231,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         // category was edited
         else {
-            listToChange.remove(at: editedIndex!)
-            closetDict[oldItem.category] = listToChange
+            if oldItem.category != "All" {
+                listToChange.remove(at: editedIndex!)
+                closetDict[oldItem.category] = listToChange
+            }
             
             var listToAddTo = closetDict[newItem.category]!
             listToAddTo.append(newItem)
