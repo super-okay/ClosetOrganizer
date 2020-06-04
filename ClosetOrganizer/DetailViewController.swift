@@ -37,12 +37,18 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setFieldsToOriginal()
+        applyStyling()
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+    }
+    
+    // helper func for viewDidLoad, applies styling to fields and buttons
+    private func applyStyling() {
         self.editCategoryButton.layer.cornerRadius = 12
         self.editCategoryButton.isHidden = true
         
-        self.categoryLabel.text = passedItem.category
-
-        self.itemImage.image = passedItem.image
         self.itemImage.layer.cornerRadius = 12
         self.itemImage.layer.masksToBounds = true
         
@@ -51,26 +57,18 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.changeImageButton.layer.borderColor = UIColor.darkGray.cgColor
         self.changeImageButton.isHidden = true
         
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        
-        self.brandField.text = passedItem.brand
         self.brandField.isUserInteractionEnabled = false
         self.brandField.borderStyle = .none
         
-        self.modelField.text = passedItem.model
         self.modelField.isUserInteractionEnabled = false
         self.modelField.borderStyle = .none
         
-        self.colorField.text = passedItem.color
         self.colorField.isUserInteractionEnabled = false
         self.colorField.borderStyle = .none
         
-        self.purchaseDateField.text = passedItem.purchaseDate
         self.purchaseDateField.isUserInteractionEnabled = false
         self.purchaseDateField.borderStyle = .none
         
-        self.lastWornField.text = passedItem.lastWorn
         self.lastWornField.isUserInteractionEnabled = false
         self.lastWornField.borderStyle = .none
         
@@ -81,7 +79,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.saveButton.isHidden = true
     }
     
-    // allows editing of item
+    // allows editing of item fields
     @IBAction func editItem(_ sender: Any) {
         self.editCategoryButton.isHidden = false
         
@@ -106,8 +104,19 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.saveButton.isHidden = false
     }
     
+    // helper function, sets fields to item's original properties
+    private func setFieldsToOriginal() {
+        self.categoryLabel.text = passedItem.category
+        self.itemImage.image = passedItem.image
+        self.brandField.text = passedItem.brand
+        self.modelField.text = passedItem.model
+        self.colorField.text = passedItem.color
+        self.purchaseDateField.text = passedItem.purchaseDate
+        self.lastWornField.text = passedItem.lastWorn
+    }
+    
     // helper function, returns to default view, removes user interaction and borders
-    func defaultView() {
+    private func defaultView() {
         self.editCategoryButton.isHidden = true
         
         self.changeImageButton.isHidden = true
@@ -150,17 +159,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     // cancels the current edit
     @IBAction func cancelEdit(_ sender: Any) {
-        self.categoryLabel.text = passedItem.category
-        self.itemImage.image = passedItem.image
-        self.brandField.text = passedItem.brand
-        self.modelField.text = passedItem.model
-        self.colorField.text = passedItem.color
-        self.purchaseDateField.text = passedItem.purchaseDate
-        self.lastWornField.text = passedItem.lastWorn
-        
+        setFieldsToOriginal()
         defaultView()
     }
     
