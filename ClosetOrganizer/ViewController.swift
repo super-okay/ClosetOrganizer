@@ -202,7 +202,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // handles action for adding new category
     @IBAction func newCategory(_ sender: Any) {
-        var alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
         alert.addTextField(configurationHandler: {
             (_ textField: UITextField) -> Void in
             textField.placeholder = "Name"

@@ -12,7 +12,7 @@ protocol editCategoryDelegate {
     func updateCategory(selectedCategory: String)
 }
 
-class DetailViewController: UIViewController, editCategoryDelegate {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, editCategoryDelegate {
 
     @IBOutlet weak var editCategoryButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -29,6 +29,8 @@ class DetailViewController: UIViewController, editCategoryDelegate {
     
     var passedItem:ClosetItem!
     var passedCategories:[String]!
+    
+    let imagePicker = UIImagePickerController()
     
     var delegate:EditItemDelegate?
     
@@ -48,6 +50,9 @@ class DetailViewController: UIViewController, editCategoryDelegate {
         self.changeImageButton.layer.borderWidth = 1
         self.changeImageButton.layer.borderColor = UIColor.darkGray.cgColor
         self.changeImageButton.isHidden = true
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
         
         self.brandField.text = passedItem.brand
         self.brandField.isUserInteractionEnabled = false
@@ -125,6 +130,26 @@ class DetailViewController: UIViewController, editCategoryDelegate {
         self.cancelButton.isHidden = true
         self.saveButton.isHidden = true
     }
+    
+    // opens user's photo album for them to select image
+    @IBAction func changeImage(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // user has selected image from album
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let imageToAdd = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.itemImage.image = imageToAdd
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // user cancels selecting image from album
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     // cancels the current edit
     @IBAction func cancelEdit(_ sender: Any) {
