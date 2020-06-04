@@ -72,8 +72,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         // valid form
         if validForm() {
-//            let tempImage = UIImage(named: "tshirt.jpg")
-            let newItem = ClosetItem(image: self.addImageButton.backgroundImage(for: .normal)!,
+            var imageToAdd = UIImage(named: "white_square.jpeg")
+            if self.addImageButton.backgroundImage(for: .normal) != nil {
+                imageToAdd = self.addImageButton.backgroundImage(for: .normal)
+            }
+            let newItem = ClosetItem(image: imageToAdd!,
                                      category: self.selectedCategory,
                                      brand: brandField.text!,
                                      model: modelField.text!,
@@ -110,7 +113,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         var valid = false
         
         // valid
-        if brandField.text != "" && colorField.text != "" {
+        if categoryField.text != "" && brandField.text != "" && colorField.text != "" {
             valid = true
         }
         
@@ -131,7 +134,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.selectedCategory = chosenCategory
         self.categoryField.text = chosenCategory
     }
-    
 }
 
 
