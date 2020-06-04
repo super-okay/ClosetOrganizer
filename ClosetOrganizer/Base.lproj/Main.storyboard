@@ -143,6 +143,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-sm-ED4">
+                                <rect key="frame" x="140" y="728" width="240" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="New Item">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LJa-RY-1Hb" kind="show" identifier="addItemSegue" id="Nhw-TN-efk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-tF-o5Y">
+                                <rect key="frame" x="35" y="728" width="92" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <string key="title">New
+Category</string>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="newCategory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Vh-os-91V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -153,21 +178,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QT4-PC-hak">
-                        <barButtonItem key="leftBarButtonItem" title="New Category" id="Hm3-Q0-XQU">
-                            <connections>
-                                <action selector="newCategory:" destination="BYZ-38-t0r" id="tFB-BF-GXX"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="HP8-m4-96A">
-                            <connections>
-                                <segue destination="LJa-RY-1Hb" kind="show" identifier="addItemSegue" id="XkY-3Y-a9e"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="QT4-PC-hak"/>
                     <connections>
                         <outlet property="categoryTabs" destination="jH6-8W-DgB" id="vuZ-oy-aJ4"/>
                         <outlet property="closetTableView" destination="4Kv-aS-Ff6" id="aa7-qo-WBn"/>
+                        <outlet property="newCategoryButton" destination="1Wx-tF-o5Y" id="D6R-jm-vsw"/>
+                        <outlet property="newItemButton" destination="uvz-sm-ED4" id="jqm-hE-nVi"/>
                         <segue destination="H4a-xL-nRi" kind="show" identifier="detailSegue" id="LZh-6w-Y8B"/>
                     </connections>
                 </viewController>

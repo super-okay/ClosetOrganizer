@@ -27,6 +27,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var categoryList:[String] = []
     var currentCategory:String = "All"
     
+    @IBOutlet weak var newCategoryButton: UIButton!
+    @IBOutlet weak var newItemButton: UIButton!
+    
     var selectedIndex:Int!
     
     override func viewDidLoad() {
@@ -37,6 +40,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         closetTableView.delegate = self
         closetTableView.dataSource = self
+        
+        newCategoryButton.layer.cornerRadius = 12
+        newCategoryButton.clipsToBounds = true
+        newItemButton.layer.cornerRadius = 12
+        newItemButton.clipsToBounds = true
         
         closetDict["All"] = []
         closetDict["T-shirts"] = []
@@ -49,6 +57,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     
@@ -179,7 +197,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    // handles bar button item action for adding new category
+    // handles action for adding new category
     @IBAction func newCategory(_ sender: Any) {
         var alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
         alert.addTextField(configurationHandler: {
