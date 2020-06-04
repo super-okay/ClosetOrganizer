@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Kv-aS-Ff6">
-                                <rect key="frame" x="20" y="169" width="374" height="624"/>
+                                <rect key="frame" x="20" y="158" width="374" height="640"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="5Ri-vN-Vag"/>
-                                    <constraint firstAttribute="height" constant="624" id="bha-xs-W6l"/>
+                                    <constraint firstAttribute="height" constant="640" id="DL6-qQ-kf0"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="closetItemCell" rowHeight="120" id="kP3-lx-eRn" customClass="ClosetItemCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
@@ -103,7 +103,7 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jH6-8W-DgB">
-                                <rect key="frame" x="20" y="105" width="374" height="50"/>
+                                <rect key="frame" x="20" y="98" width="374" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="HIT-LA-Mh4"/>
@@ -144,7 +144,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-sm-ED4">
-                                <rect key="frame" x="140" y="728" width="240" height="50"/>
+                                <rect key="frame" x="140" y="736" width="240" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -156,7 +156,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-tF-o5Y">
-                                <rect key="frame" x="35" y="728" width="92" height="50"/>
+                                <rect key="frame" x="35" y="736" width="92" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal">
@@ -171,10 +171,10 @@ Category</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="jH6-8W-DgB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="17" id="Vxn-Vq-Kqv"/>
+                            <constraint firstItem="4Kv-aS-Ff6" firstAttribute="top" secondItem="jH6-8W-DgB" secondAttribute="bottom" constant="10" id="VuZ-98-ZoP"/>
+                            <constraint firstItem="jH6-8W-DgB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Wyl-Rq-hZo"/>
                             <constraint firstItem="jH6-8W-DgB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZLD-VN-0VB"/>
                             <constraint firstItem="4Kv-aS-Ff6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bVp-he-MDV"/>
-                            <constraint firstItem="4Kv-aS-Ff6" firstAttribute="top" secondItem="jH6-8W-DgB" secondAttribute="bottom" constant="14" id="hdG-2U-Fj6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -200,25 +200,25 @@ Category</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Brand" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-dR-XNm" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="470" width="374" height="34"/>
+                                <rect key="frame" x="20" y="460" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Model/Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MrA-Vr-czt" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="533" width="374" height="34"/>
+                                <rect key="frame" x="20" y="523" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Color" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Agn-rR-9N9" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="598" width="176" height="34"/>
+                                <rect key="frame" x="20" y="586" width="176" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Purchase Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ur-OS-ZWX" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="218" y="598" width="176" height="34"/>
+                                <rect key="frame" x="218" y="586" width="176" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
