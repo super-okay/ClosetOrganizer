@@ -44,6 +44,9 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
 
         self.addButton.layer.cornerRadius = 12
         self.cancelButton.layer.cornerRadius = 12
+        
+        self.navigationItem.title = "Add New Item"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
     }
     
     // opens user's photo album for them to select image

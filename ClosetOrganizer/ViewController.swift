@@ -19,8 +19,6 @@ protocol EditItemDelegate {
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
-    var closetList:[ClosetItem] = []
-    var displayedList:[ClosetItem] = []
     var closetDict:[String:[ClosetItem]] = [:]
     
     @IBOutlet weak var categoryTabs: UICollectionView!
@@ -70,6 +68,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.layoutIfNeeded()
+    }
+    
+    // for fading of tableview edges
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if closetTableView.layer.mask == nil {
+            let maskLayer = CAGradientLayer()
+            maskLayer.locations = [0, 0.2, 0.8, 1]
+            maskLayer.bounds = CGRect(x: 0, y: 0, width: closetTableView.frame.size.width, height: closetTableView.frame.size.height)
+            maskLayer.anchorPoint = CGPoint.zero
+            
+            closetTableView.layer.mask = maskLayer
+        }
+        
+        scrollViewDidScroll(closetTableView)
+    }
+    
+    // applies fading to top and bottom of tableview
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let outerColor = UIColor(white: 1, alpha: 0).cgColor
+        let innerColor = UIColor(white: 1, alpha: 1).cgColor
+        
+        var colors = [CGColor]()
+        
+        if scrollView.contentOffset.y + scrollView.contentInset.top <= 0 {
+            colors = [innerColor, innerColor, innerColor, outerColor]
+        } else if scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height {
+            colors = [outerColor, innerColor, innerColor, innerColor]
+        } else {
+            colors = [outerColor, innerColor, innerColor, outerColor]
+        }
+        
+        if let mask = scrollView.layer.mask as? CAGradientLayer {
+            mask.colors = colors
+
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            mask.position = CGPoint(x: 0.0, y: scrollView.contentOffset.y)
+            CATransaction.commit()
+        }
     }
     
     

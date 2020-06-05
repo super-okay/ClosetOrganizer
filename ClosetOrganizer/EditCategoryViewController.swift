@@ -26,6 +26,9 @@ class EditCategoryViewController: UIViewController, UITableViewDelegate, UITable
         self.categoryTable.layer.masksToBounds = true
         self.categoryTable.layer.borderWidth = 1
         self.categoryTable.layer.borderColor = UIColor.black.cgColor
+        
+        // removes extra table view dividers
+        self.categoryTable.tableFooterView = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
