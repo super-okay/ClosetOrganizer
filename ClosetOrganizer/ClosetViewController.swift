@@ -14,6 +14,7 @@ protocol AddItemDelegate {
 
 protocol EditItemDelegate {
     func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem)
+    func deleteItem(itemToDelete:ClosetItem)
 }
 
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
@@ -283,17 +284,17 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem) {
         
         var listToChange = closetDict[oldItem.category]!
-        let editedIndex = listToChange.firstIndex(of: oldItem)
+        let editedIndex = listToChange.firstIndex(of: oldItem)!
         
         // category was not edited
         if oldItem.category == newItem.category {
-            listToChange[editedIndex!] = newItem
+            listToChange[editedIndex] = newItem
             closetDict[newItem.category] = listToChange
         }
         // category was edited
         else {
             if oldItem.category != "All" {
-                listToChange.remove(at: editedIndex!)
+                listToChange.remove(at: editedIndex)
                 closetDict[oldItem.category] = listToChange
             }
             
@@ -305,6 +306,25 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         var fullList = closetDict["All"]!
         let editedIndex2 = fullList.firstIndex(of: oldItem)
         fullList[editedIndex2!] = newItem
+        closetDict["All"] = fullList
+        
+        closetTableView.reloadData()
+    }
+    
+    // deletes item from closet
+    func deleteItem(itemToDelete:ClosetItem) {
+        
+        var listToChange = closetDict[itemToDelete.category]!
+        let indexToRemove = listToChange.firstIndex(of: itemToDelete)!
+        
+        if itemToDelete.category != "All" {
+            listToChange.remove(at: indexToRemove)
+            closetDict[itemToDelete.category] = listToChange
+        }
+        
+        var fullList = closetDict["All"]!
+        let indexToRemove2 = fullList.firstIndex(of: itemToDelete)!
+        fullList.remove(at: indexToRemove2)
         closetDict["All"] = fullList
         
         closetTableView.reloadData()

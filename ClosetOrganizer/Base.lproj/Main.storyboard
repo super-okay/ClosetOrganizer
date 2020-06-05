@@ -401,11 +401,19 @@ Category</string>
                         <viewLayoutGuide key="safeArea" id="50z-e3-pDz"/>
                     </view>
                     <navigationItem key="navigationItem" id="hT3-3k-LHb">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" image="pencil.and.ellipsis.rectangle" catalog="system" id="85I-Cu-xhL">
-                            <connections>
-                                <action selector="editItem:" destination="H4a-xL-nRi" id="TM3-UF-Mqf"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Edit" image="pencil.and.ellipsis.rectangle" catalog="system" id="85I-Cu-xhL">
+                                <connections>
+                                    <action selector="editItem:" destination="H4a-xL-nRi" id="TM3-UF-Mqf"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Delete" image="trash" catalog="system" id="6Do-WC-nNR">
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="deleteItem:" destination="H4a-xL-nRi" id="OBP-Em-H3M"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="brandField" destination="3E7-4P-ZgZ" id="Sii-Yk-XtO"/>
@@ -656,5 +664,6 @@ Category</string>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
 </document>

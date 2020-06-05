@@ -104,6 +104,23 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.saveButton.isHidden = false
     }
     
+    // deletes item
+    @IBAction func deleteItem(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete this item", message: "Are you sure?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {
+                (action) in
+                self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
+                (action) in
+                self.delegate?.deleteItem(itemToDelete: self.passedItem)
+                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
+    }
+    
+    
     // helper function, sets fields to item's original properties
     private func setFieldsToOriginal() {
         self.categoryLabel.text = passedItem.category
