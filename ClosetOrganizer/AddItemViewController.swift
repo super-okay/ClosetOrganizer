@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 protocol selectCategoryDelegate {
     func selectCategory(chosenCategory: String)
@@ -89,16 +90,18 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             delegate?.addNewItem(newItem: newItem)
             
             alert = UIAlertController(title: "Success!", message: "Your item has been added", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK",
-                                          style: .default,
-                                          handler: { action in
-                                            self.navigationController?.popViewController(animated: true)
-            }))
+            
+            // dismisses "Success" alert after 1 second
+            let timeToDismiss = DispatchTime.now() + 1
+            DispatchQueue.main.asyncAfter(deadline: timeToDismiss) {
+                alert.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
             self.present(alert, animated: true)
         }
         // invalid form
         else {
-            alert = UIAlertController(title: "Error", message: "Brand and Color fields must be filled", preferredStyle: .alert)
+            alert = UIAlertController(title: "Error", message: "Category, Brand, and Color fields must be filled", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK",
                                           style: .default,
                                           handler: nil))

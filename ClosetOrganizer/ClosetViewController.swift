@@ -16,7 +16,7 @@ protocol EditItemDelegate {
     func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
+class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
     var closetDict:[String:[ClosetItem]] = [:]

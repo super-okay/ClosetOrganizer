@@ -10,7 +10,7 @@
 		DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD09B8D424738BC800338569 /* AddItemViewController.swift */; };
 		DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */; };
 		DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */; };
-		DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB624719BA20071F0A7 /* ViewController.swift */; };
+		DD2DCBB724719BA20071F0A7 /* ClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBB624719BA20071F0A7 /* ClosetViewController.swift */; };
 		DD2DCBBA24719BA20071F0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD2DCBB824719BA20071F0A7 /* Main.storyboard */; };
 		DD2DCBBD24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBBB24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld */; };
 		DD2DCBBF24719BA30071F0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */; };
@@ -50,7 +50,7 @@
 		DD2DCBAF24719BA20071F0A7 /* ClosetOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClosetOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DD2DCBB624719BA20071F0A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD2DCBB624719BA20071F0A7 /* ClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetViewController.swift; sourceTree = "<group>"; };
 		DD2DCBB924719BA20071F0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD2DCBBC24719BA20071F0A7 /* ClosetOrganizer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClosetOrganizer.xcdatamodel; sourceTree = "<group>"; };
 		DD2DCBBE24719BA30071F0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			children = (
 				DD2DCBB224719BA20071F0A7 /* AppDelegate.swift */,
 				DD2DCBB424719BA20071F0A7 /* SceneDelegate.swift */,
-				DD2DCBB624719BA20071F0A7 /* ViewController.swift */,
+				DD2DCBB624719BA20071F0A7 /* ClosetViewController.swift */,
 				DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */,
-				DD2DCBB724719BA20071F0A7 /* ViewController.swift in Sources */,
+				DD2DCBB724719BA20071F0A7 /* ClosetViewController.swift in Sources */,
 				DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */,
 				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
 				DD8B9A08248357CE004159B3 /* EditCategoryViewController.swift in Sources */,
