@@ -259,22 +259,14 @@ Category</string>
                                     <action selector="addItem:" destination="LJa-RY-1Hb" eventType="touchUpInside" id="z2M-5x-nNW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpY-EE-zBS">
-                                <rect key="frame" x="20" y="395" width="132" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Select Category">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="IXx-bg-Vxj" kind="presentation" identifier="selectCategorySegue" modalPresentationStyle="overCurrentContext" id="7VZ-21-f0m"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jp0-1O-ANQ" customClass="UITextFieldCustom" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="172" y="395" width="222" height="34"/>
+                                <rect key="frame" x="20" y="395" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <segue destination="IXx-bg-Vxj" kind="presentation" identifier="selectCategorySegue" modalPresentationStyle="overCurrentContext" id="8c8-Yn-fZj"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -290,7 +282,6 @@ Category</string>
                         <outlet property="colorField" destination="Agn-rR-9N9" id="hXM-Xg-GJd"/>
                         <outlet property="modelField" destination="MrA-Vr-czt" id="hqZ-TX-kUs"/>
                         <outlet property="purchaseDateField" destination="2ur-OS-ZWX" id="Fyp-Cx-qae"/>
-                        <outlet property="selectCategoryButton" destination="cpY-EE-zBS" id="Ix9-VY-rhl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXR-cm-tuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -470,6 +461,7 @@ Category</string>
                         <color key="backgroundColor" white="1" alpha="0.50478916952054798" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="u6b-C8-Hon"/>
                     </view>
+                    <navigationItem key="navigationItem" id="i0g-vm-Ufb"/>
                     <connections>
                         <outlet property="categoryTable" destination="x4B-SF-v2A" id="JLf-YW-zgy"/>
                     </connections>

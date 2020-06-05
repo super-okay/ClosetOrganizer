@@ -13,10 +13,9 @@ protocol selectCategoryDelegate {
     func selectCategory(chosenCategory: String)
 }
 
-class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, selectCategoryDelegate {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryDelegate {
 
     @IBOutlet weak var addImageButton: UIButton!
-    @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var categoryField: UITextFieldCustom!
     @IBOutlet weak var brandField: UITextFieldCustom!
     @IBOutlet weak var modelField: UITextFieldCustom!
@@ -40,8 +39,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         
-        self.selectCategoryButton.layer.cornerRadius = 12
-        self.categoryField.isUserInteractionEnabled = false
+        categoryField.delegate = self
+        categoryField.addTarget(self, action: #selector(categorySelector), for: .touchDown)
 
         self.addButton.layer.cornerRadius = 12
         self.cancelButton.layer.cornerRadius = 12
@@ -67,6 +66,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     // user cancels selecting image from album
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // displays category list when user taps category field
+    @objc func categorySelector() {
+        performSegue(withIdentifier: "selectCategorySegue", sender: nil)
     }
     
     // creating and adding new item from the form
