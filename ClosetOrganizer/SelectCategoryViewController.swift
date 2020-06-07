@@ -10,7 +10,7 @@ import UIKit
 
 class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var categoryTable: UITableView!
+    @IBOutlet weak var categoryTable: UITableViewCustom!
     
     var passedCategories:[String]!
     
@@ -21,14 +21,6 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
 
         self.categoryTable.delegate = self
         self.categoryTable.dataSource = self
-        
-        self.categoryTable.layer.cornerRadius = 12
-        self.categoryTable.layer.masksToBounds = true
-        self.categoryTable.layer.borderWidth = 1
-        self.categoryTable.layer.borderColor = UIColor.black.cgColor
-        
-        // removes extra table view dividers
-        self.categoryTable.tableFooterView = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,4 +48,23 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
 
+}
+
+// custom table view class for selecting category
+class UITableViewCustom: UITableView {
+    
+    private var shadowLayer: CAShapeLayer!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.layer.cornerRadius = 12
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.black.cgColor
+        
+        // removes extra table view dividers
+        self.tableFooterView = UIView()
+    }
+    
 }

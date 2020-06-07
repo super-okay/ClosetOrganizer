@@ -10,7 +10,7 @@ import UIKit
 
 class EditCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var categoryTable: UITableView!
+    @IBOutlet weak var categoryTable: UITableViewCustom!
     
     var passedCategories:[String]!
     
@@ -21,14 +21,6 @@ class EditCategoryViewController: UIViewController, UITableViewDelegate, UITable
 
         self.categoryTable.delegate = self
         self.categoryTable.dataSource = self
-        
-        self.categoryTable.layer.cornerRadius = 12
-        self.categoryTable.layer.masksToBounds = true
-        self.categoryTable.layer.borderWidth = 1
-        self.categoryTable.layer.borderColor = UIColor.black.cgColor
-        
-        // removes extra table view dividers
-        self.categoryTable.tableFooterView = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

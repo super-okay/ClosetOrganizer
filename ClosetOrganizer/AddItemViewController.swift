@@ -41,6 +41,9 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         categoryField.delegate = self
         categoryField.addTarget(self, action: #selector(categorySelector), for: .touchDown)
+        
+        self.addImageButton.layer.cornerRadius = 12
+        self.addImageButton.layer.masksToBounds = true
 
         self.addButton.layer.cornerRadius = 12
         self.cancelButton.layer.cornerRadius = 12

@@ -42,9 +42,12 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         closetTableView.delegate = self
         closetTableView.dataSource = self
         
+        newCategoryButton.layer.borderWidth = 1
+        newCategoryButton.layer.borderColor = UIColor.darkGray.cgColor
         newCategoryButton.layer.cornerRadius = 12
         newCategoryButton.clipsToBounds = true
-        newItemButton.layer.cornerRadius = 12
+        
+        newItemButton.layer.cornerRadius = 20
         newItemButton.clipsToBounds = true
         
         closetDict["All"] = []
