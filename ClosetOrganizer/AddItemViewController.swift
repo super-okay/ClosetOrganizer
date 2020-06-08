@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 protocol selectCategoryDelegate {
     func selectCategory(chosenCategory: String)
@@ -87,12 +88,27 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             if self.addImageButton.backgroundImage(for: .normal) != nil {
                 imageToAdd = self.addImageButton.backgroundImage(for: .normal)
             }
-            let newItem = ClosetItem(image: imageToAdd!,
-                                     category: self.selectedCategory,
-                                     brand: brandField.text!,
-                                     model: modelField.text!,
-                                     color: colorField.text!,
-                                     purchaseDate: purchaseDateField.text!)
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                     return
+            }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "ClosetItem",
+                                              in: managedContext)!
+            let newItem = NSManagedObject(entity: entity, insertInto: managedContext)
+            let imageData = imageToAdd?.jpegData(compressionQuality: 1)
+            newItem.setValue(imageData, forKey: "image")
+            newItem.setValue(self.selectedCategory, forKey: "category")
+            newItem.setValue(self.brandField.text!, forKey: "brand")
+            newItem.setValue(self.modelField.text!, forKey: "model")
+            newItem.setValue(self.colorField.text!, forKey: "color")
+            newItem.setValue(self.purchaseDateField.text!, forKey: "purchaseDate")
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
             
             delegate?.addNewItem(newItem: newItem)
             

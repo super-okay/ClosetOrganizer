@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol editCategoryDelegate {
     func updateCategory(selectedCategory: String)
@@ -27,7 +28,8 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    var passedItem:ClosetItem!
+//    var passedItem:ClosetItem!
+    var passedItem:NSManagedObject!
     var passedCategories:[String]!
     
     let imagePicker = UIImagePickerController()
@@ -123,13 +125,13 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // helper function, sets fields to item's original properties
     private func setFieldsToOriginal() {
-        self.categoryLabel.text = passedItem.category
-        self.itemImage.image = passedItem.image
-        self.brandField.text = passedItem.brand
-        self.modelField.text = passedItem.model
-        self.colorField.text = passedItem.color
-        self.purchaseDateField.text = passedItem.purchaseDate
-        self.lastWornField.text = passedItem.lastWorn
+        self.categoryLabel.text = passedItem.value(forKey: "category") as? String
+        self.itemImage.image = UIImage(data: passedItem.value(forKey: "image") as! Data)
+        self.brandField.text = passedItem.value(forKey: "brand") as? String
+        self.modelField.text = passedItem.value(forKey: "model") as? String
+        self.colorField.text = passedItem.value(forKey: "color") as? String
+        self.purchaseDateField.text = passedItem.value(forKey: "purchaseDate") as? String
+        self.lastWornField.text = passedItem.value(forKey: "lastWorn") as? String
     }
     
     // helper function, returns to default view, removes user interaction and borders
@@ -187,7 +189,26 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         defaultView()
         
-        let editedItem = ClosetItem(image: self.itemImage.image!, category: self.categoryLabel.text!, brand: self.brandField.text!, model: self.modelField.text!, color: self.colorField.text!, purchaseDate: self.purchaseDateField.text!)
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+          return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "ClosetItem", in: managedContext)!
+        let editedItem = NSManagedObject(entity: entity, insertInto: managedContext)
+        let imageData = self.itemImage.image?.jpegData(compressionQuality: 1)
+        editedItem.setValue(imageData, forKey: "image")
+        editedItem.setValue(self.categoryLabel.text!, forKey: "category")
+        editedItem.setValue(self.brandField.text!, forKey: "brand")
+        editedItem.setValue(self.modelField.text!, forKey: "model")
+        editedItem.setValue(self.colorField.text!, forKey: "color")
+        editedItem.setValue(self.purchaseDateField.text!, forKey: "purchaseDate")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
         
         delegate?.editExistingItem(oldItem: self.passedItem, newItem: editedItem)
     }

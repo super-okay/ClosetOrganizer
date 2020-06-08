@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddItemDelegate {
-    func addNewItem(newItem: ClosetItem)
+    func addNewItem(newItem: NSManagedObject)
 }
 
 protocol EditItemDelegate {
-    func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem)
-    func deleteItem(itemToDelete:ClosetItem)
+    func editExistingItem(oldItem:NSManagedObject, newItem:NSManagedObject)
+    func deleteItem(itemToDelete:NSManagedObject)
 }
 
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
-    var closetDict:[String:[ClosetItem]] = [:]
+//    var closetDict:[String:[ClosetItem]] = [:]
+    var coreDataList:[NSManagedObject] = []
+    var closetDict:[String:[NSManagedObject]] = [:]
     
     @IBOutlet weak var categoryTabs: UICollectionView!
     var categoryList:[String] = []
@@ -47,7 +50,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         newCategoryButton.layer.cornerRadius = 12
         newCategoryButton.clipsToBounds = true
         
-        newItemButton.layer.cornerRadius = 20
+        newItemButton.layer.cornerRadius = 12
         newItemButton.clipsToBounds = true
         
         closetDict["All"] = []
@@ -61,6 +64,9 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
+        
+        // fetch ClosetItems from core data
+        fetchData()
     }
     
     // sets title and styling of navigation bar
@@ -74,13 +80,40 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationController?.navigationBar.layoutIfNeeded()
     }
     
+    // fetches items from core data, puts into dictionary
+    private func fetchData() {
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ClosetItem")
+        
+        do {
+            self.coreDataList = try managedContext.fetch(fetchRequest)
+            closetDict["All"] = self.coreDataList
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        // loads items into respective categories
+        for item in closetDict["All"]! {
+            let category = item.value(forKey: "category") as? String
+            if category != "All" {
+                var listToAddTo = closetDict[category!]
+                listToAddTo!.append(item)
+                closetDict[category!] = listToAddTo
+            }
+        }
+    }
+    
     // for fading of tableview edges
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         if closetTableView.layer.mask == nil {
             let maskLayer = CAGradientLayer()
-            maskLayer.locations = [0, 0.2, 0.8, 1]
+            maskLayer.locations = [0, 0.1, 0.9, 1]
             maskLayer.bounds = CGRect(x: 0, y: 0, width: closetTableView.frame.size.width, height: closetTableView.frame.size.height)
             maskLayer.anchorPoint = CGPoint.zero
             
@@ -201,11 +234,12 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
         let currItem = closetDict[currentCategory]![indexPath.section]
-        cell.itemImageView.image = currItem.image
-        cell.brand.text = currItem.brand
-        cell.model.text = currItem.model
-        cell.color.text = currItem.color
-        cell.lastWorn.text = currItem.lastWorn
+
+        cell.itemImageView.image = UIImage(data: currItem.value(forKey: "image") as! Data)
+        cell.brand.text = currItem.value(forKey: "brand") as? String
+        cell.model.text = currItem.value(forKey: "model") as? String
+        cell.color.text = currItem.value(forKey: "color") as? String
+        cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
         
         // border and styling
         cell.layer.borderColor = UIColor.darkGray.cgColor
@@ -268,69 +302,180 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     // delegate function for adding new item
-    func addNewItem(newItem: ClosetItem) {
+    func addNewItem(newItem: NSManagedObject) {
         
         var allList = closetDict["All"]!
         allList.append(newItem)
         closetDict["All"] = allList
         
-        if newItem.category != "All" {
-            var listToAddTo = closetDict[newItem.category]!
+        let newCategory = (newItem.value(forKey: "category") as? String)!
+        
+        if newItem.value(forKey: "category") as? String != "All" {
+            var listToAddTo = closetDict[newCategory]!
             listToAddTo.append(newItem)
-            closetDict[newItem.category] = listToAddTo
+            closetDict[newCategory] = listToAddTo
         }
         
         closetTableView.reloadData()
     }
     
     // delegate function, finds old item to replace with new, edited item
-    func editExistingItem(oldItem:ClosetItem, newItem:ClosetItem) {
+    func editExistingItem(oldItem:NSManagedObject, newItem:NSManagedObject) {
         
-        var listToChange = closetDict[oldItem.category]!
-        let editedIndex = listToChange.firstIndex(of: oldItem)!
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let oldCategory = (oldItem.value(forKey: "category") as? String)!
+        let newCategory = (newItem.value(forKey: "category") as? String)!
+        
+        var listToChange = closetDict[oldCategory]!
+        var itemFound = false
+        var editedIndex = 0
+        while !itemFound && editedIndex < listToChange.count{
+            let curritem = listToChange[editedIndex]
+            itemFound = itemsMatch(a: curritem, b: oldItem)
+            editedIndex += 1
+        }
+        editedIndex -= 1
         
         // category was not edited
-        if oldItem.category == newItem.category {
+        if oldCategory == newCategory {
+            
+            // remove old item from core data
+            managedContext.delete(listToChange[editedIndex])
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+            // replace item in list
             listToChange[editedIndex] = newItem
-            closetDict[newItem.category] = listToChange
+            closetDict[newCategory] = listToChange
         }
         // category was edited
         else {
-            if oldItem.category != "All" {
+            if oldCategory != "All" {
+                
+                // remove old item from core data
+                managedContext.delete(listToChange[editedIndex])
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+                
                 listToChange.remove(at: editedIndex)
-                closetDict[oldItem.category] = listToChange
+                closetDict[oldCategory] = listToChange
             }
             
-            var listToAddTo = closetDict[newItem.category]!
+            var listToAddTo = closetDict[newCategory]!
             listToAddTo.append(newItem)
-            closetDict[newItem.category] = listToAddTo
+            closetDict[newCategory] = listToAddTo
         }
         
         var fullList = closetDict["All"]!
-        let editedIndex2 = fullList.firstIndex(of: oldItem)
-        fullList[editedIndex2!] = newItem
+        var itemFound2 = false
+        var editedIndex2 = 0
+        while !itemFound2 && editedIndex2 < fullList.count{
+            let curritem = fullList[editedIndex2]
+            itemFound2 = itemsMatch(a: curritem, b: oldItem)
+            editedIndex2 += 1
+        }
+        editedIndex2 -= 1
+        
+        // remove old item from core data
+        managedContext.delete(fullList[editedIndex2])
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        fullList[editedIndex2] = newItem
         closetDict["All"] = fullList
         
         closetTableView.reloadData()
     }
     
     // deletes item from closet
-    func deleteItem(itemToDelete:ClosetItem) {
+    func deleteItem(itemToDelete:NSManagedObject) {
+
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
         
-        var listToChange = closetDict[itemToDelete.category]!
-        let indexToRemove = listToChange.firstIndex(of: itemToDelete)!
+        let itemCategory = (itemToDelete.value(forKey: "category") as? String)!
         
-        if itemToDelete.category != "All" {
+        var listToChange = closetDict[itemCategory]!
+        var itemFound = false
+        var indexToRemove = 0
+        while !itemFound && indexToRemove < listToChange.count{
+            let curritem = listToChange[indexToRemove]
+            itemFound = itemsMatch(a: curritem, b: itemToDelete)
+            indexToRemove += 1
+        }
+        indexToRemove -= 1
+        
+        if itemCategory != "All" {
+            
+            // remove old item from core data
+            managedContext.delete(listToChange[indexToRemove])
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
             listToChange.remove(at: indexToRemove)
-            closetDict[itemToDelete.category] = listToChange
+            closetDict[itemCategory] = listToChange
         }
         
         var fullList = closetDict["All"]!
-        let indexToRemove2 = fullList.firstIndex(of: itemToDelete)!
+        var itemFound2 = false
+        var indexToRemove2 = 0
+        while !itemFound2 && indexToRemove2 < fullList.count{
+            let curritem = fullList[indexToRemove2]
+            itemFound2 = itemsMatch(a: curritem, b: itemToDelete)
+            indexToRemove2 += 1
+        }
+        indexToRemove2 -= 1
+        
+        // remove old item from core data
+        managedContext.delete(fullList[indexToRemove2])
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
         fullList.remove(at: indexToRemove2)
         closetDict["All"] = fullList
         
         closetTableView.reloadData()
+    }
+    
+    // checks if two closet item entities are the same
+    private func itemsMatch(a:NSManagedObject, b:NSManagedObject) -> Bool {
+        let brand1 = a.value(forKey: "brand") as? String
+        let model1 = a.value(forKey: "model") as? String
+        let color1 = a.value(forKey: "color") as? String
+        
+        let brand2 = b.value(forKey: "brand") as? String
+        let model2 = b.value(forKey: "model") as? String
+        let color2 = b.value(forKey: "color") as? String
+        
+        if brand1 == brand2 && model1 == model2 && color1 == color2 {
+            return true
+        }
+        else {
+            return false
+        }
     }
 
 }

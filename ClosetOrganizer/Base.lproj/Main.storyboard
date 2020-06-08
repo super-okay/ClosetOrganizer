@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Kv-aS-Ff6">
-                                <rect key="frame" x="20" y="158" width="374" height="630"/>
+                                <rect key="frame" x="20" y="158" width="374" height="655"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="5Ri-vN-Vag"/>
-                                    <constraint firstAttribute="height" constant="630" id="Kj2-gK-qeA"/>
+                                    <constraint firstAttribute="height" constant="655" id="xBF-zd-fAR"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="closetItemCell" rowHeight="120" id="kP3-lx-eRn" customClass="ClosetItemCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
@@ -149,14 +149,14 @@
                                     <constraint firstAttribute="height" constant="40" id="Ns8-aa-OWX"/>
                                     <constraint firstAttribute="width" constant="44" id="cu0-55-Olx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="+"/>
                                 <connections>
                                     <action selector="newCategory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pNZ-tV-4uj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-sm-ED4">
-                                <rect key="frame" x="87" y="757" width="240" height="42"/>
+                                <rect key="frame" x="87" y="761" width="240" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -180,7 +180,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QT4-PC-hak"/>
+                    <navigationItem key="navigationItem" id="QT4-PC-hak">
+                        <barButtonItem key="leftBarButtonItem" title="Search" image="magnifyingglass" catalog="system" id="bzu-K4-1hd"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoryTabs" destination="jH6-8W-DgB" id="vuZ-oy-aJ4"/>
                         <outlet property="closetTableView" destination="4Kv-aS-Ff6" id="aa7-qo-WBn"/>
@@ -665,6 +667,7 @@
     <resources>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
