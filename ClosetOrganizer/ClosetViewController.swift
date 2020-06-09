@@ -28,6 +28,8 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     var categoryList:[String] = []
     var currentCategory:String = "All"
     
+    var brandList:[String] = []
+    
     @IBOutlet weak var newCategoryButton: UIButton!
     @IBOutlet weak var newItemButton: UIButton!
     
@@ -103,6 +105,9 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
                 listToAddTo!.append(item)
                 closetDict[category!] = listToAddTo
             }
+            
+            // add brand to brand list
+            self.brandList.append((item.value(forKey: "brand") as? String)!)
         }
     }
     
@@ -277,6 +282,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             let searchVC = segue.destination as! SearchViewController
             searchVC.passedClosetDict = self.closetDict
             searchVC.passedCategories = self.categoryList
+            searchVC.passedBrands = self.brandList
         }
     }
     

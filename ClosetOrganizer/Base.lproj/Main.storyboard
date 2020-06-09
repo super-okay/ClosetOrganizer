@@ -217,8 +217,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="All Items"/>
-                                    <segment title="By Category"/>
-                                    <segment title="By Brand"/>
+                                    <segment title="Category"/>
+                                    <segment title="Brand"/>
                                 </segments>
                                 <connections>
                                     <action selector="searchBy:" destination="CC6-zQ-McA" eventType="valueChanged" id="9f5-GA-geq"/>
@@ -247,10 +247,11 @@
                         <barButtonItem key="rightBarButtonItem" title="Change Category" id="32V-bm-zG4"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeButton" destination="32V-bm-zG4" id="HRL-1n-fn7"/>
                         <outlet property="resultsTable" destination="a9R-mI-5DV" id="Pir-3X-oM5"/>
                         <outlet property="searchBar" destination="CdQ-rc-Cbi" id="lUn-5b-cy2"/>
                         <outlet property="searchBySC" destination="9Pm-UA-Iov" id="j9a-M5-5H3"/>
-                        <segue destination="W41-vq-72i" kind="presentation" identifier="searchCategorySegue" modalPresentationStyle="overCurrentContext" id="kE2-xp-yKb"/>
+                        <segue destination="W41-vq-72i" kind="presentation" identifier="searchFilterSegue" modalPresentationStyle="overCurrentContext" id="kE2-xp-yKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ooU-Xx-jeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -499,10 +500,10 @@
             </objects>
             <point key="canvasLocation" x="795.6521739130435" y="1585.7142857142856"/>
         </scene>
-        <!--Search Category View Controller-->
+        <!--Search Filters View Controller-->
         <scene sceneID="DmC-ap-bAK">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="W41-vq-72i" customClass="SearchCategoryViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="W41-vq-72i" customClass="SearchFiltersViewController" customModule="ClosetOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HGT-Mr-lyR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -512,7 +513,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="categoryCell" textLabel="O1b-pb-9h8" style="IBUITableViewCellStyleDefault" id="u22-6t-QSx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filterCell" textLabel="O1b-pb-9h8" style="IBUITableViewCellStyleDefault" id="u22-6t-QSx">
                                         <rect key="frame" x="0.0" y="28" width="270" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u22-6t-QSx" id="HFb-Zm-aQL">

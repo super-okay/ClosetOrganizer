@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SearchCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchFiltersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var categoryTable: UITableViewCustom!
     
-    var passedCategories:[String]!
+    var passedFilters:[String]!
     
-    var delegate:searchCategoryProtocol?
+    var delegate:searchFiltersProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,19 +25,19 @@ class SearchCategoryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return passedCategories.count
+        return passedFilters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath as IndexPath)
-        let currCategory = passedCategories[indexPath.row]
-        cell.textLabel!.text = currCategory
+        let cell = tableView.dequeueReusableCell(withIdentifier: "filterCell", for: indexPath as IndexPath)
+        let currFilter = passedFilters[indexPath.row]
+        cell.textLabel!.text = currFilter
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate?.setCategoryToSearch(category: passedCategories[indexPath.row])
+        self.delegate?.setFilterToSearch(filter: passedFilters[indexPath.row])
         self.dismiss(animated: true, completion: nil)
     }
 
