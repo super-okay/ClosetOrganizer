@@ -21,7 +21,6 @@ protocol EditItemDelegate {
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
     
     @IBOutlet weak var closetTableView: UITableView!
-//    var closetDict:[String:[ClosetItem]] = [:]
     var coreDataList:[NSManagedObject] = []
     var closetDict:[String:[NSManagedObject]] = [:]
     
@@ -267,13 +266,17 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             addItemVC.delegate = self
             addItemVC.passedCategories = categoryList
         }
-        else
-        if segue.identifier == "detailSegue" {
+        else if segue.identifier == "detailSegue" {
             let detailVC = segue.destination as! DetailViewController
             detailVC.delegate = self
             let selectedItem = closetDict[currentCategory]![selectedIndex]
             detailVC.passedItem = selectedItem
             detailVC.passedCategories = self.categoryList
+        }
+        else if segue.identifier == "searchSegue" {
+            let searchVC = segue.destination as! SearchViewController
+            searchVC.passedClosetDict = self.closetDict
+            searchVC.passedCategories = self.categoryList
         }
     }
     
