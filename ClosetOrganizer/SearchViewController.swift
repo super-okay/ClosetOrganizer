@@ -36,6 +36,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.rightBarButtonItem?.title = ""
     }
     
+    // action function for segmented control
     @IBAction func searchBy(_ sender: Any) {
         switch searchBySC.selectedSegmentIndex {
         case 0:
@@ -52,6 +53,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             break
         }
     }
+    
+    // action for bar button item to change filter
+    @IBAction func changeFilter(_ sender: Any) {
+        self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredList.count
@@ -75,6 +82,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // delegate function
     func setFilterToSearch(filter:String) {
         self.selectedFilter = filter
         self.searchBar.placeholder = "Searching in \(self.selectedFilter ?? "All")..."

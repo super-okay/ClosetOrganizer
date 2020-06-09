@@ -10,11 +10,11 @@ import UIKit
 import Foundation
 import CoreData
 
-protocol selectCategoryDelegate {
+protocol selectCategoryProtocol {
     func selectCategory(chosenCategory: String)
 }
 
-class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryDelegate {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol {
 
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var categoryField: UITextFieldCustom!
@@ -25,7 +25,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    var delegate:AddItemDelegate?
+    var delegate:AddItemProtocol?
     
     var passedCategories:[String]!
     var selectedCategory:String!
@@ -176,10 +176,6 @@ class UITextFieldCustom: UITextField {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-//        self.layer.borderColor = UIColor.darkGray.cgColor
-//        self.layer.borderWidth = 1
-//        self.layer.cornerRadius = 12
-//        self.layer.masksToBounds = true
         self.borderStyle = .none
         self.backgroundColor = .white
         self.frame.size.height = 46

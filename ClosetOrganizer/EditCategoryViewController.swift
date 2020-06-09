@@ -14,7 +14,7 @@ class EditCategoryViewController: UIViewController, UITableViewDelegate, UITable
     
     var passedCategories:[String]!
     
-    var delegate:editCategoryDelegate?
+    var delegate:editCategoryProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()

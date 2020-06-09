@@ -14,7 +14,7 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     
     var passedCategories:[String]!
     
-    var delegate:selectCategoryDelegate?
+    var delegate:selectCategoryProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,19 +52,19 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
 
 // custom table view class for selecting category
 class UITableViewCustom: UITableView {
-    
+
     private var shadowLayer: CAShapeLayer!
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+
         self.layer.cornerRadius = 12
         self.layer.masksToBounds = true
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.black.cgColor
-        
+
         // removes extra table view dividers
         self.tableFooterView = UIView()
     }
-    
+
 }

@@ -9,16 +9,16 @@
 import UIKit
 import CoreData
 
-protocol AddItemDelegate {
+protocol AddItemProtocol {
     func addNewItem(newItem: NSManagedObject)
 }
 
-protocol EditItemDelegate {
+protocol EditItemProtocol {
     func editExistingItem(oldItem:NSManagedObject, newItem:NSManagedObject)
     func deleteItem(itemToDelete:NSManagedObject)
 }
 
-class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemDelegate, EditItemDelegate{
+class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol {
     
     @IBOutlet weak var closetTableView: UITableView!
     var coreDataList:[NSManagedObject] = []

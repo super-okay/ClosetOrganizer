@@ -244,7 +244,11 @@
                         <viewLayoutGuide key="safeArea" id="kj1-zI-uon"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jgo-jx-g5l">
-                        <barButtonItem key="rightBarButtonItem" title="Change Category" id="32V-bm-zG4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Change Category" id="32V-bm-zG4">
+                            <connections>
+                                <action selector="changeFilter:" destination="CC6-zQ-McA" id="XQf-Zj-htx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="changeButton" destination="32V-bm-zG4" id="HRL-1n-fn7"/>

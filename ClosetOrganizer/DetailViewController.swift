@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-protocol editCategoryDelegate {
+protocol editCategoryProtocol {
     func updateCategory(selectedCategory: String)
 }
 
-class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, editCategoryDelegate {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, editCategoryProtocol {
 
     @IBOutlet weak var editCategoryButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let imagePicker = UIImagePickerController()
     
-    var delegate:EditItemDelegate?
+    var delegate:EditItemProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
