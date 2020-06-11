@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Kv-aS-Ff6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Kv-aS-Ff6">
                                 <rect key="frame" x="20" y="158" width="374" height="655"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -24,15 +24,15 @@
                                     <constraint firstAttribute="height" constant="655" id="xBF-zd-fAR"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="closetItemCell" rowHeight="120" id="kP3-lx-eRn" customClass="ClosetItemCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="closetItemCell" rowHeight="110" id="kP3-lx-eRn" customClass="ClosetItemCustomCell" customModule="ClosetOrganizer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kP3-lx-eRn" id="LlK-x3-fII">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-0y-phW">
-                                                    <rect key="frame" x="129" y="11" width="224" height="21"/>
+                                                    <rect key="frame" x="109" y="6" width="224" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="bSk-ZA-INq"/>
                                                         <constraint firstAttribute="width" constant="224" id="xYg-DO-2sV"/>
@@ -42,7 +42,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzD-CX-JtP">
-                                                    <rect key="frame" x="129" y="54" width="224" height="21"/>
+                                                    <rect key="frame" x="109" y="49" width="224" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="ZfQ-KI-XIl"/>
                                                         <constraint firstAttribute="width" constant="224" id="hWs-vo-Zy7"/>
@@ -52,7 +52,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Worn 01/01/2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDz-iE-eR1">
-                                                    <rect key="frame" x="129" y="89" width="224" height="21"/>
+                                                    <rect key="frame" x="109" y="84" width="224" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="2TK-Xe-hY5"/>
                                                         <constraint firstAttribute="width" constant="224" id="fqY-D9-HrH"/>
@@ -62,7 +62,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model/Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMm-bC-yKs">
-                                                    <rect key="frame" x="129" y="33" width="224" height="21"/>
+                                                    <rect key="frame" x="109" y="28" width="224" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="224" id="NCP-lw-yZU"/>
                                                         <constraint firstAttribute="height" constant="21" id="zXA-1d-LVn"/>
@@ -72,7 +72,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X1a-me-1GA">
-                                                    <rect key="frame" x="20" y="15" width="90" height="90"/>
+                                                    <rect key="frame" x="0.0" y="10" width="90" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="90" id="4w7-qL-aGy"/>
                                                         <constraint firstAttribute="width" constant="90" id="eBi-9Y-hiz"/>
@@ -81,13 +81,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iDz-iE-eR1" firstAttribute="top" secondItem="kzD-CX-JtP" secondAttribute="bottom" constant="14" id="9vF-Al-GRp"/>
-                                                <constraint firstItem="4JV-0y-phW" firstAttribute="top" secondItem="LlK-x3-fII" secondAttribute="top" constant="11" id="CGo-uc-VLu"/>
+                                                <constraint firstItem="4JV-0y-phW" firstAttribute="top" secondItem="LlK-x3-fII" secondAttribute="top" constant="6" id="CGo-uc-VLu"/>
                                                 <constraint firstItem="iDz-iE-eR1" firstAttribute="leading" secondItem="X1a-me-1GA" secondAttribute="trailing" constant="19" id="GXQ-Ab-04f"/>
                                                 <constraint firstItem="WMm-bC-yKs" firstAttribute="top" secondItem="4JV-0y-phW" secondAttribute="bottom" constant="1" id="Gv7-WS-RuB"/>
                                                 <constraint firstItem="WMm-bC-yKs" firstAttribute="leading" secondItem="X1a-me-1GA" secondAttribute="trailing" constant="19" id="Kno-yU-3u3"/>
                                                 <constraint firstItem="kzD-CX-JtP" firstAttribute="top" secondItem="WMm-bC-yKs" secondAttribute="bottom" id="Oih-hY-p6Z"/>
                                                 <constraint firstItem="kzD-CX-JtP" firstAttribute="leading" secondItem="X1a-me-1GA" secondAttribute="trailing" constant="19" id="pSs-cB-M2m"/>
-                                                <constraint firstItem="X1a-me-1GA" firstAttribute="leading" secondItem="LlK-x3-fII" secondAttribute="leading" constant="20" id="pVf-JI-8eT"/>
+                                                <constraint firstItem="X1a-me-1GA" firstAttribute="leading" secondItem="LlK-x3-fII" secondAttribute="leading" id="pVf-JI-8eT"/>
                                                 <constraint firstItem="4JV-0y-phW" firstAttribute="leading" secondItem="X1a-me-1GA" secondAttribute="trailing" constant="19" id="xXY-FZ-rYs"/>
                                                 <constraint firstItem="X1a-me-1GA" firstAttribute="centerY" secondItem="LlK-x3-fII" secondAttribute="centerY" id="xy5-KS-Ohx"/>
                                             </constraints>

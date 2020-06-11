@@ -74,7 +74,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let searchFiltersVC = segue.destination as! SearchFiltersViewController
             searchFiltersVC.delegate = self
             if self.searchBySC.selectedSegmentIndex == 1 {
-                searchFiltersVC.passedFilters = self.passedCategories
+                searchFiltersVC.passedFilters = Array(passedCategories[1...])
             }
             else if self.searchBySC.selectedSegmentIndex == 2 {
                 searchFiltersVC.passedFilters = self.passedBrands
@@ -82,7 +82,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    // delegate function
+    // protocol function
     func setFilterToSearch(filter:String) {
         self.selectedFilter = filter
         self.searchBar.placeholder = "Searching in \(self.selectedFilter ?? "All")..."

@@ -65,6 +65,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
+        self.closetTableView.separatorStyle = .none
         
         // fetch ClosetItems from core data
         fetchData()
@@ -230,7 +231,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // spacing between cells
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 0
     }
     
     // table cell content
@@ -246,9 +247,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
         
         // border and styling
-        cell.layer.borderColor = UIColor.darkGray.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 12
         cell.itemImageView.layer.cornerRadius = 12
         cell.itemImageView.layer.masksToBounds = true
         
