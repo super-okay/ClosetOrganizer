@@ -23,17 +23,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var passedClosetDict:[String:[NSManagedObject]] = [:]
     var passedCategories:[String]!
     var passedBrands:[String]!
-    var filteredList:[NSManagedObject]!
+    var filteredList:[NSManagedObject] = []
     
     var selectedFilter:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.resultsTable.delegate = self
+        self.resultsTable.dataSource = self
+        
         searchBySC.selectedSegmentIndex = 0
         searchBySC.sendActions(for: .valueChanged)
         
         self.navigationItem.rightBarButtonItem?.title = ""
+        
+        // registers custom tableview cell for reuse
+        resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
     }
     
     // action function for segmented control
@@ -61,11 +67,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredList.count
+//        return self.filteredList.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath as IndexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
+        if cell == nil {
+            cell = ClosetItemCustomCell.createCell()!
+        }
+//        let currItem = filteredList[indexPath.row]
+        cell.brand.text = "TEST"
+        
         return cell
     }
     

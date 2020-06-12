@@ -26,5 +26,11 @@ class ClosetItemCustomCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    class func createCell() -> ClosetItemCustomCell? {
+        let nib = UINib(nibName: "ClosetItemCustomCell", bundle: nil)
+        let cell = nib.instantiate(withOwner: self, options: nil).last as? ClosetItemCustomCell
+        return cell
+    }
 
 }
