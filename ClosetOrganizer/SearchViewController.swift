@@ -13,7 +13,7 @@ protocol searchFiltersProtocol {
     func setFilterToSearch(filter:String)
 }
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, searchFiltersProtocol {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, searchFiltersProtocol {
     
     @IBOutlet weak var searchBySC: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,9 +23,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var passedClosetDict:[String:[NSManagedObject]] = [:]
     var passedCategories:[String]!
     var passedBrands:[String]!
+    
+    var fullList:[NSManagedObject]!
     var filteredList:[NSManagedObject] = []
     
     var selectedFilter:String!
+    
+    // checks if search bar is currently active
+    var isFiltering: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // registers custom tableview cell for reuse
         resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
+        
+        self.fullList = self.passedClosetDict["All"]
+        
+        // removes extra table view dividers
+        self.resultsTable.tableFooterView = UIView()
+        self.resultsTable.separatorStyle = .none
+        
+        self.searchBar.delegate = self
+        
     }
     
     // action function for segmented control
@@ -48,7 +62,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case 0:
             searchBar.placeholder = "Searching all items..."
             self.navigationItem.rightBarButtonItem?.title = ""
-            let allItems = self.passedClosetDict["All"]
         case 1:
             self.navigationItem.rightBarButtonItem?.title = "Change Category"
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
@@ -65,10 +78,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.filteredList.count
-        return 1
+        if isFiltering {
+            return self.filteredList.count
+        }
+        return self.fullList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,8 +90,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if cell == nil {
             cell = ClosetItemCustomCell.createCell()!
         }
-//        let currItem = filteredList[indexPath.row]
-        cell.brand.text = "TEST"
+        
+        // determines which list to select from
+        let currItem:NSManagedObject!
+        if isFiltering {
+            currItem = self.filteredList[indexPath.row]
+        } else {
+            currItem = self.fullList[indexPath.row]
+        }
+
+        cell.itemImageView.image = UIImage(data: currItem.value(forKey: "image") as! Data)
+        cell.brand.text = currItem.value(forKey: "brand") as? String
+        cell.model.text = currItem.value(forKey: "model") as? String
+        cell.color.text = currItem.value(forKey: "color") as? String
+        cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
+        
+        // border and styling
+        cell.itemImageView.layer.cornerRadius = 12
+        cell.itemImageView.layer.masksToBounds = true
         
         return cell
     }
@@ -101,4 +131,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.searchBar.placeholder = "Searching in \(self.selectedFilter ?? "All")..."
     }
     
+    /********************  Search Bar Functions ********************/
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if self.searchBar.text == "" {
+            self.isFiltering = false
+        } else {
+            self.isFiltering = true
+        }
+        self.filteredList = self.fullList.filter {
+            (closetItem: NSManagedObject) -> Bool in
+            let category = closetItem.value(forKey: "category") as? String
+            let brand = closetItem.value(forKey: "brand") as? String
+            let model = closetItem.value(forKey: "model") as? String
+            let color = closetItem.value(forKey: "color") as? String
+            let returnBool = category!.lowercased().contains(searchText.lowercased()) || brand!.lowercased().contains(searchText.lowercased()) || model!.lowercased().contains(searchText.lowercased()) || color!.lowercased().contains(searchText.lowercased())
+            return returnBool
+        }
+        
+        self.resultsTable.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.isFiltering = true
+    }
 }
+

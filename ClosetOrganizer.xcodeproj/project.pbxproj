@@ -136,6 +136,7 @@
 				DD2DCBB624719BA20071F0A7 /* ClosetViewController.swift */,
 				DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
+				DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
 				DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */,
 				DDD5D1CC2475C0BE0007ED6C /* DetailViewController.swift */,
@@ -153,7 +154,6 @@
 				DD2DCBC024719BA30071F0A7 /* LaunchScreen.storyboard */,
 				DD2DCBC324719BA30071F0A7 /* Info.plist */,
 				DD2DCBBB24719BA20071F0A7 /* ClosetOrganizer.xcdatamodeld */,
-				DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */,
 			);
 			path = ClosetOrganizer;
 			sourceTree = "<group>";
