@@ -29,6 +29,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var selectedFilter:String!
     
+    var selectedIndex:Int!
+    
     // checks if search bar is currently active
     var isFiltering: Bool = false
     
@@ -47,13 +49,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
         
         self.fullList = self.passedClosetDict["All"]
+        self.filteredList = self.fullList
         
         // removes extra table view dividers
         self.resultsTable.tableFooterView = UIView()
         self.resultsTable.separatorStyle = .none
         
         self.searchBar.delegate = self
-        
     }
     
     // action function for segmented control
@@ -112,6 +114,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedIndex = indexPath.row
+        self.performSegue(withIdentifier: "searchToDetailSegue", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchFilterSegue" {
             let searchFiltersVC = segue.destination as! SearchFiltersViewController
@@ -122,6 +129,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else if self.searchBySC.selectedSegmentIndex == 2 {
                 searchFiltersVC.passedFilters = self.passedBrands
             }
+        }
+        else if segue.identifier == "searchToDetailSegue" {
+            let detailVC = segue.destination as! DetailViewController
+//            detailVC.delegate = self
+            if self.searchBar.text == "" {
+                detailVC.passedItem = self.fullList[selectedIndex]
+            } else {
+                detailVC.passedItem = self.filteredList[selectedIndex]
+            }
+            detailVC.passedCategories = self.passedCategories
         }
     }
     

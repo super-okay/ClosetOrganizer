@@ -256,6 +256,7 @@
                         <outlet property="searchBar" destination="CdQ-rc-Cbi" id="lUn-5b-cy2"/>
                         <outlet property="searchBySC" destination="9Pm-UA-Iov" id="j9a-M5-5H3"/>
                         <segue destination="W41-vq-72i" kind="presentation" identifier="searchFilterSegue" modalPresentationStyle="overCurrentContext" id="kE2-xp-yKb"/>
+                        <segue destination="H4a-xL-nRi" kind="show" identifier="searchToDetailSegue" id="xAk-Td-We2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ooU-Xx-jeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -774,6 +775,9 @@
             <point key="canvasLocation" x="1696" y="141"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xAk-Td-We2"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
     <resources>
         <image name="bag" catalog="system" width="128" height="128"/>
