@@ -13,7 +13,7 @@ protocol searchFiltersProtocol {
     func setFilterToSearch(filter:String)
 }
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, searchFiltersProtocol {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, searchFiltersProtocol, EditItemProtocol {
     
     @IBOutlet weak var searchBySC: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,8 +31,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var selectedIndex:Int!
     
+    var delegate:EditItemProtocol?
+    
     // checks if search bar is currently active
-    var isFiltering: Bool = false
+//    var isFiltering: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,33 +83,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
+        if self.searchBar.text != "" {
             return self.filteredList.count
         }
         return self.fullList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
-        if cell == nil {
-            cell = ClosetItemCustomCell.createCell()!
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "closetItemCell", for: indexPath as IndexPath) as! ClosetItemCustomCell
         
         // determines which list to select from
         let currItem:NSManagedObject!
-        if isFiltering {
+
+        if self.searchBar.text != "" {
             currItem = self.filteredList[indexPath.row]
         } else {
             currItem = self.fullList[indexPath.row]
         }
-
+        
         cell.itemImageView.image = UIImage(data: currItem.value(forKey: "image") as! Data)
         cell.brand.text = currItem.value(forKey: "brand") as? String
         cell.model.text = currItem.value(forKey: "model") as? String
         cell.color.text = currItem.value(forKey: "color") as? String
         cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
         
-        // border and styling
+        // image styling
         cell.itemImageView.layer.cornerRadius = 12
         cell.itemImageView.layer.masksToBounds = true
         
@@ -119,6 +119,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.performSegue(withIdentifier: "searchToDetailSegue", sender: nil)
     }
     
+    // prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchFilterSegue" {
             let searchFiltersVC = segue.destination as! SearchFiltersViewController
@@ -132,7 +133,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if segue.identifier == "searchToDetailSegue" {
             let detailVC = segue.destination as! DetailViewController
-//            detailVC.delegate = self
+            detailVC.delegate = self
             if self.searchBar.text == "" {
                 detailVC.passedItem = self.fullList[selectedIndex]
             } else {
@@ -142,20 +143,64 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    // protocol function
+    // search filters protocol function
     func setFilterToSearch(filter:String) {
         self.selectedFilter = filter
         self.searchBar.placeholder = "Searching in \(self.selectedFilter ?? "All")..."
     }
     
+    // edit item protocol function
+    func editExistingItem(oldItem: NSManagedObject, newItem: NSManagedObject) {
+        self.delegate?.editExistingItem(oldItem: oldItem, newItem: newItem)
+        self.searchBar.text = ""
+        fetchData()
+        self.resultsTable.reloadData()
+    }
+    
+    // edit item protocol function
+    func deleteItem(itemToDelete: NSManagedObject) {
+        self.delegate?.deleteItem(itemToDelete: itemToDelete)
+        self.searchBar.text = ""
+        fetchData()
+        self.resultsTable.reloadData()
+    }
+    
+    // fetches items from core data, puts into dictionary
+    private func fetchData() {
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ClosetItem")
+        
+        do {
+            let temp = try managedContext.fetch(fetchRequest)
+            self.passedClosetDict["All"] = temp
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        self.fullList = self.passedClosetDict["All"]!
+        self.filteredList = self.fullList
+        
+        // loads items into respective categories
+        for item in passedClosetDict["All"]! {
+            let category = item.value(forKey: "category") as? String
+            if category != "All" {
+                var listToAddTo = passedClosetDict[category!]
+                listToAddTo!.append(item)
+                passedClosetDict[category!] = listToAddTo
+            }
+            
+            // add brand to brand list
+            self.passedBrands.append((item.value(forKey: "brand") as? String)!)
+        }
+    }
+    
     /********************  Search Bar Functions ********************/
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if self.searchBar.text == "" {
-            self.isFiltering = false
-        } else {
-            self.isFiltering = true
-        }
         self.filteredList = self.fullList.filter {
             (closetItem: NSManagedObject) -> Bool in
             let category = closetItem.value(forKey: "category") as? String
@@ -167,10 +212,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         self.resultsTable.reloadData()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.isFiltering = true
     }
 }
 

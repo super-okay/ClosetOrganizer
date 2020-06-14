@@ -246,7 +246,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         cell.color.text = currItem.value(forKey: "color") as? String
         cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
         
-        // border and styling
+        // image styling
         cell.itemImageView.layer.cornerRadius = 12
         cell.itemImageView.layer.masksToBounds = true
         
@@ -278,6 +278,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "searchSegue" {
             let searchVC = segue.destination as! SearchViewController
+            searchVC.delegate = self
             searchVC.passedClosetDict = self.closetDict
             searchVC.passedCategories = self.categoryList
             searchVC.passedBrands = self.brandList
@@ -477,12 +478,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let model2 = b.value(forKey: "model") as? String
         let color2 = b.value(forKey: "color") as? String
         
-        if brand1 == brand2 && model1 == model2 && color1 == color2 {
-            return true
-        }
-        else {
-            return false
-        }
+        return brand1 == brand2 && model1 == model2 && color1 == color2
     }
 
 }

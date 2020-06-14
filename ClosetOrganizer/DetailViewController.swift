@@ -28,7 +28,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-//    var passedItem:ClosetItem!
     var passedItem:NSManagedObject!
     var passedCategories:[String]!
     
