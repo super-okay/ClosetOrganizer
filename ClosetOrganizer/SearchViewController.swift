@@ -18,7 +18,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBySC: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultsTable: UITableView!
-    @IBOutlet weak var changeButton: UIBarButtonItem!
+    @IBOutlet weak var changeFilterButton: ShadowButton!
     
     var passedClosetDict:[String:[NSManagedObject]] = [:]
     var passedCategories:[String]!
@@ -45,7 +45,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBySC.selectedSegmentIndex = 0
         searchBySC.sendActions(for: .valueChanged)
         
-        self.navigationItem.rightBarButtonItem?.title = ""
+        self.changeFilterButton.setTitle("", for: .normal)
+//        self.changeFilterButton.layer.borderColor = UIColor.darkGray.cgColor
+//        self.changeFilterButton.layer.borderWidth = 1
+//        self.changeFilterButton.layer.cornerRadius = 12
         
         // registers custom tableview cell for reuse
         resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
@@ -65,12 +68,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch searchBySC.selectedSegmentIndex {
         case 0:
             searchBar.placeholder = "Searching all items..."
-            self.navigationItem.rightBarButtonItem?.title = ""
+            self.changeFilterButton.setTitle("", for: .normal)
         case 1:
-            self.navigationItem.rightBarButtonItem?.title = "Change Category"
+            self.changeFilterButton.setTitle("Change Category", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         case 2:
-            self.navigationItem.rightBarButtonItem?.title = "Change Brand"
+            self.changeFilterButton.setTitle("Change Brand", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         default:
             break

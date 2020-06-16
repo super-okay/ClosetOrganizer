@@ -31,7 +31,7 @@ class UITextFieldCustom: UITextField {
 
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
-          
+
             shadowLayer.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 12).cgPath
             shadowLayer.fillColor = UIColor.white.cgColor
 
