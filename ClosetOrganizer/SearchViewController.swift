@@ -19,6 +19,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultsTable: UITableView!
     @IBOutlet weak var changeFilterButton: ShadowButton!
+    @IBOutlet var visibleHeightConstraint: NSLayoutConstraint!
     
     var passedClosetDict:[String:[NSManagedObject]] = [:]
     var passedCategories:[String]!
@@ -45,10 +46,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBySC.selectedSegmentIndex = 0
         searchBySC.sendActions(for: .valueChanged)
         
+        self.visibleHeightConstraint.constant = 0
         self.changeFilterButton.setTitle("", for: .normal)
-//        self.changeFilterButton.layer.borderColor = UIColor.darkGray.cgColor
-//        self.changeFilterButton.layer.borderWidth = 1
-//        self.changeFilterButton.layer.cornerRadius = 12
         
         // registers custom tableview cell for reuse
         resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
@@ -68,11 +67,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch searchBySC.selectedSegmentIndex {
         case 0:
             searchBar.placeholder = "Searching all items..."
+            self.visibleHeightConstraint.constant = 0
             self.changeFilterButton.setTitle("", for: .normal)
         case 1:
+            self.visibleHeightConstraint.constant = 30
             self.changeFilterButton.setTitle("Change Category", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         case 2:
+            self.visibleHeightConstraint.constant = 30
             self.changeFilterButton.setTitle("Change Brand", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         default:

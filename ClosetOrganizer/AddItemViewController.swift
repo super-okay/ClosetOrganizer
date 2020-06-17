@@ -17,11 +17,11 @@ protocol selectCategoryProtocol {
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol {
 
     @IBOutlet weak var addImageButton: UIButton!
-    @IBOutlet weak var categoryField: UITextFieldCustom!
-    @IBOutlet weak var brandField: UITextFieldCustom!
-    @IBOutlet weak var modelField: UITextFieldCustom!
-    @IBOutlet weak var colorField: UITextFieldCustom!
-    @IBOutlet weak var purchaseDateField: UITextFieldCustom!
+    @IBOutlet weak var categoryField: ShadowTextField!
+    @IBOutlet weak var brandField: ShadowTextField!
+    @IBOutlet weak var modelField: ShadowTextField!
+    @IBOutlet weak var colorField: ShadowTextField!
+    @IBOutlet weak var purchaseDateField: ShadowTextField!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
