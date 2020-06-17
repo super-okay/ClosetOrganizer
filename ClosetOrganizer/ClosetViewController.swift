@@ -108,7 +108,10 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             // add brand to brand list
-            self.brandList.append((item.value(forKey: "brand") as? String)!)
+            let brand = (item.value(forKey: "brand") as? String)!
+            if !self.brandList.contains(brand) {
+                self.brandList.append(brand)
+            }
         }
     }
     
