@@ -16,7 +16,7 @@ protocol searchFiltersProtocol {
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, searchFiltersProtocol, EditItemProtocol {
     
     @IBOutlet weak var searchBySC: UISegmentedControl!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var resultsTable: UITableView!
     @IBOutlet weak var changeFilterButton: ShadowButton!
     @IBOutlet var visibleHeightConstraint: NSLayoutConstraint!
@@ -43,6 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.resultsTable.delegate = self
         self.resultsTable.dataSource = self
         
+        // sets segmented control to "All Items" (default)
         searchBySC.selectedSegmentIndex = 0
         searchBySC.sendActions(for: .valueChanged)
         
@@ -59,7 +60,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.resultsTable.tableFooterView = UIView()
         self.resultsTable.separatorStyle = .none
         
-        self.searchBar.delegate = self
+//        self.searchBar.delegate = self
+        self.searchBar.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     // action function for segmented control
@@ -70,12 +72,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.visibleHeightConstraint.constant = 0
             self.changeFilterButton.setTitle("", for: .normal)
         case 1:
-            self.visibleHeightConstraint.constant = 30
-            self.changeFilterButton.setTitle("Change Category", for: .normal)
+            self.visibleHeightConstraint.constant = 34
+            self.changeFilterButton.setTitle("Change Category Filter", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         case 2:
-            self.visibleHeightConstraint.constant = 30
-            self.changeFilterButton.setTitle("Change Brand", for: .normal)
+            self.visibleHeightConstraint.constant = 34
+            self.changeFilterButton.setTitle("Change Brand Filter", for: .normal)
             self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
         default:
             break
@@ -205,18 +207,33 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /********************  Search Bar Functions ********************/
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        self.filteredList = self.fullList.filter {
+//            (closetItem: NSManagedObject) -> Bool in
+//            let category = closetItem.value(forKey: "category") as? String
+//            let brand = closetItem.value(forKey: "brand") as? String
+//            let model = closetItem.value(forKey: "model") as? String
+//            let color = closetItem.value(forKey: "color") as? String
+//            let returnBool = category!.lowercased().contains(searchText.lowercased()) || brand!.lowercased().contains(searchText.lowercased()) || model!.lowercased().contains(searchText.lowercased()) || color!.lowercased().contains(searchText.lowercased())
+//            return returnBool
+//        }
+//
+//        self.resultsTable.reloadData()
+//    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
         self.filteredList = self.fullList.filter {
             (closetItem: NSManagedObject) -> Bool in
             let category = closetItem.value(forKey: "category") as? String
             let brand = closetItem.value(forKey: "brand") as? String
             let model = closetItem.value(forKey: "model") as? String
             let color = closetItem.value(forKey: "color") as? String
-            let returnBool = category!.lowercased().contains(searchText.lowercased()) || brand!.lowercased().contains(searchText.lowercased()) || model!.lowercased().contains(searchText.lowercased()) || color!.lowercased().contains(searchText.lowercased())
+            let returnBool = category!.lowercased().contains(textField.text!.lowercased()) || brand!.lowercased().contains(textField.text!.lowercased()) || model!.lowercased().contains(textField.text!.lowercased()) || color!.lowercased().contains(textField.text!.lowercased())
             return returnBool
         }
-        
+
         self.resultsTable.reloadData()
     }
+    
 }
 

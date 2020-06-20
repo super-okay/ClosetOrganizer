@@ -207,31 +207,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="CdQ-rc-Cbi">
-                                <rect key="frame" x="20" y="178" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Lxm-ra-3m1"/>
-                                    <constraint firstAttribute="width" constant="374" id="gZi-Oq-qE0"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Pm-UA-Iov">
-                                <rect key="frame" x="28" y="100" width="358" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="358" id="bv9-av-kmt"/>
-                                    <constraint firstAttribute="height" constant="31" id="feS-af-qih"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="All Items"/>
-                                    <segment title="Category"/>
-                                    <segment title="Brand"/>
-                                </segments>
-                                <connections>
-                                    <action selector="searchBy:" destination="CC6-zQ-McA" eventType="valueChanged" id="9f5-GA-geq"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a9R-mI-5DV">
-                                <rect key="frame" x="20" y="233" width="374" height="580"/>
+                                <rect key="frame" x="20" y="232" width="374" height="580"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="580" id="77A-rf-HtA"/>
@@ -249,27 +226,66 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpk-ku-1aj" customClass="ShadowButton" customModule="ClosetOrganizer" customModuleProvider="target">
-                                <rect key="frame" x="28" y="142" width="358" height="30"/>
+                                <rect key="frame" x="20" y="141" width="374" height="34"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="358" id="jHS-x4-KzH"/>
-                                    <constraint firstAttribute="height" constant="30" id="uao-u8-KkH"/>
+                                    <constraint firstAttribute="height" constant="34" id="R4Q-IO-dUT"/>
+                                    <constraint firstAttribute="width" constant="374" id="mMN-B6-bmK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Change Filter"/>
+                                <state key="normal" title="Change Filter">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="changeFilter:" destination="CC6-zQ-McA" eventType="touchUpInside" id="eae-zj-EbU"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WcS-wX-j2u" customClass="CustomSearchBar" customModule="ClosetOrganizer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="187" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Cxs-sb-WLX"/>
+                                    <constraint firstAttribute="width" constant="374" id="d0l-c3-hew"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIe-dg-811">
+                                <rect key="frame" x="20" y="105" width="58" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="0a7-tX-i7Z"/>
+                                    <constraint firstAttribute="height" constant="20" id="tnk-ey-K1v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Pm-UA-Iov">
+                                <rect key="frame" x="86" y="100" width="308" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="feS-af-qih"/>
+                                    <constraint firstAttribute="width" constant="308" id="oRU-uN-6wA"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="All Items"/>
+                                    <segment title="Category"/>
+                                    <segment title="Brand"/>
+                                </segments>
+                                <connections>
+                                    <action selector="searchBy:" destination="CC6-zQ-McA" eventType="valueChanged" id="9f5-GA-geq"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="IIe-dg-811" firstAttribute="top" secondItem="kj1-zI-uon" secondAttribute="top" constant="17" id="8jU-Lc-wZB"/>
                             <constraint firstItem="a9R-mI-5DV" firstAttribute="centerX" secondItem="7uW-oe-exP" secondAttribute="centerX" id="9QN-aX-jBc"/>
-                            <constraint firstItem="a9R-mI-5DV" firstAttribute="top" secondItem="CdQ-rc-Cbi" secondAttribute="bottom" constant="11" id="CBr-r4-sTd"/>
-                            <constraint firstItem="9Pm-UA-Iov" firstAttribute="centerX" secondItem="7uW-oe-exP" secondAttribute="centerX" id="FXA-Qg-X0d"/>
-                            <constraint firstItem="Gpk-ku-1aj" firstAttribute="top" secondItem="9Pm-UA-Iov" secondAttribute="bottom" constant="11" id="eIV-JW-nLy"/>
+                            <constraint firstItem="WcS-wX-j2u" firstAttribute="top" secondItem="Gpk-ku-1aj" secondAttribute="bottom" constant="12" id="Gin-UT-PcZ"/>
+                            <constraint firstItem="IIe-dg-811" firstAttribute="leading" secondItem="kj1-zI-uon" secondAttribute="leading" constant="20" id="J5a-om-8C3"/>
+                            <constraint firstItem="9Pm-UA-Iov" firstAttribute="leading" secondItem="IIe-dg-811" secondAttribute="trailing" constant="8" id="JNY-jm-Huc"/>
+                            <constraint firstItem="a9R-mI-5DV" firstAttribute="top" secondItem="WcS-wX-j2u" secondAttribute="bottom" constant="11" id="c4d-Lp-kCs"/>
                             <constraint firstItem="9Pm-UA-Iov" firstAttribute="top" secondItem="kj1-zI-uon" secondAttribute="top" constant="12" id="eKN-KR-JjI"/>
-                            <constraint firstItem="CdQ-rc-Cbi" firstAttribute="centerX" secondItem="7uW-oe-exP" secondAttribute="centerX" id="fSS-lW-lg1"/>
-                            <constraint firstItem="CdQ-rc-Cbi" firstAttribute="top" secondItem="Gpk-ku-1aj" secondAttribute="bottom" constant="6" id="xQq-2I-5GR"/>
+                            <constraint firstItem="WcS-wX-j2u" firstAttribute="centerX" secondItem="7uW-oe-exP" secondAttribute="centerX" id="jCL-Hw-hCe"/>
+                            <constraint firstItem="Gpk-ku-1aj" firstAttribute="top" secondItem="kj1-zI-uon" secondAttribute="top" constant="53" id="sr2-r5-0SY"/>
                             <constraint firstItem="Gpk-ku-1aj" firstAttribute="centerX" secondItem="7uW-oe-exP" secondAttribute="centerX" id="y8s-uW-HjE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kj1-zI-uon"/>
@@ -278,9 +294,9 @@
                     <connections>
                         <outlet property="changeFilterButton" destination="Gpk-ku-1aj" id="FNt-aW-BuJ"/>
                         <outlet property="resultsTable" destination="a9R-mI-5DV" id="Pir-3X-oM5"/>
-                        <outlet property="searchBar" destination="CdQ-rc-Cbi" id="lUn-5b-cy2"/>
+                        <outlet property="searchBar" destination="WcS-wX-j2u" id="h3I-D2-f28"/>
                         <outlet property="searchBySC" destination="9Pm-UA-Iov" id="j9a-M5-5H3"/>
-                        <outlet property="visibleHeightConstraint" destination="uao-u8-KkH" id="e4Z-tI-H2u"/>
+                        <outlet property="visibleHeightConstraint" destination="R4Q-IO-dUT" id="sYS-nm-etj"/>
                         <segue destination="W41-vq-72i" kind="presentation" identifier="searchFilterSegue" modalPresentationStyle="overCurrentContext" id="kE2-xp-yKb"/>
                         <segue destination="H4a-xL-nRi" kind="show" identifier="searchToDetailSegue" id="xAk-Td-We2"/>
                     </connections>
