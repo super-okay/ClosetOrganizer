@@ -25,6 +25,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var passedCategories:[String]!
     var passedBrands:[String]!
     
+    var originalFullList:[NSManagedObject]!
     var fullList:[NSManagedObject]!
     var filteredList:[NSManagedObject] = []
     
@@ -53,6 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // registers custom tableview cell for reuse
         resultsTable.register(UINib(nibName: "ClosetItemCustomCell", bundle: nil), forCellReuseIdentifier: "closetItemCell")
         
+        self.originalFullList = self.passedClosetDict["All"]
         self.fullList = self.passedClosetDict["All"]
         self.filteredList = self.fullList
         
@@ -60,7 +62,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.resultsTable.tableFooterView = UIView()
         self.resultsTable.separatorStyle = .none
         
-//        self.searchBar.delegate = self
+        // detects every text change for search bar
         self.searchBar.addTarget(self, action: #selector(SearchViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
@@ -68,9 +70,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func searchBy(_ sender: Any) {
         switch searchBySC.selectedSegmentIndex {
         case 0:
-            searchBar.placeholder = "Searching all items..."
+            self.searchBar.placeholder = "Searching all items..."
             self.visibleHeightConstraint.constant = 0
             self.changeFilterButton.setTitle("", for: .normal)
+            self.fullList = self.passedClosetDict["All"]
+            self.filteredList = self.passedClosetDict["All"]!
+            self.resultsTable.reloadData()
         case 1:
             self.visibleHeightConstraint.constant = 34
             self.changeFilterButton.setTitle("Change Category Filter", for: .normal)
@@ -84,7 +89,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    // action for bar button item to change filter
+    // action for change filter button
     @IBAction func changeFilter(_ sender: Any) {
         self.performSegue(withIdentifier: "searchFilterSegue", sender: nil)
     }
@@ -154,6 +159,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setFilterToSearch(filter:String) {
         self.selectedFilter = filter
         self.searchBar.placeholder = "Searching in \(self.selectedFilter ?? "All")..."
+        
+        self.fullList = self.originalFullList
+        self.fullList = self.fullList.filter {
+            (closetItem: NSManagedObject) -> Bool in
+            var match:Bool!
+            if self.searchBySC.selectedSegmentIndex == 1 {
+                let category = closetItem.value(forKey: "category") as? String
+                match = category == self.selectedFilter
+            }
+            else if self.searchBySC.selectedSegmentIndex == 2 {
+                let brand = closetItem.value(forKey: "brand") as? String
+                match = brand == self.selectedFilter
+            }
+            return match
+        }
+        self.filteredList = self.fullList
+        self.resultsTable.reloadData()
     }
     
     // edit item protocol function
@@ -207,20 +229,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /********************  Search Bar Functions ********************/
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        self.filteredList = self.fullList.filter {
-//            (closetItem: NSManagedObject) -> Bool in
-//            let category = closetItem.value(forKey: "category") as? String
-//            let brand = closetItem.value(forKey: "brand") as? String
-//            let model = closetItem.value(forKey: "model") as? String
-//            let color = closetItem.value(forKey: "color") as? String
-//            let returnBool = category!.lowercased().contains(searchText.lowercased()) || brand!.lowercased().contains(searchText.lowercased()) || model!.lowercased().contains(searchText.lowercased()) || color!.lowercased().contains(searchText.lowercased())
-//            return returnBool
-//        }
-//
-//        self.resultsTable.reloadData()
-//    }
-    
+    // detects every text change for search bar
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.filteredList = self.fullList.filter {
             (closetItem: NSManagedObject) -> Bool in

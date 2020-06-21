@@ -10,7 +10,7 @@ import UIKit
 
 class SearchFiltersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var categoryTable: UITableViewCustom!
+    @IBOutlet weak var filterTable: UITableViewCustom!
     
     var passedFilters:[String]!
     
@@ -20,8 +20,8 @@ class SearchFiltersViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.categoryTable.delegate = self
-        self.categoryTable.dataSource = self
+        self.filterTable.delegate = self
+        self.filterTable.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

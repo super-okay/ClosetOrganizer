@@ -584,7 +584,7 @@
                         <viewLayoutGuide key="safeArea" id="bEe-jf-Iuv"/>
                     </view>
                     <connections>
-                        <outlet property="categoryTable" destination="hqi-SF-gKs" id="cMH-bp-NcB"/>
+                        <outlet property="filterTable" destination="hqi-SF-gKs" id="IZg-Zi-4EA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yi-0p-dZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
