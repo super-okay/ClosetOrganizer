@@ -50,7 +50,8 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.cancelButton.layer.cornerRadius = 12
         
         self.navigationItem.title = "Add New Item"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Nunito-SemiBold", size: 24)]
     }
     
     // opens user's photo album for them to select image
