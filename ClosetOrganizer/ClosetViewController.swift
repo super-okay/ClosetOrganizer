@@ -63,6 +63,9 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
         
+        // selects + highlights the "All" category tab upon page load
+        self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+        
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
         self.closetTableView.separatorStyle = .none
@@ -74,7 +77,8 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     // sets title and styling of navigation bar
     private func setupNavBar() {
         self.navigationItem.title = "Closet"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Nunito-SemiBold", size: 24)]
         
         // clear background, divider
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
