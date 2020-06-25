@@ -204,7 +204,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ClosetItem")
         
         do {
-            let temp = try managedContext.fetch(fetchRequest)
+            var temp = try managedContext.fetch(fetchRequest)
+            temp.reverse() // recent items appear on top
             self.passedClosetDict["All"] = temp
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")

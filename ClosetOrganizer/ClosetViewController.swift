@@ -74,10 +74,16 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         fetchData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // selects + highlights the "All" category tab upon view appearing
+        self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+    }
+    
     // sets title and styling of navigation bar
     private func setupNavBar() {
         self.navigationItem.title = "Closet"
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Nunito-SemiBold", size: 24)]
         
         // clear background, divider
@@ -97,6 +103,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         do {
             self.coreDataList = try managedContext.fetch(fetchRequest)
+            self.coreDataList.reverse() // recent items appear on top
             closetDict["All"] = self.coreDataList
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -320,14 +327,16 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     func addNewItem(newItem: NSManagedObject) {
         
         var allList = closetDict["All"]!
-        allList.append(newItem)
+//        allList.append(newItem)
+        allList.insert(newItem, at: 0)
         closetDict["All"] = allList
         
         let newCategory = (newItem.value(forKey: "category") as? String)!
         
         if newItem.value(forKey: "category") as? String != "All" {
             var listToAddTo = closetDict[newCategory]!
-            listToAddTo.append(newItem)
+//            listToAddTo.append(newItem)
+            listToAddTo.insert(newItem, at: 0)
             closetDict[newCategory] = listToAddTo
         }
         
@@ -388,7 +397,8 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             var listToAddTo = closetDict[newCategory]!
-            listToAddTo.append(newItem)
+//            listToAddTo.append(newItem)
+            listToAddTo.insert(newItem, at: 0)
             closetDict[newCategory] = listToAddTo
         }
         
