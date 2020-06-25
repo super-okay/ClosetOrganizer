@@ -10,7 +10,7 @@ import UIKit
 
 class SearchFiltersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var filterTable: UITableViewCustom!
+    @IBOutlet weak var filterTable: PopupTableView!
     
     var passedFilters:[String]!
     

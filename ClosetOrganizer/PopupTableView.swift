@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // custom table view class for popups
-class UITableViewCustom: UITableView {
+class PopupTableView: UITableView {
 
     private var shadowLayer: CAShapeLayer!
 

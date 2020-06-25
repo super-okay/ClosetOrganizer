@@ -10,7 +10,7 @@ import UIKit
 
 class EditCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var categoryTable: UITableViewCustom!
+    @IBOutlet weak var categoryTable: PopupTableView!
     
     var passedCategories:[String]!
     
