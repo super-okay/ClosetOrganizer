@@ -19,8 +19,8 @@ class PopupTableView: UITableView {
 
         self.layer.cornerRadius = 12
         self.layer.masksToBounds = true
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.black.cgColor
+//        self.layer.borderWidth = 0.5
+//        self.layer.borderColor = UIColor.black.cgColor
 
         // removes extra table view dividers
         self.tableFooterView = UIView()

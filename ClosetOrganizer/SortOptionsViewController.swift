@@ -20,6 +20,13 @@ class SortOptionsViewController: UIViewController, UITableViewDelegate, UITableV
         self.sortOptionsTable.delegate = self
         self.sortOptionsTable.dataSource = self
         
+//        self.view.backgroundColor = UIColor.clear
+//        let blurEffect = UIBlurEffect(style: .light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = self.view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        self.view.insertSubview(blurEffectView, at: 0)
+        
         self.sortOptions = ["Date Added (Default)", "Brand A-Z", "Brand Z-A", "Purchase Date", "Most Worn", "Least Worn"]
     }
     
