@@ -346,8 +346,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     // delegate function, finds old item to replace with new, edited item
     func editExistingItem(oldItem:NSManagedObject, newItem:NSManagedObject) {
         
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -356,14 +355,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let newCategory = (newItem.value(forKey: "category") as? String)!
         
         var listToChange = closetDict[oldCategory]!
-        var itemFound = false
-        var editedIndex = 0
-        while !itemFound && editedIndex < listToChange.count{
-            let curritem = listToChange[editedIndex]
-            itemFound = itemsMatch(a: curritem, b: oldItem)
-            editedIndex += 1
-        }
-        editedIndex -= 1
+        let editedIndex = findIndexOfItem(itemToFind: oldItem, listToSearch: listToChange)
         
         // category was not edited
         if oldCategory == newCategory {
@@ -403,14 +395,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         var fullList = closetDict["All"]!
-        var itemFound2 = false
-        var editedIndex2 = 0
-        while !itemFound2 && editedIndex2 < fullList.count{
-            let curritem = fullList[editedIndex2]
-            itemFound2 = itemsMatch(a: curritem, b: oldItem)
-            editedIndex2 += 1
-        }
-        editedIndex2 -= 1
+        let editedIndex2 = findIndexOfItem(itemToFind: oldItem, listToSearch: fullList)
         
         // remove old item from core data
         managedContext.delete(fullList[editedIndex2])
@@ -429,8 +414,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     // deletes item from closet
     func deleteItem(itemToDelete:NSManagedObject) {
 
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -438,14 +422,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let itemCategory = (itemToDelete.value(forKey: "category") as? String)!
         
         var listToChange = closetDict[itemCategory]!
-        var itemFound = false
-        var indexToRemove = 0
-        while !itemFound && indexToRemove < listToChange.count{
-            let curritem = listToChange[indexToRemove]
-            itemFound = itemsMatch(a: curritem, b: itemToDelete)
-            indexToRemove += 1
-        }
-        indexToRemove -= 1
+        let indexToRemove = findIndexOfItem(itemToFind: itemToDelete, listToSearch: listToChange)
         
         if itemCategory != "All" {
             
@@ -462,14 +439,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         var fullList = closetDict["All"]!
-        var itemFound2 = false
-        var indexToRemove2 = 0
-        while !itemFound2 && indexToRemove2 < fullList.count{
-            let curritem = fullList[indexToRemove2]
-            itemFound2 = itemsMatch(a: curritem, b: itemToDelete)
-            indexToRemove2 += 1
-        }
-        indexToRemove2 -= 1
+        let indexToRemove2 = findIndexOfItem(itemToFind: itemToDelete, listToSearch: fullList)
         
         // remove old item from core data
         managedContext.delete(fullList[indexToRemove2])
@@ -483,6 +453,20 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         closetDict["All"] = fullList
         
         closetTableView.reloadData()
+    }
+    
+    // finds the index of a closet item in a category list
+    private func findIndexOfItem(itemToFind:NSManagedObject, listToSearch:[NSManagedObject]) -> Int {
+        var itemFound = false
+        var index = 0
+        while !itemFound && index < listToSearch.count {
+            let curritem = listToSearch[index]
+            itemFound = itemsMatch(a: curritem, b: itemToFind)
+            index += 1
+        }
+        index -= 1
+        
+        return index
     }
     
     // checks if two closet item entities are the same
