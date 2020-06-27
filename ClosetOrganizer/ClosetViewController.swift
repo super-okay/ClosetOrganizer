@@ -359,31 +359,12 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         // category was not edited
         if oldCategory == newCategory {
-            
-            // remove old item from core data
-            managedContext.delete(listToChange[editedIndex])
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-            
-            // replace item in list
             listToChange[editedIndex] = newItem
             closetDict[newCategory] = listToChange
         }
         // category was edited
         else {
             if oldCategory != "All" {
-                
-                // remove old item from core data
-                managedContext.delete(listToChange[editedIndex])
-                do {
-                    try managedContext.save()
-                } catch let error as NSError {
-                    print("Could not save. \(error), \(error.userInfo)")
-                }
-                
                 listToChange.remove(at: editedIndex)
                 closetDict[oldCategory] = listToChange
             }
@@ -396,14 +377,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         var fullList = closetDict["All"]!
         let editedIndex2 = findIndexOfItem(itemToFind: oldItem, listToSearch: fullList)
-        
-        // remove old item from core data
-        managedContext.delete(fullList[editedIndex2])
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
         
         fullList[editedIndex2] = newItem
         closetDict["All"] = fullList
@@ -425,7 +398,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let indexToRemove = findIndexOfItem(itemToFind: itemToDelete, listToSearch: listToChange)
         
         if itemCategory != "All" {
-            
             // remove old item from core data
             managedContext.delete(listToChange[indexToRemove])
             do {
@@ -455,7 +427,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         closetTableView.reloadData()
     }
     
-    // finds the index of a closet item in a category list
+    // finds the index of a closet item in a category list, used for editing and deleting
     private func findIndexOfItem(itemToFind:NSManagedObject, listToSearch:[NSManagedObject]) -> Int {
         var itemFound = false
         var index = 0

@@ -193,15 +193,29 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
           return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "ClosetItem", in: managedContext)!
-        let editedItem = NSManagedObject(entity: entity, insertInto: managedContext)
-        let imageData = self.itemImage.image?.jpegData(compressionQuality: 1)
-        editedItem.setValue(imageData, forKey: "image")
-        editedItem.setValue(self.categoryLabel.text!, forKey: "category")
-        editedItem.setValue(self.brandField.text!, forKey: "brand")
-        editedItem.setValue(self.modelField.text!, forKey: "model")
-        editedItem.setValue(self.colorField.text!, forKey: "color")
-        editedItem.setValue(self.purchaseDateField.text!, forKey: "purchaseDate")
+        
+        // new code for testing editing item in core data
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ClosetItem")
+        let oldCategory = self.passedItem.value(forKey: "category")
+        let oldBrand = self.passedItem.value(forKey: "brand")
+        let oldModel = self.passedItem.value(forKey: "model")
+        let oldColor = self.passedItem.value(forKey: "color")
+        fetchRequest.predicate = NSPredicate(format: "category = %@ AND brand = %@ AND model = %@ AND color = %@", argumentArray: [oldCategory!, oldBrand!, oldModel!, oldColor!])
+        
+        var editedItem:NSManagedObject!
+        do {
+            let tempList = try managedContext.fetch(fetchRequest)
+            editedItem = tempList[0]
+            let imageData = self.itemImage.image?.jpegData(compressionQuality: 1)
+            tempList[0].setValue(imageData, forKey: "image")
+            tempList[0].setValue(self.categoryLabel.text!, forKey: "category")
+            tempList[0].setValue(self.brandField.text!, forKey: "brand")
+            tempList[0].setValue(self.modelField.text!, forKey: "model")
+            tempList[0].setValue(self.colorField.text!, forKey: "color")
+            tempList[0].setValue(self.purchaseDateField.text!, forKey: "purchaseDate")
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
         
         do {
             try managedContext.save()
