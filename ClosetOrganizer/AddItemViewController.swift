@@ -12,6 +12,7 @@ import CoreData
 
 protocol selectCategoryProtocol {
     func selectCategory(chosenCategory: String)
+    func selectPurchaseDate(chosenDate: String)
 }
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol {
@@ -40,8 +41,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         
-        categoryField.delegate = self
-        categoryField.addTarget(self, action: #selector(categorySelector), for: .touchDown)
+        self.categoryField.delegate = self
+        self.categoryField.addTarget(self, action: #selector(categorySelector), for: .touchDown)
+        
+        self.purchaseDateField.delegate = self
+        self.purchaseDateField.addTarget(self, action: #selector(dateSelector), for: .touchDown)
         
         self.addImageButton.layer.cornerRadius = 12
         self.addImageButton.layer.masksToBounds = true
@@ -75,6 +79,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     // displays category list when user taps category field
     @objc func categorySelector() {
         performSegue(withIdentifier: "selectCategorySegue", sender: nil)
+    }
+    
+    // displays date selector when user taps purchase date field
+    @objc func dateSelector() {
+        performSegue(withIdentifier: "datePickerSegue", sender: nil)
     }
     
     // creating and adding new item from the form
@@ -156,11 +165,20 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             selectCategoryVC.delegate = self
             selectCategoryVC.passedCategories = self.passedCategories
         }
+        else if segue.identifier == "datePickerSegue" {
+            let datePickerVC = segue.destination as! DatePickerViewController
+            datePickerVC.delegate = self
+        }
     }
     
     // protocol function for selecting category
     func selectCategory(chosenCategory: String) {
         self.selectedCategory = chosenCategory
         self.categoryField.text = chosenCategory
+    }
+    
+    // protocol function for selecting purchase date
+    func selectPurchaseDate(chosenDate: String) {
+        self.purchaseDateField.text = chosenDate
     }
 }

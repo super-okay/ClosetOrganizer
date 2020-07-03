@@ -23,6 +23,7 @@
 		DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */; };
 		DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5060C52471E97100C42450 /* SettingsViewController.swift */; };
 		DD6CE3C0249DB6550059AA1E /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6CE3BF249DB6550059AA1E /* CustomSearchBar.swift */; };
+		DD7405D524AF962F003AFFFD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7405D424AF962F003AFFFD /* DatePickerViewController.swift */; };
 		DD78299324A2F6FE0072302F /* SortOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78299224A2F6FE0072302F /* SortOptionsViewController.swift */; };
 		DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */; };
 		DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */; };
@@ -77,6 +78,7 @@
 		DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetItem.swift; sourceTree = "<group>"; };
 		DD5060C52471E97100C42450 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		DD6CE3BF249DB6550059AA1E /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		DD7405D424AF962F003AFFFD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		DD78299224A2F6FE0072302F /* SortOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionsViewController.swift; sourceTree = "<group>"; };
 		DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomCell.swift; sourceTree = "<group>"; };
 		DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				DD5060C52471E97100C42450 /* SettingsViewController.swift */,
 				DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */,
 				DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */,
+				DD7405D424AF962F003AFFFD /* DatePickerViewController.swift */,
 				DD2DCBE72471A7AE0071F0A7 /* ClosetItem.swift */,
 				DD100BFC249085A000245B85 /* ShadowTextField.swift */,
 				DD6CE3BF249DB6550059AA1E /* CustomSearchBar.swift */,
@@ -325,6 +328,7 @@
 				DD100BFD249085A000245B85 /* ShadowTextField.swift in Sources */,
 				DD6CE3C0249DB6550059AA1E /* CustomSearchBar.swift in Sources */,
 				DDEC9F92248EF2B50016B380 /* SearchViewController.swift in Sources */,
+				DD7405D524AF962F003AFFFD /* DatePickerViewController.swift in Sources */,
 				DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */,
 				DD2DCBB724719BA20071F0A7 /* ClosetViewController.swift in Sources */,
 				DDB0CE5F2498774E004D6027 /* ShadowButton.swift in Sources */,
