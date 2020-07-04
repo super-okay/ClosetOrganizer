@@ -33,6 +33,8 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     let imagePicker = UIImagePickerController()
     
+    var lastClicked:String!
+    
     var delegate:EditItemProtocol?
     
     override func viewDidLoad() {
@@ -45,7 +47,10 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.allowsEditing = false
         
         self.purchaseDateField.delegate = self
-        self.purchaseDateField.addTarget(self, action: #selector(dateSelector), for: .touchDown)
+        self.purchaseDateField.addTarget(self, action: #selector(purchaseDateSelector), for: .touchDown)
+        
+        self.lastWornField.delegate = self
+        self.lastWornField.addTarget(self, action: #selector(lastWornDateSelector), for: .touchDown)
     }
     
     // helper func for viewDidLoad, applies styling to fields and buttons
@@ -109,7 +114,14 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // displays date selector when user taps purchase date field
-    @objc func dateSelector() {
+    @objc func purchaseDateSelector() {
+        self.lastClicked = "purchaseDate"
+        performSegue(withIdentifier: "datePickerSegue", sender: nil)
+    }
+    
+    // displays date selector when user taps last worn field
+    @objc func lastWornDateSelector() {
+        self.lastClicked = "lastWornDate"
         performSegue(withIdentifier: "datePickerSegue", sender: nil)
     }
     
@@ -253,8 +265,13 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     // protocol function for selecting purchase date
-    func selectPurchaseDate(chosenDate: String) {
-        self.purchaseDateField.text = chosenDate
+    func selectDate(chosenDate: String) {
+        if self.lastClicked == "purchaseDate" {
+            self.purchaseDateField.text = chosenDate
+        }
+        else if self.lastClicked == "lastWornDate" {
+            self.lastWornField.text = chosenDate
+        }
     }
     
 }

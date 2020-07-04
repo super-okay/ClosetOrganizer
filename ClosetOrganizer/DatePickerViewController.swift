@@ -40,7 +40,7 @@ class DatePickerViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         let dateToShow = dateFormatter.string(from: self.datePicker.date)
-        self.delegate?.selectPurchaseDate(chosenDate: dateToShow)
+        self.delegate?.selectDate(chosenDate: dateToShow)
         self.dismiss(animated: true, completion: nil)
     }
     

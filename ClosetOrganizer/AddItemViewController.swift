@@ -15,7 +15,7 @@ protocol selectCategoryProtocol {
 }
 
 protocol selectDateProtocol {
-    func selectPurchaseDate(chosenDate: String)
+    func selectDate(chosenDate: String)
 }
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol, selectDateProtocol {
@@ -181,7 +181,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     // protocol function for selecting purchase date
-    func selectPurchaseDate(chosenDate: String) {
+    func selectDate(chosenDate: String) {
         self.purchaseDateField.text = chosenDate
     }
 }
