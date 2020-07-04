@@ -603,6 +603,7 @@
                         <outlet property="modelField" destination="IvV-78-EbF" id="ebm-JG-mmj"/>
                         <outlet property="purchaseDateField" destination="81M-ZN-PUU" id="fsB-8m-RHg"/>
                         <outlet property="saveButton" destination="jNA-om-d5o" id="2ty-oW-Btb"/>
+                        <segue destination="evP-cm-cpO" kind="presentation" identifier="datePickerSegue" modalPresentationStyle="overCurrentContext" id="01N-Wl-m8E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uP-Nt-wwt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -916,6 +917,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="01N-Wl-m8E"/>
         <segue reference="LZh-6w-Y8B"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>

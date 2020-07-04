@@ -12,10 +12,13 @@ import CoreData
 
 protocol selectCategoryProtocol {
     func selectCategory(chosenCategory: String)
+}
+
+protocol selectDateProtocol {
     func selectPurchaseDate(chosenDate: String)
 }
 
-class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, selectCategoryProtocol, selectDateProtocol {
 
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var categoryField: ShadowTextField!

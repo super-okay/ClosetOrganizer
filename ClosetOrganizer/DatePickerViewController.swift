@@ -13,7 +13,7 @@ class DatePickerViewController: UIViewController {
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var confirmButton: UIButton!
     
-    var delegate:selectCategoryProtocol?
+    var delegate:selectDateProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,7 +13,7 @@ protocol editCategoryProtocol {
     func updateCategory(selectedCategory: String)
 }
 
-class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, editCategoryProtocol {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, editCategoryProtocol, selectDateProtocol {
 
     @IBOutlet weak var editCategoryButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -43,6 +43,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+        
+        self.purchaseDateField.delegate = self
+        self.purchaseDateField.addTarget(self, action: #selector(dateSelector), for: .touchDown)
     }
     
     // helper func for viewDidLoad, applies styling to fields and buttons
@@ -103,6 +106,11 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         self.cancelButton.isHidden = false
         self.saveButton.isHidden = false
+    }
+    
+    // displays date selector when user taps purchase date field
+    @objc func dateSelector() {
+        performSegue(withIdentifier: "datePickerSegue", sender: nil)
     }
     
     // deletes item
@@ -233,11 +241,20 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             editCategoryVC.delegate = self
             editCategoryVC.passedCategories = self.passedCategories
         }
+        else if segue.identifier == "datePickerSegue" {
+            let datePickerVC = segue.destination as! DatePickerViewController
+            datePickerVC.delegate = self
+        }
     }
     
     // protocol function for updating category
     func updateCategory(selectedCategory: String) {
         self.categoryLabel.text = selectedCategory
+    }
+
+    // protocol function for selecting purchase date
+    func selectPurchaseDate(chosenDate: String) {
+        self.purchaseDateField.text = chosenDate
     }
     
 }
