@@ -28,6 +28,7 @@
 		DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */; };
 		DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */; };
 		DD8B9A08248357CE004159B3 /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B9A07248357CE004159B3 /* EditCategoryViewController.swift */; };
+		DD97369124B253E000E0D001 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97369024B253E000E0D001 /* NewCategoryViewController.swift */; };
 		DDA8834A247EFF9800F9E5D9 /* SettingsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */; };
 		DDAC018F247F22CF00AC9A98 /* SettingsCustomCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */; };
 		DDB0CE5F2498774E004D6027 /* ShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB0CE5E2498774E004D6027 /* ShadowButton.swift */; };
@@ -83,6 +84,7 @@
 		DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCustomCell.swift; sourceTree = "<group>"; };
 		DD8650A52485FED400DB96A0 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		DD8B9A07248357CE004159B3 /* EditCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
+		DD97369024B253E000E0D001 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		DDA88349247EFF9800F9E5D9 /* SettingsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell.swift; sourceTree = "<group>"; };
 		DDAC018E247F22CF00AC9A98 /* SettingsCustomCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCustomCell2.swift; sourceTree = "<group>"; };
 		DDB0CE5E2498774E004D6027 /* ShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButton.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				DD2DCBB624719BA20071F0A7 /* ClosetViewController.swift */,
 				DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */,
 				DD78299224A2F6FE0072302F /* SortOptionsViewController.swift */,
+				DD97369024B253E000E0D001 /* NewCategoryViewController.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
 				DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
@@ -335,6 +338,7 @@
 				DD100BFB249079D900245B85 /* PopupTableView.swift in Sources */,
 				DD8650A62485FED400DB96A0 /* SelectCategoryViewController.swift in Sources */,
 				DD2DCBB324719BA20071F0A7 /* AppDelegate.swift in Sources */,
+				DD97369124B253E000E0D001 /* NewCategoryViewController.swift in Sources */,
 				DD8B9A08248357CE004159B3 /* EditCategoryViewController.swift in Sources */,
 				DD85CBC3247769AE0061115B /* CategoryCustomCell.swift in Sources */,
 				DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */,

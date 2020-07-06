@@ -260,7 +260,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         cell.color.text = currItem.value(forKey: "color") as? String
         cell.lastWorn.text = currItem.value(forKey: "lastWorn") as? String
         
-        // image styling
         cell.itemImageView.layer.cornerRadius = 12
         cell.itemImageView.layer.masksToBounds = true
         
@@ -297,29 +296,32 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             searchVC.passedCategories = self.categoryList
             searchVC.passedBrands = self.brandList
         }
+        else if segue.identifier == "newCategorySegue" {
+            let newCategoryVC = segue.destination as! NewCategoryViewController
+        }
     }
     
     // handles action for adding new category
     @IBAction func newCategory(_ sender: Any) {
-        let alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
-        alert.addTextField(configurationHandler: {
-            (_ textField: UITextField) -> Void in
-            textField.placeholder = "Name"
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
-                (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-        ))
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
-                (action) in
-                let newCategory = alert.textFields?[0].text as! String
-                self.closetDict[newCategory] = []
-                self.categoryList.append(newCategory)
-                self.categoryTabs.reloadData()
-            }
-        ))
-        self.present(alert, animated: true)
+//        let alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
+//        alert.addTextField(configurationHandler: {
+//            (_ textField: UITextField) -> Void in
+//            textField.placeholder = "Name"
+//        })
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
+//                (action) in
+//                self.dismiss(animated: true, completion: nil)
+//            }
+//        ))
+//        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
+//                (action) in
+//                let newCategory = alert.textFields?[0].text as! String
+//                self.closetDict[newCategory] = []
+//                self.categoryList.append(newCategory)
+//                self.categoryTabs.reloadData()
+//            }
+//        ))
+//        self.present(alert, animated: true)
     }
     
     
