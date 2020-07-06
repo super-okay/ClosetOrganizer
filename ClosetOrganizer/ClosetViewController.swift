@@ -18,7 +18,11 @@ protocol EditItemProtocol {
     func deleteItem(itemToDelete:NSManagedObject)
 }
 
-class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol {
+protocol newCategoryProtocol {
+    func addNewCategory(newCategory: String)
+}
+
+class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol {
     
     @IBOutlet weak var closetTableView: UITableView!
     var coreDataList:[NSManagedObject] = []
@@ -298,32 +302,16 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "newCategorySegue" {
             let newCategoryVC = segue.destination as! NewCategoryViewController
+            newCategoryVC.delegate = self
         }
     }
     
-    // handles action for adding new category
-    @IBAction func newCategory(_ sender: Any) {
-//        let alert = UIAlertController(title: "Add New Category", message: nil, preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: {
-//            (_ textField: UITextField) -> Void in
-//            textField.placeholder = "Name"
-//        })
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
-//                (action) in
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        ))
-//        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: {
-//                (action) in
-//                let newCategory = alert.textFields?[0].text as! String
-//                self.closetDict[newCategory] = []
-//                self.categoryList.append(newCategory)
-//                self.categoryTabs.reloadData()
-//            }
-//        ))
-//        self.present(alert, animated: true)
+    // delegate function for adding new category
+    func addNewCategory(newCategory: String) {
+        self.closetDict[newCategory] = []
+        self.categoryList.append(newCategory)
+        self.categoryTabs.reloadData()
     }
-    
     
     // delegate function for adding new item
     func addNewItem(newItem: NSManagedObject) {

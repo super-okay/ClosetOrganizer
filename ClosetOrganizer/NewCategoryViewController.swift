@@ -15,6 +15,8 @@ class NewCategoryViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var addButton: UIButton!
     
+    var delegate: newCategoryProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,9 @@ class NewCategoryViewController: UIViewController {
     }
     
     @IBAction func add(_ sender: Any) {
+        // NEED TO ERROR CHECK in case user adds no text
+        delegate?.addNewCategory(newCategory: self.newCategoryField.text!)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

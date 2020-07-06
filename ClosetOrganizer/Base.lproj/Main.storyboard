@@ -160,7 +160,6 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <action selector="newCategory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pNZ-tV-4uj"/>
                                     <segue destination="qY3-2L-Vz4" kind="presentation" identifier="newCategorySegue" modalPresentationStyle="overCurrentContext" id="Ya3-Fi-tpQ"/>
                                 </connections>
                             </button>
