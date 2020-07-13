@@ -25,7 +25,6 @@ protocol newCategoryProtocol {
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol {
     
     @IBOutlet weak var closetTableView: UITableView!
-    var coreDataList:[NSManagedObject] = []
     var closetDict:[String:[NSManagedObject]] = [:]
     
     @IBOutlet weak var categoryTabs: UICollectionView!
@@ -58,14 +57,15 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         newItemButton.layer.cornerRadius = 12
         newItemButton.clipsToBounds = true
         
-        closetDict["All"] = []
-        closetDict["T-shirts"] = []
-        closetDict["Jackets"] = []
-        closetDict["Coats"] = []
-        closetDict["Shorts"] = []
-        closetDict["Pants"] = []
-        
-        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+//        closetDict["All"] = []
+//        closetDict["T-shirts"] = []
+//        closetDict["Jackets"] = []
+//        closetDict["Coats"] = []
+//        closetDict["Shorts"] = []
+//        closetDict["Pants"] = []
+//
+//        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+        fetchCategories()
         
         // selects + highlights the "All" category tab upon page load
         self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
@@ -75,7 +75,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         self.closetTableView.separatorStyle = .none
         
         // fetch ClosetItems from core data
-        fetchData()
+        fetchClosetItems()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,7 +97,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // fetches items from core data, puts into dictionary
-    private func fetchData() {
+    private func fetchClosetItems() {
         guard let appDelegate =
           UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -106,9 +106,9 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ClosetItem")
         
         do {
-            self.coreDataList = try managedContext.fetch(fetchRequest)
-            self.coreDataList.reverse() // recent items appear on top
-            closetDict["All"] = self.coreDataList
+            var coreDataList = try managedContext.fetch(fetchRequest)
+            coreDataList.reverse() // recent items appear on top
+            closetDict["All"] = coreDataList
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -127,6 +127,73 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             if !self.brandList.contains(brand) {
                 self.brandList.append(brand)
             }
+        }
+    }
+    
+    // fetches categories from core data, loads into categoryList
+    private func fetchCategories() {
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Category")
+        
+        var coreDataCategories:[NSManagedObject]!
+        do {
+            coreDataCategories = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        // first time initialization of app
+        if coreDataCategories.count == 0 {
+            let categoriesToAdd = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+            let entity = NSEntityDescription.entity(forEntityName: "Category",
+            in: managedContext)!
+            for name in categoriesToAdd {
+                let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
+                newCategory.setValue(name, forKey: "name")
+                self.closetDict[name] = []
+                self.categoryList.append(name)
+            }
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        }
+        // not first time initializing app
+        else {
+            for item in coreDataCategories {
+                let name = item.value(forKey: "name") as? String
+                self.closetDict[name!] = []
+                self.categoryList.append(name!)
+            }
+        }
+    }
+    
+    // adds initial categories to core data
+    private func initCategories() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                 return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Category",
+                                          in: managedContext)!
+        
+        let categoriesToAdd = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+        for name in categoriesToAdd {
+            let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
+            newCategory.setValue(name, forKey: "name")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
