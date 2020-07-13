@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NewCategoryViewController: UIViewController {
 
@@ -40,7 +41,24 @@ class NewCategoryViewController: UIViewController {
     
     @IBAction func add(_ sender: Any) {
         // NEED TO ERROR CHECK in case user adds no text
-        delegate?.addNewCategory(newCategory: self.newCategoryField.text!)
+        
+        guard let appDelegate =
+          UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
+        let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
+        newCategory.setValue(self.newCategoryField.text!, forKey: "name")
+        newCategory.setValue(Date(), forKey: "dateAdded")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        delegate?.addNewCategory(newCategory: newCategory)
         self.dismiss(animated: true, completion: nil)
     }
     

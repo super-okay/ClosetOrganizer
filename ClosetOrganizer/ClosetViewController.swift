@@ -19,7 +19,7 @@ protocol EditItemProtocol {
 }
 
 protocol newCategoryProtocol {
-    func addNewCategory(newCategory: String)
+    func addNewCategory(newCategory: NSManagedObject)
 }
 
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol {
@@ -362,9 +362,10 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // delegate function for adding new category
-    func addNewCategory(newCategory: String) {
-        self.closetDict[newCategory] = []
-        self.categoryList.append(newCategory)
+    func addNewCategory(newCategory: NSManagedObject) {
+        let newName = newCategory.value(forKey: "name") as? String
+        self.closetDict[newName!] = []
+        self.categoryList.append(newName!)
         self.categoryTabs.reloadData()
     }
     
