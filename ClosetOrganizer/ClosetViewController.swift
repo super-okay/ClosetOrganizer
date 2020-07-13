@@ -78,12 +78,13 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         fetchClosetItems()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // selects + highlights the "All" category tab upon view appearing
-        self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
-    }
+    // bugs when user is on a category that is not "All", visits detail page of an item, comes back
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        // selects + highlights the "All" category tab upon view appearing
+//        self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+//    }
     
     // sets title and styling of navigation bar
     private func setupNavBar() {
@@ -149,11 +150,11 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         // first time initialization of app
         if coreDataCategories.count == 0 {
             let categoriesToAdd = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
-            let entity = NSEntityDescription.entity(forEntityName: "Category",
-            in: managedContext)!
+            let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
             for name in categoriesToAdd {
                 let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
                 newCategory.setValue(name, forKey: "name")
+                newCategory.setValue(Date(), forKey: "dateAdded")
                 self.closetDict[name] = []
                 self.categoryList.append(name)
             }
@@ -166,36 +167,23 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         // not first time initializing app
         else {
-            for item in coreDataCategories {
+            let sort = NSSortDescriptor(key: #keyPath(Category.dateAdded), ascending: true)
+            fetchRequest.sortDescriptors = [sort]
+            var sortedCategories:[NSManagedObject]!
+            do {
+                sortedCategories = try managedContext.fetch(fetchRequest)
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+            
+            for item in sortedCategories {
                 let name = item.value(forKey: "name") as? String
                 self.closetDict[name!] = []
                 self.categoryList.append(name!)
             }
         }
     }
-    
-    // adds initial categories to core data
-    private func initCategories() {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                 return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Category",
-                                          in: managedContext)!
-        
-        let categoriesToAdd = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
-        for name in categoriesToAdd {
-            let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
-            newCategory.setValue(name, forKey: "name")
-        }
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
+
     
     // for fading of tableview edges
     override func viewDidLayoutSubviews() {
