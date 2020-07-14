@@ -40,26 +40,34 @@ class NewCategoryViewController: UIViewController {
     }
     
     @IBAction func add(_ sender: Any) {
-        // NEED TO ERROR CHECK in case user adds no text
+        let newCategoryName = self.newCategoryField.text!
+        let trimmedName = newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard let appDelegate =
-          UIApplication.shared.delegate as? AppDelegate else {
-            return
+        if !trimmedName.isEmpty {
+            guard let appDelegate =
+              UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
+            let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
+            newCategory.setValue(trimmedName, forKey: "name")
+            newCategory.setValue(Date(), forKey: "dateAdded")
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+            delegate?.addNewCategory(newCategory: newCategory)
+            self.dismiss(animated: true, completion: nil)
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
-        let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
-        newCategory.setValue(self.newCategoryField.text!, forKey: "name")
-        newCategory.setValue(Date(), forKey: "dateAdded")
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        else {
+            let alert = UIAlertController(title: "Error", message: "Category name cannot be blank", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            self.present(alert, animated: true)
         }
-        
-        delegate?.addNewCategory(newCategory: newCategory)
-        self.dismiss(animated: true, completion: nil)
     }
     
 }
