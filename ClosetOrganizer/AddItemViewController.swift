@@ -151,14 +151,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // checks whether the form has been filled correctly
     func validForm() -> Bool {
-        var valid = false
+        let trimmedCategory = self.categoryField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedBrand = self.brandField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedColor = self.colorField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        // valid
-        if categoryField.text != "" && brandField.text != "" && colorField.text != "" {
-            valid = true
-        }
-        
-        return valid
+        return !trimmedCategory.isEmpty && !trimmedBrand.isEmpty && !trimmedColor.isEmpty
     }
     
     // prepare for segue
