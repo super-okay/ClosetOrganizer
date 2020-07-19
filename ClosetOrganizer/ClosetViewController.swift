@@ -57,15 +57,16 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         newItemButton.layer.cornerRadius = 12
         newItemButton.clipsToBounds = true
         
-//        closetDict["All"] = []
-//        closetDict["T-shirts"] = []
-//        closetDict["Jackets"] = []
-//        closetDict["Coats"] = []
-//        closetDict["Shorts"] = []
-//        closetDict["Pants"] = []
-//
-//        categoryList = ["All", "T-shirts", "Jackets", "Coats", "Shorts", "Pants"]
+        // fetch categories from core data
         fetchCategories()
+        
+        // fetch ClosetItems from core data
+        fetchClosetItems()
+        
+        // long press categories for editing/deleting
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(gesture:)))
+        longPressRecognizer.minimumPressDuration = 1.0
+        self.categoryTabs.addGestureRecognizer(longPressRecognizer)
         
         // selects + highlights the "All" category tab upon page load
         self.categoryTabs.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
@@ -73,9 +74,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         // removes extra table view dividers
         self.closetTableView.tableFooterView = UIView()
         self.closetTableView.separatorStyle = .none
-        
-        // fetch ClosetItems from core data
-        fetchClosetItems()
     }
     
     // bugs when user is on a category that is not "All", visits detail page of an item, comes back
@@ -279,6 +277,21 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .white
         cell?.isSelected = false
+    }
+    
+    // handles long press for categories
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state != .began {
+            return
+        }
+        let loc = gesture.location(in: self.categoryTabs)
+        if let indexPath = self.categoryTabs.indexPathForItem(at: loc) {
+            let cell = self.categoryTabs.cellForItem(at: indexPath) as! CategoryCustomCell
+            print(cell.categoryLabel!)
+        }
+        else {
+            print("Could not find index path for long press")
+        }
     }
     
     
