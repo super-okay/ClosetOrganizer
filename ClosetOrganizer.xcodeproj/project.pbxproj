@@ -37,6 +37,7 @@
 		DDEC9F92248EF2B50016B380 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEC9F91248EF2B50016B380 /* SearchViewController.swift */; };
 		DDEC9F94248F387C0016B380 /* SearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEC9F93248F387C0016B380 /* SearchFiltersViewController.swift */; };
 		DDEF650524933E7F003ABCDB /* ClosetItemCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */; };
+		DDF8DBCE24C544760081F362 /* DeleteCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF8DBCD24C544760081F362 /* DeleteCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		DDEC9F91248EF2B50016B380 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DDEC9F93248F387C0016B380 /* SearchFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFiltersViewController.swift; sourceTree = "<group>"; };
 		DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClosetItemCustomCell.xib; sourceTree = "<group>"; };
+		DDF8DBCD24C544760081F362 /* DeleteCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				DD85CBC2247769AE0061115B /* CategoryCustomCell.swift */,
 				DD78299224A2F6FE0072302F /* SortOptionsViewController.swift */,
 				DD97369024B253E000E0D001 /* NewCategoryViewController.swift */,
+				DDF8DBCD24C544760081F362 /* DeleteCategoryViewController.swift */,
 				DD2DCBE52471A2920071F0A7 /* ClosetItemCustomCell.swift */,
 				DDEF650424933E7F003ABCDB /* ClosetItemCustomCell.xib */,
 				DD09B8D424738BC800338569 /* AddItemViewController.swift */,
@@ -344,6 +347,7 @@
 				DD5060C62471E97100C42450 /* SettingsViewController.swift in Sources */,
 				DD2DCBB524719BA20071F0A7 /* SceneDelegate.swift in Sources */,
 				DD2DCBE62471A2920071F0A7 /* ClosetItemCustomCell.swift in Sources */,
+				DDF8DBCE24C544760081F362 /* DeleteCategoryViewController.swift in Sources */,
 				DD09B8D524738BC800338569 /* AddItemViewController.swift in Sources */,
 				DD78299324A2F6FE0072302F /* SortOptionsViewController.swift in Sources */,
 				DD2DCBE82471A7AE0071F0A7 /* ClosetItem.swift in Sources */,
