@@ -21,18 +21,22 @@ class NewCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // blurs background
+        blurBackground()
+
+//        self.newCategoryLabel.textColor = .white
+        self.newCategoryField.frame.size.height = 42
+        self.cancelButton.layer.cornerRadius = 12
+        self.addButton.layer.cornerRadius = 12
+    }
+    
+    // blurs background
+    private func blurBackground() {
         self.view.backgroundColor = UIColor.clear
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(blurEffectView, at: 0)
-
-//        self.newCategoryLabel.textColor = .white
-        self.newCategoryField.frame.size.height = 42
-        self.cancelButton.layer.cornerRadius = 12
-        self.addButton.layer.cornerRadius = 12
     }
     
     @IBAction func cancel(_ sender: Any) {

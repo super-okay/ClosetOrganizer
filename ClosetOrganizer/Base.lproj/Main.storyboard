@@ -206,6 +206,7 @@
                         <outlet property="newCategoryButton" destination="gxh-xZ-roj" id="HD1-Nd-IDK"/>
                         <outlet property="newItemButton" destination="uvz-sm-ED4" id="jqm-hE-nVi"/>
                         <segue destination="H4a-xL-nRi" kind="show" identifier="detailSegue" id="LZh-6w-Y8B"/>
+                        <segue destination="e2B-8y-y9T" kind="presentation" identifier="deleteCategorySegue" modalPresentationStyle="overCurrentContext" id="93e-lN-In5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -221,7 +222,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxn-2C-qyx">
-                                <rect key="frame" x="129" y="367" width="157" height="31"/>
+                                <rect key="frame" x="20" y="367" width="374" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -257,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vy-Ea-0Nv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3249.275362318841" y="1585.7142857142856"/>
+            <point key="canvasLocation" x="-3230.434782608696" y="1585.7142857142856"/>
         </scene>
         <!--New Category View Controller-->
         <scene sceneID="Vap-wR-HbJ">
@@ -467,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ooU-Xx-jeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813.04347826086962" y="1585.7142857142856"/>
+            <point key="canvasLocation" x="-813" y="1586"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="2Um-7L-FTM">
@@ -1025,7 +1026,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="01N-Wl-m8E"/>
-        <segue reference="LZh-6w-Y8B"/>
+        <segue reference="xAk-Td-We2"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
     <resources>

@@ -14,10 +14,28 @@ class DeleteCategoryViewController: UIViewController {
     @IBOutlet var editButton: UIButton!
     @IBOutlet var deleteButton: UIButton!
     
+    var passedCategoryName:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        blurBackground()
+        
+        self.categoryName.text = self.passedCategoryName
+        self.categoryName.textAlignment = .center
+        
+        self.editButton.layer.cornerRadius = 12
+        self.deleteButton.layer.cornerRadius = 12
+    }
+    
+    // blurs background
+    private func blurBackground() {
+        self.view.backgroundColor = UIColor.clear
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.insertSubview(blurEffectView, at: 0)
     }
 
 

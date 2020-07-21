@@ -22,7 +22,11 @@ protocol newCategoryProtocol {
     func addNewCategory(newCategory: NSManagedObject)
 }
 
-class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol {
+protocol deleteCategoryProtocol {
+    func updateCategoryName(oldCategory:String, newName:String)
+}
+
+class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol, deleteCategoryProtocol {
     
     @IBOutlet weak var closetTableView: UITableView!
     var closetDict:[String:[NSManagedObject]] = [:]
@@ -37,6 +41,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var newItemButton: UIButton!
     
     var selectedIndex:Int!
+    var longPressedCategory:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,7 +233,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     /* --------------- Collection View Functions --------------- */
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return categoryList.count
     }
     
@@ -263,7 +267,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // action for selecting category cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .darkGray
         cell?.isSelected = true
@@ -273,7 +276,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // action for deselecting category cell
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .white
         cell?.isSelected = false
@@ -287,7 +289,8 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         let loc = gesture.location(in: self.categoryTabs)
         if let indexPath = self.categoryTabs.indexPathForItem(at: loc) {
             let cell = self.categoryTabs.cellForItem(at: indexPath) as! CategoryCustomCell
-            print(cell.categoryLabel!)
+            self.longPressedCategory = cell.categoryLabel.text
+            self.performSegue(withIdentifier: "deleteCategorySegue", sender: nil)
         }
         else {
             print("Could not find index path for long press")
@@ -309,7 +312,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // applies background color to spacing between cells
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView
@@ -339,7 +341,6 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.selectedIndex = indexPath.section
         self.performSegue(withIdentifier: "detailSegue", sender: nil)
     }
@@ -372,6 +373,10 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             let newCategoryVC = segue.destination as! NewCategoryViewController
             newCategoryVC.delegate = self
         }
+        else if segue.identifier == "deleteCategorySegue" {
+            let deleteCategoryVC = segue.destination as! DeleteCategoryViewController
+            deleteCategoryVC.passedCategoryName = self.longPressedCategory
+        }
     }
     
     // delegate function for adding new category
@@ -380,6 +385,11 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         self.closetDict[newName!] = []
         self.categoryList.append(newName!)
         self.categoryTabs.reloadData()
+    }
+    
+    // delegate function for updating category name
+    func updateCategoryName(oldCategory: String, newName: String) {
+        print("Not sure what to do yet")
     }
     
     // delegate function for adding new item
