@@ -22,11 +22,12 @@ protocol newCategoryProtocol {
     func addNewCategory(newCategory: NSManagedObject)
 }
 
-protocol deleteCategoryProtocol {
-    func updateCategoryName(oldCategory:String, newName:String)
+protocol UpdateCategoryProtocol {
+    func editCategoryName(oldCategory:String, newName:String)
+    func deleteCategory(category:String)
 }
 
-class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol, deleteCategoryProtocol {
+class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol, UpdateCategoryProtocol {
     
     @IBOutlet weak var closetTableView: UITableView!
     var closetDict:[String:[NSManagedObject]] = [:]
@@ -375,6 +376,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "deleteCategorySegue" {
             let deleteCategoryVC = segue.destination as! DeleteCategoryViewController
+            deleteCategoryVC.delegate = self
             deleteCategoryVC.passedCategoryName = self.longPressedCategory
         }
     }
@@ -388,8 +390,12 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     // delegate function for updating category name
-    func updateCategoryName(oldCategory: String, newName: String) {
-        print("Not sure what to do yet")
+    func editCategoryName(oldCategory: String, newName: String) {
+        print("Edit category name")
+    }
+    
+    func deleteCategory(category:String) {
+        print("Delete category")
     }
     
     // delegate function for adding new item
