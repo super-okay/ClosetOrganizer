@@ -45,12 +45,22 @@ class DeleteCategoryViewController: UIViewController {
         alert.addTextField(configurationHandler: {
             textField in
             textField.placeholder = "Enter new name..."
+            textField.text = self.passedCategoryName
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        cancelAction.titleTextColor = .black
+        alert.addAction(cancelAction)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             action in
-            print("Saving new name")
-        }))
+            let textField1 = alert.textFields![0] as UITextField
+            self.categoryName.text = textField1.text!
+            self.delegate?.editCategoryName(oldCategory: self.passedCategoryName, newName: textField1.text!)
+        })
+        saveAction.titleTextColor = .red
+        alert.addAction(saveAction)
+        
         self.present(alert, animated: true)
     }
     
@@ -71,9 +81,18 @@ class DeleteCategoryViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    // dismisses view when user touches outside table view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
+        if touch?.view != self.editButton && touch?.view != self.deleteButton {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension UIAlertAction {
+    // allows changing of alert action text color
     var titleTextColor: UIColor? {
         get {
             return self.value(forKey: "titleTextColor") as? UIColor

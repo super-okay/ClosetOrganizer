@@ -391,7 +391,49 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     
     // delegate function for updating category name
     func editCategoryName(oldCategory: String, newName: String) {
-        print("Edit category name")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // update category list
+        let idx = self.categoryList.firstIndex(of: oldCategory)
+        self.categoryList[idx!] = newName
+        
+        // update category tabs
+        self.categoryTabs.reloadData()
+        
+        // update closet dictionary
+        let oldList = self.closetDict[oldCategory]
+        self.closetDict[oldCategory] = nil
+        for item in oldList! {
+            item.setValue(newName, forKey: "category")
+        }
+        self.closetDict[newName] = oldList
+        
+        // update category in core data
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Category")
+        do {
+            let coreDataCategories = try managedContext.fetch(fetchRequest)
+            for category in coreDataCategories {
+                let currName = category.value(forKey: "name") as? String
+                if currName! == oldCategory {
+                    category.setValue(newName, forKey: "name")
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        // save to core data
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        self.closetTableView.reloadData()
     }
     
     func deleteCategory(category:String) {
