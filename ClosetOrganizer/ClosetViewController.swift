@@ -24,7 +24,7 @@ protocol newCategoryProtocol {
 
 protocol UpdateCategoryProtocol {
     func editCategoryName(oldCategory:String, newName:String)
-    func deleteCategory(category:String)
+    func deleteCategory(categoryToDelete:String)
 }
 
 class ClosetViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AddItemProtocol, EditItemProtocol, newCategoryProtocol, UpdateCategoryProtocol {
@@ -436,15 +436,72 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         self.closetTableView.reloadData()
     }
     
-    func deleteCategory(category:String) {
-        print("Delete category")
+    /*
+     Delegate function for deleting a category
+     Parameters:
+        - categoryToDelete: name of category to be deleted
+     */
+    func deleteCategory(categoryToDelete:String) {
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // update category list
+        if let idx = self.categoryList.firstIndex(of: categoryToDelete) {
+            self.categoryList.remove(at: idx)
+        }
+        
+        // update category tabs
+        self.categoryTabs.reloadData()
+        
+        // update closet dictionary
+            // delete that key value pair from dict
+            // for all the items in "All" that are still of the deleted category,
+                // change their categories to "All"
+        self.closetDict[categoryToDelete] = nil
+        for item in self.closetDict["All"]! {
+            let currCategory = item.value(forKey: "category") as? String
+            if currCategory == categoryToDelete {
+                item.setValue("All", forKey: "category")
+            }
+        }
+        
+        // update category in core data
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Category")
+        do {
+            let coreDataCategories = try managedContext.fetch(fetchRequest)
+            for category in coreDataCategories {
+                let currName = category.value(forKey: "name") as? String
+                if currName! == categoryToDelete {
+                    managedContext.delete(category)
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        // save to core data
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        self.closetTableView.reloadData()
     }
+
     
-    // delegate function for adding new item
+    /*
+     Delegate function for adding new item
+     Parameters:
+        - newItem: item to be added
+     */
     func addNewItem(newItem: NSManagedObject) {
         
         var allList = closetDict["All"]!
-//        allList.append(newItem)
+        // allList.append(newItem)
         allList.insert(newItem, at: 0)
         closetDict["All"] = allList
         
@@ -452,7 +509,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         
         if newItem.value(forKey: "category") as? String != "All" {
             var listToAddTo = closetDict[newCategory]!
-//            listToAddTo.append(newItem)
+            // listToAddTo.append(newItem)
             listToAddTo.insert(newItem, at: 0)
             closetDict[newCategory] = listToAddTo
         }
@@ -460,7 +517,13 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         closetTableView.reloadData()
     }
     
-    // delegate function, finds old item to replace with new, edited item
+    
+    /*
+     Delegate function, finds old item to replace with new, edited item
+     Parameters:
+        - oldItem: old item to be replaced
+        - newItem: new item to replace old item
+     */
     func editExistingItem(oldItem:NSManagedObject, newItem:NSManagedObject) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -487,7 +550,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             var listToAddTo = closetDict[newCategory]!
-//            listToAddTo.append(newItem)
+            // listToAddTo.append(newItem)
             listToAddTo.insert(newItem, at: 0)
             closetDict[newCategory] = listToAddTo
         }

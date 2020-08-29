@@ -73,7 +73,8 @@ class DeleteCategoryViewController: UIViewController {
         
         let deleteAction = UIAlertAction(title: "Yes, delete this category", style: .default, handler: {
             action in
-            print("Category deleted")
+            print("Category being deleted.")
+            self.delegate?.deleteCategory(categoryToDelete: self.passedCategoryName)
         })
         deleteAction.titleTextColor = .red
         alert.addAction(deleteAction)
