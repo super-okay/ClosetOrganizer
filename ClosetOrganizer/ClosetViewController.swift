@@ -82,7 +82,10 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         self.closetTableView.separatorStyle = .none
     }
     
-    // bugs when user is on a category that is not "All", visits detail page of an item, comes back
+    
+    /*
+     viewDidAppear was added to highlight the "All" category tab upon view appearing, but currently bugs when use is on a category that is not "All", visits detail page of an item, and comes back
+     */
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
 //
@@ -189,7 +192,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     
-    // for fading of tableview edges
+    // fading of tableview edges
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -291,7 +294,14 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         if let indexPath = self.categoryTabs.indexPathForItem(at: loc) {
             let cell = self.categoryTabs.cellForItem(at: indexPath) as! CategoryCustomCell
             self.longPressedCategory = cell.categoryLabel.text
-            self.performSegue(withIdentifier: "deleteCategorySegue", sender: nil)
+            if cell.categoryLabel.text != "All" {
+                self.performSegue(withIdentifier: "deleteCategorySegue", sender: nil)
+            }
+            else {
+                let alert = UIAlertController(title: "The 'All' category cannot be edited or deleted", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
         }
         else {
             print("Could not find index path for long press")
