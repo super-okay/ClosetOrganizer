@@ -382,6 +382,7 @@ class ClosetViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "newCategorySegue" {
             let newCategoryVC = segue.destination as! NewCategoryViewController
+            newCategoryVC.passedCategories = self.categoryList
             newCategoryVC.delegate = self
         }
         else if segue.identifier == "deleteCategorySegue" {

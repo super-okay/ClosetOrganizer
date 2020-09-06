@@ -16,6 +16,8 @@ class NewCategoryViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var addButton: UIButton!
     
+    var passedCategories:[String]!
+    
     var delegate: newCategoryProtocol?
     
     override func viewDidLoad() {
@@ -47,26 +49,43 @@ class NewCategoryViewController: UIViewController {
         let newCategoryName = self.newCategoryField.text!
         let trimmedName = newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        // non-empty field
         if !trimmedName.isEmpty {
-            guard let appDelegate =
-              UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
-            let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
-            newCategory.setValue(trimmedName, forKey: "name")
-            newCategory.setValue(Date(), forKey: "dateAdded")
-            
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+            var lowercasedCategories:[String] = []
+            for category in self.passedCategories {
+                lowercasedCategories.append(category.lowercased())
             }
             
-            delegate?.addNewCategory(newCategory: newCategory)
-            self.dismiss(animated: true, completion: nil)
+            // category already exists
+            if lowercasedCategories.contains(trimmedName.lowercased()) {
+                self.newCategoryField.text = ""
+                let alert = UIAlertController(title: "Error", message: "Category already exists", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                self.present(alert, animated: true)
+            }
+            // valid new category
+            else {
+                guard let appDelegate =
+                  UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                let managedContext = appDelegate.persistentContainer.viewContext
+                let entity = NSEntityDescription.entity(forEntityName: "Category", in: managedContext)!
+                let newCategory = NSManagedObject(entity: entity, insertInto: managedContext)
+                newCategory.setValue(trimmedName, forKey: "name")
+                newCategory.setValue(Date(), forKey: "dateAdded")
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+                
+                delegate?.addNewCategory(newCategory: newCategory)
+                self.dismiss(animated: true, completion: nil)
+            }
         }
+        // empty field
         else {
             let alert = UIAlertController(title: "Error", message: "Category name cannot be blank", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
